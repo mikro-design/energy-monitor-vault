@@ -1,0 +1,33 @@
+{
+  "id": "example/spi-flash",
+  "name": "SPI flash",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "model": {
+    "kind": "load",
+    "states": {
+      "sleep": 0.000001,
+      "write": 0.006
+    },
+    "default_state": "sleep",
+    "min_voltage_v": 2.7
+  },
+  "provenance": {
+    "states.sleep": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "states.write": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "default_state": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "min_voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "schema_version": "0.1",
+  "name": "Environmental sensor",
+  "revision": 1,
+  "scenario": "Nominal",
+  "duration_s": 60,
+  "parts": [
+    {
+      "id": "example/lithium-cell",
+      "name": "Lithium primary cell",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "model": {
+        "kind": "battery",
+        "voltage_v": 3.6,
+        "capacity_ah": 2.4,
+        "initial_soc": 1,
+        "max_current_a": 0.1
+      },
+      "provenance": {
+        "voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "capacity_ah": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "initial_soc": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "max_current_a": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        }
+      }
+    },
+    {
+      "id": "example/low-iq-buck",
+      "name": "Low-IQ buck converter",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "model": {
+        "kind": "converter",
+        "voltage_v": 3,
+        "efficiency": 0.92,
+        "iq_a": 5e-7,
+        "min_input_v": 3.1,
+        "max_current_a": 0.2
+      },
+      "provenance": {
+        "voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "efficiency": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "iq_a": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "min_input_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "max_current_a": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        }
+      }
+    },
+    {
+      "id": "example/mcu-radio",
+      "name": "MCU + BLE radio",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "model": {
+        "kind": "load",
+        "states": {
+          "sleep": 0.000002,
+          "run": 0.0048,
+          "tx": 0.012
+        },
+        "default_state": "sleep",
+        "min_voltage_v": 1.7
+      },
+      "provenance": {
+        "states.sleep": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "states.run": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "states.tx": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "default_state": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        }
+      }
+    },
+    {
+      "id": "example/temperature-sensor",
+      "name": "Temperature sensor",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "model": {
+        "kind": "load",
+        "states": {
+          "sleep": 1.5e-7,
+          "sample": 0.00065
+        },
+        "default_state": "sleep",
+        "min_voltage_v": 1.8
+      },
+      "provenance": {
+        "states.sleep": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "states.sample": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "default_state": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        }
+      }
+    },
+    {
+      "id": "example/spi-flash",
+      "name": "SPI flash",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "model": {
+        "kind": "load",
+        "states": {
+          "sleep": 0.000001,
+          "write": 0.006
+        },
+        "default_state": "sleep",
+        "min_voltage_v": 2.7
+      },
+      "provenance": {
+        "states.sleep": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "states.write": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "default_state": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+        }
+      }
+    }
+  ],
+  "lock": {
+    "example/lithium-cell": {
+      "revision": "0.1.0",
+      "sha256": "4264412632db315f94341e41d2caca9e4715046cb7c997e6beea2aad20fb14b3"
+    },
+    "example/low-iq-buck": {
+      "revision": "0.1.0",
+      "sha256": "263ea711d441f847d4f181cee37146a7642cd50568b7a7ac001be1e3a33ad4d9"
+    },
+    "example/mcu-radio": {
+      "revision": "0.1.0",
+      "sha256": "bd37a09b35cf186601118cd4452d3203589e3f030a9b66748af0e4bcf44dfb43"
+    },
+    "example/temperature-sensor": {
+      "revision": "0.1.0",
+      "sha256": "badd361e4aa4f649fe4b74540e94359501994c263299680595d61bce8b55b776"
+    },
+    "example/spi-flash": {
+      "revision": "0.1.0",
+      "sha256": "b9cd6160ce4220985d2ca109a2ce2ee61efe5f8953a02b0719ec5f7742b1d697"
+    }
+  },
+  "nodes": [
+    {
+      "id": "battery",
+      "label": "Battery",
+      "part_id": "example/lithium-cell",
+      "x": 54,
+      "y": 130
+    },
+    {
+      "id": "buck",
+      "label": "3.0 V regulator",
+      "part_id": "example/low-iq-buck",
+      "x": 324,
+      "y": 130
+    },
+    {
+      "id": "mcu",
+      "label": "MCU + radio",
+      "part_id": "example/mcu-radio",
+      "x": 628,
+      "y": 30
+    },
+    {
+      "id": "sensor",
+      "label": "Temperature",
+      "part_id": "example/temperature-sensor",
+      "x": 628,
+      "y": 156
+    },
+    {
+      "id": "flash",
+      "label": "Flash memory",
+      "part_id": "example/spi-flash",
+      "x": 628,
+      "y": 282
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "battery",
+      "to": "buck"
+    },
+    {
+      "id": "e2",
+      "from": "buck",
+      "to": "mcu"
+    },
+    {
+      "id": "e3",
+      "from": "buck",
+      "to": "sensor"
+    },
+    {
+      "id": "e4",
+      "from": "buck",
+      "to": "flash"
+    }
+  ],
+  "events": [
+    {
+      "id": "sample",
+      "name": "Sample temperature",
+      "node_id": "sensor",
+      "state": "sample",
+      "start_s": 0.1,
+      "duration_s": 0.06,
+      "period_s": 10,
+      "enabled": true
+    },
+    {
+      "id": "process",
+      "name": "Process reading",
+      "node_id": "mcu",
+      "state": "run",
+      "start_s": 0.18,
+      "duration_s": 0.045,
+      "period_s": 10,
+      "enabled": true
+    },
+    {
+      "id": "transmit",
+      "name": "BLE advertise",
+      "node_id": "mcu",
+      "state": "tx",
+      "start_s": 0.25,
+      "duration_s": 0.008,
+      "period_s": 10,
+      "enabled": true
+    },
+    {
+      "id": "write",
+      "name": "Store reading",
+      "node_id": "flash",
+      "state": "write",
+      "start_s": 0.32,
+      "duration_s": 0.012,
+      "period_s": 10,
+      "enabled": true
+    }
+  ]
+}

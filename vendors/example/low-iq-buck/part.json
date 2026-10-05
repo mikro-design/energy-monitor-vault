@@ -1,0 +1,36 @@
+{
+  "id": "example/low-iq-buck",
+  "name": "Low-IQ buck converter",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "model": {
+    "kind": "converter",
+    "voltage_v": 3,
+    "efficiency": 0.92,
+    "iq_a": 5e-7,
+    "min_input_v": 3.1,
+    "max_current_a": 0.2
+  },
+  "provenance": {
+    "voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "efficiency": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "iq_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "min_input_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "max_current_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Part",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "model": {
+      "$ref": "#/$defs/Model"
+    },
+    "name": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Evidence"
+      }
+    },
+    "revision": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "revision",
+    "license",
+    "model",
+    "provenance"
+  ],
+  "$defs": {
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "note"
+      ]
+    },
+    "Model": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "capacity_ah": {
+              "type": "number",
+              "format": "double"
+            },
+            "initial_soc": {
+              "type": "number",
+              "format": "double"
+            },
+            "kind": {
+              "type": "string",
+              "const": "battery"
+            },
+            "max_current_a": {
+              "type": "number",
+              "format": "double"
+            },
+            "voltage_v": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "voltage_v",
+            "capacity_ah",
+            "initial_soc",
+            "max_current_a"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "supply"
+            },
+            "max_current_a": {
+              "type": "number",
+              "format": "double"
+            },
+            "voltage_v": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "voltage_v",
+            "max_current_a"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "efficiency": {
+              "type": "number",
+              "format": "double"
+            },
+            "iq_a": {
+              "type": "number",
+              "format": "double"
+            },
+            "kind": {
+              "type": "string",
+              "const": "converter"
+            },
+            "max_current_a": {
+              "type": "number",
+              "format": "double"
+            },
+            "min_input_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "voltage_v": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "voltage_v",
+            "efficiency",
+            "iq_a",
+            "min_input_v",
+            "max_current_a"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "kind": {
+              "type": "string",
+              "const": "switch"
+            },
+            "leakage_a": {
+              "type": "number",
+              "format": "double"
+            },
+            "resistance_ohm": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "enabled",
+            "resistance_ohm",
+            "leakage_a"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "default_state": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "load"
+            },
+            "min_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "states": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "states",
+            "default_state",
+            "min_voltage_v"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Device workspace settings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile", "display"],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "profile": { "type": "string", "pattern": "^profiles/[a-z0-9-]+\\.json$" },
+    "display": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme", "default_view", "graph"],
+      "properties": {
+        "theme": { "enum": ["light", "dark", "system"] },
+        "default_view": { "enum": ["topology", "activity", "results"] },
+        "graph": { "enum": ["power", "current", "energy", "soc"] }
+      }
+    }
+  }
+}

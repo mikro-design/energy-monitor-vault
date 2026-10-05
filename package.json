@@ -1,0 +1,17 @@
+{
+  "name": "energy-monitor-vault",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "index": "node tools/validate.mjs --index"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

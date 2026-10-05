@@ -1,0 +1,33 @@
+{
+  "id": "example/temperature-sensor",
+  "name": "Temperature sensor",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "model": {
+    "kind": "load",
+    "states": {
+      "sleep": 1.5e-7,
+      "sample": 0.00065
+    },
+    "default_state": "sleep",
+    "min_voltage_v": 1.8
+  },
+  "provenance": {
+    "states.sleep": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "states.sample": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "default_state": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "min_voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

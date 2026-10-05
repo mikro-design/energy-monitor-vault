@@ -1,0 +1,38 @@
+{
+  "id": "example/mcu-radio",
+  "name": "MCU + BLE radio",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "model": {
+    "kind": "load",
+    "states": {
+      "sleep": 0.000002,
+      "run": 0.0048,
+      "tx": 0.012
+    },
+    "default_state": "sleep",
+    "min_voltage_v": 1.7
+  },
+  "provenance": {
+    "states.sleep": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "states.run": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "states.tx": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "default_state": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "min_voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

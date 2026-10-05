@@ -1,0 +1,31 @@
+{
+  "id": "example/lithium-cell",
+  "name": "Lithium primary cell",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "model": {
+    "kind": "battery",
+    "voltage_v": 3.6,
+    "capacity_ah": 2.4,
+    "initial_soc": 1,
+    "max_current_a": 0.1
+  },
+  "provenance": {
+    "voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "capacity_ah": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "initial_soc": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "max_current_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event",
+  "type": "object",
+  "properties": {
+    "duration_s": {
+      "type": "number",
+      "format": "double"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "node_id": {
+      "type": "string"
+    },
+    "period_s": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    },
+    "start_s": {
+      "type": "number",
+      "format": "double"
+    },
+    "state": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "node_id",
+    "state",
+    "start_s",
+    "duration_s",
+    "enabled"
+  ]
+}

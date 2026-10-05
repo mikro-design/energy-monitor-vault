@@ -1,0 +1,5 @@
+{
+  "schema_version": "0.1",
+  "profile": "profiles/environmental-sensor.json",
+  "display": { "theme": "light", "default_view": "topology", "graph": "power" }
+}
