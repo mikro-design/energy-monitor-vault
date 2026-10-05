@@ -1,8 +1,17 @@
 {
+  "schema_version": "0.2",
   "id": "example/temperature-sensor",
   "name": "Temperature sensor",
-  "revision": "0.1.0",
+  "revision": "0.2.0",
   "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vdd",
+      "name": "VDD",
+      "type": "power_in",
+      "package_pins": []
+    }
+  ],
   "model": {
     "kind": "load",
     "states": {

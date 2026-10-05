@@ -2,43 +2,51 @@
   "schema_version": "0.1",
   "parts": [
     {
+      "id": "example/dual-output-pmic",
+      "name": "Illustrative dual-output PMIC",
+      "kind": "converter",
+      "revision": "0.2.0",
+      "sha256": "dc98bac9be2e2e5e3eef0c9b99004323c8eb2f176040346982e90158806c5e1d",
+      "path": "vendors/example/dual-output-pmic/part.json"
+    },
+    {
       "id": "example/lithium-cell",
       "name": "Lithium primary cell",
       "kind": "battery",
-      "revision": "0.1.0",
-      "sha256": "4264412632db315f94341e41d2caca9e4715046cb7c997e6beea2aad20fb14b3",
+      "revision": "0.2.0",
+      "sha256": "aafd4699b05a47a25a48d0ca3806e53d7fee015169692b8743e731a1e2978a27",
       "path": "vendors/example/lithium-cell/part.json"
     },
     {
       "id": "example/low-iq-buck",
       "name": "Low-IQ buck converter",
       "kind": "converter",
-      "revision": "0.1.0",
-      "sha256": "263ea711d441f847d4f181cee37146a7642cd50568b7a7ac001be1e3a33ad4d9",
+      "revision": "0.2.0",
+      "sha256": "faceb78c34dad6eecc7b66e8efdbeb6254ccffb3a33ada8d67ecc455d663211c",
       "path": "vendors/example/low-iq-buck/part.json"
     },
     {
       "id": "example/mcu-radio",
       "name": "MCU + BLE radio",
       "kind": "load",
-      "revision": "0.1.0",
-      "sha256": "bd37a09b35cf186601118cd4452d3203589e3f030a9b66748af0e4bcf44dfb43",
+      "revision": "0.2.0",
+      "sha256": "1d4fbcb600551199154a6c69726ab4975f37ed43253af9ea2001587f469afd99",
       "path": "vendors/example/mcu-radio/part.json"
     },
     {
       "id": "example/spi-flash",
       "name": "SPI flash",
       "kind": "load",
-      "revision": "0.1.0",
-      "sha256": "b9cd6160ce4220985d2ca109a2ce2ee61efe5f8953a02b0719ec5f7742b1d697",
+      "revision": "0.2.0",
+      "sha256": "d358d743f3c4d96dd7ae03dfd603cf9734a07f7404d1cb43d5d4827a8cb36005",
       "path": "vendors/example/spi-flash/part.json"
     },
     {
       "id": "example/temperature-sensor",
       "name": "Temperature sensor",
       "kind": "load",
-      "revision": "0.1.0",
-      "sha256": "badd361e4aa4f649fe4b74540e94359501994c263299680595d61bce8b55b776",
+      "revision": "0.2.0",
+      "sha256": "56578c5f4c335a0183a2031fcfc4f48885b55006fe33263253507fb178aeaa83",
       "path": "vendors/example/temperature-sensor/part.json"
     }
   ]

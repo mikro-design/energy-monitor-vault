@@ -47,13 +47,45 @@ export function validatePart(part) {
     errors.push("Invalid vendor/part ID");
   if (!part.revision.trim() || !part.license.trim())
     errors.push("Revision and license are required");
-  const fields = Object.entries(part.model)
-    .filter(([k]) => k !== "kind")
-    .flatMap(([k, v]) =>
-      typeof v === "object"
-        ? Object.entries(v).map(([s, n]) => [`${k}.${s}`, n])
-        : [[k, v]],
+  if (part.schema_version !== "0.2") errors.push("Unsupported part schema");
+  const flatten = (value, prefix = "") =>
+    Object.entries(value).flatMap(([key, value]) =>
+      key === "kind" && !prefix
+        ? []
+        : value && typeof value === "object"
+          ? flatten(value, `${prefix}${key}.`)
+          : [[`${prefix}${key}`, value]],
     );
+  const fields = flatten(part.model);
+  const inputs = part.ports.filter((p) => p.type === "power_in");
+  const outputs = part.ports.filter((p) => p.type === "power_out");
+  const counts = {
+    battery: [0, 1],
+    supply: [0, 1],
+    switch: [1, 1],
+    load: [1, 0],
+  };
+  const count = counts[part.model.kind];
+  if (
+    count
+      ? inputs.length !== count[0] || outputs.length !== count[1]
+      : inputs.length !== 1 || outputs.length < 1 || outputs.length > 16
+  )
+    errors.push("Ports do not match the model family");
+  const portIds = new Set(),
+    packagePins = new Set();
+  for (const port of part.ports) {
+    if (!/^[A-Za-z0-9_-]+$/.test(port.id) || portIds.has(port.id))
+      errors.push("Invalid or duplicate port ID");
+    portIds.add(port.id);
+    if (!port.name.trim() || Buffer.byteLength(port.name) > 120)
+      errors.push("Port name must contain 1–120 bytes");
+    for (const pin of port.package_pins) {
+      if (!pin.trim() || packagePins.has(pin))
+        errors.push("Empty or repeated package pin");
+      packagePins.add(pin);
+    }
+  }
   for (const [field, value] of fields) {
     if (typeof value === "number" && (!Number.isFinite(value) || value < 0))
       errors.push(`Invalid SI value: ${field}`);
@@ -64,8 +96,19 @@ export function validatePart(part) {
   const m = part.model;
   for (const key of ["voltage_v", "capacity_ah", "max_current_a"])
     if (key in m && m[key] <= 0) errors.push(`${key} must be positive`);
-  if ("efficiency" in m && !(m.efficiency > 0 && m.efficiency <= 1))
-    errors.push("Efficiency must be in (0, 1]");
+  if (m.kind === "converter") {
+    if (
+      canonical(Object.keys(m.outputs).sort()) !==
+      canonical(outputs.map((p) => p.id).sort())
+    )
+      errors.push("Output ports need matching electrical models");
+    for (const [id, output] of Object.entries(m.outputs)) {
+      if (!(output.efficiency > 0 && output.efficiency <= 1))
+        errors.push(`Efficiency of ${id} must be in (0, 1]`);
+      if (!(output.voltage_v > 0 && output.max_current_a > 0))
+        errors.push(`Output ${id} voltage and limit must be positive`);
+    }
+  }
   if ("initial_soc" in m && m.initial_soc > 1)
     errors.push("Initial SOC must be in [0, 1]");
   if (
@@ -81,7 +124,7 @@ export function validateProfile(profile) {
       (e) => `${e.instancePath} ${e.message}`,
     );
   const errors = [];
-  if (profile.schema_version !== "0.1") errors.push("Unsupported schema");
+  if (profile.schema_version !== "0.2") errors.push("Unsupported schema");
   const ids = new Set();
   for (const part of profile.parts) {
     errors.push(...validatePart(part));
@@ -94,6 +137,25 @@ export function validateProfile(profile) {
   for (const node of profile.nodes)
     if (!ids.has(node.part_id))
       errors.push(`Unresolved model: ${node.part_id}`);
+  const nodes = new Map(profile.nodes.map((n) => [n.id, n]));
+  if (nodes.size !== profile.nodes.length) errors.push("Duplicate node ID");
+  const incoming = new Set();
+  for (const edge of profile.edges) {
+    for (const [endpoint, direction] of [
+      [edge.from, "power_out"],
+      [edge.to, "power_in"],
+    ]) {
+      const node = nodes.get(endpoint.node);
+      const part = profile.parts.find((p) => p.id === node?.part_id);
+      const port = part?.ports.find((p) => p.id === endpoint.port);
+      if (!port) errors.push(`Unknown port ${endpoint.node}.${endpoint.port}`);
+      else if (port.type !== direction)
+        errors.push(`Invalid port direction ${endpoint.node}.${endpoint.port}`);
+    }
+    if (incoming.has(edge.to.node))
+      errors.push(`Multiple inputs to ${edge.to.node}`);
+    incoming.add(edge.to.node);
+  }
   return errors;
 }
 function files(dir) {

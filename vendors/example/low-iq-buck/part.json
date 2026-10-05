@@ -1,22 +1,50 @@
 {
+  "schema_version": "0.2",
   "id": "example/low-iq-buck",
   "name": "Low-IQ buck converter",
-  "revision": "0.1.0",
+  "revision": "0.2.0",
   "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vin",
+      "name": "VIN",
+      "type": "power_in",
+      "package_pins": []
+    },
+    {
+      "id": "vout",
+      "name": "VOUT",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
   "model": {
     "kind": "converter",
-    "voltage_v": 3,
-    "efficiency": 0.92,
+    "outputs": {
+      "vout": {
+        "voltage_v": 3,
+        "efficiency": 0.92,
+        "max_current_a": 0.2,
+        "enabled": true
+      }
+    },
     "iq_a": 5e-7,
-    "min_input_v": 3.1,
-    "max_current_a": 0.2
+    "min_input_v": 3.1
   },
   "provenance": {
-    "voltage_v": {
+    "outputs.vout.voltage_v": {
       "class": "estimated",
       "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
     },
-    "efficiency": {
+    "outputs.vout.efficiency": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.vout.max_current_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.vout.enabled": {
       "class": "estimated",
       "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
     },
@@ -25,10 +53,6 @@
       "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
     },
     "min_input_v": {
-      "class": "estimated",
-      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
-    },
-    "max_current_a": {
       "class": "estimated",
       "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
     }

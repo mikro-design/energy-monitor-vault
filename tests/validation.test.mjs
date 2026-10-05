@@ -17,7 +17,7 @@ test("example vault is valid", () =>
 test("missing evidence and impossible efficiency are rejected", () => {
   const part = structuredClone(profile.parts[1]);
   delete part.provenance.iq_a;
-  part.model.efficiency = 1.1;
+  part.model.outputs.vout.efficiency = 1.1;
   assert.ok(validatePart(part).some((e) => e.includes("provenance")));
   assert.ok(validatePart(part).some((e) => e.includes("Efficiency")));
 });
@@ -27,4 +27,19 @@ test("changed pinned models are rejected", () => {
   assert.ok(
     validateProfile(p).some((e) => e.includes("Pinned model mismatch")),
   );
+});
+test("pin declarations, model outputs and edge endpoints agree", () => {
+  const part = structuredClone(profile.parts[1]);
+  part.ports.push({ ...part.ports[1] });
+  assert.ok(validatePart(part).some((e) => e.includes("duplicate port")));
+  const missing = structuredClone(profile.parts[1]);
+  delete missing.model.outputs.vout;
+  assert.ok(
+    validatePart(missing).some((e) => e.includes("matching electrical models")),
+  );
+  const p = structuredClone(profile);
+  p.edges[1].from.port = "vin";
+  assert.ok(validateProfile(p).some((e) => e.includes("direction")));
+  p.edges[1].from.port = "no-such-pin";
+  assert.ok(validateProfile(p).some((e) => e.includes("Unknown port")));
 });

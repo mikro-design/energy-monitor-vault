@@ -15,6 +15,12 @@
     "name": {
       "type": "string"
     },
+    "ports": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Port"
+      }
+    },
     "provenance": {
       "type": "object",
       "additionalProperties": {
@@ -23,18 +29,50 @@
     },
     "revision": {
       "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
     }
   },
   "additionalProperties": false,
   "required": [
+    "schema_version",
     "id",
     "name",
     "revision",
     "license",
+    "ports",
     "model",
     "provenance"
   ],
   "$defs": {
+    "ConverterOutput": {
+      "type": "object",
+      "properties": {
+        "efficiency": {
+          "type": "number",
+          "format": "double"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "max_current_a": {
+          "type": "number",
+          "format": "double"
+        },
+        "voltage_v": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "voltage_v",
+        "efficiency",
+        "max_current_a",
+        "enabled"
+      ]
+    },
     "Evidence": {
       "type": "object",
       "properties": {
@@ -112,10 +150,6 @@
         {
           "type": "object",
           "properties": {
-            "efficiency": {
-              "type": "number",
-              "format": "double"
-            },
             "iq_a": {
               "type": "number",
               "format": "double"
@@ -124,27 +158,24 @@
               "type": "string",
               "const": "converter"
             },
-            "max_current_a": {
-              "type": "number",
-              "format": "double"
-            },
             "min_input_v": {
               "type": "number",
               "format": "double"
             },
-            "voltage_v": {
-              "type": "number",
-              "format": "double"
+            "outputs": {
+              "description": "Electrical behavior keyed by the stable output port ID.",
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/ConverterOutput"
+              }
             }
           },
           "additionalProperties": false,
           "required": [
             "kind",
-            "voltage_v",
-            "efficiency",
             "iq_a",
             "min_input_v",
-            "max_current_a"
+            "outputs"
           ]
         },
         {
@@ -204,6 +235,43 @@
             "min_voltage_v"
           ]
         }
+      ]
+    },
+    "Port": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Stable connection identity, independent of the displayed vendor name.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Exact vendor spelling and case, e.g. VOUT_S1 or VDD_nRF.",
+          "type": "string"
+        },
+        "package_pins": {
+          "description": "Physical package pin numbers/names. Empty when unspecified.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "$ref": "#/$defs/PortType"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "type",
+        "package_pins"
+      ]
+    },
+    "PortType": {
+      "type": "string",
+      "enum": [
+        "power_in",
+        "power_out"
       ]
     }
   }

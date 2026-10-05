@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.2",
+  "id": "example/dual-output-pmic",
+  "name": "Illustrative dual-output PMIC",
+  "revision": "0.2.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vin",
+      "name": "VIN",
+      "type": "power_in",
+      "package_pins": []
+    },
+    {
+      "id": "main",
+      "name": "VOUT1",
+      "type": "power_out",
+      "package_pins": []
+    },
+    {
+      "id": "auxiliary",
+      "name": "VOUT2",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "converter",
+    "iq_a": 5e-7,
+    "min_input_v": 3.1,
+    "outputs": {
+      "main": {
+        "voltage_v": 3,
+        "efficiency": 0.92,
+        "max_current_a": 0.2,
+        "enabled": true
+      },
+      "auxiliary": {
+        "voltage_v": 1.8,
+        "efficiency": 0.85,
+        "max_current_a": 0.05,
+        "enabled": true
+      }
+    }
+  },
+  "provenance": {
+    "iq_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "min_input_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.main.voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.main.efficiency": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.main.max_current_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.main.enabled": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.auxiliary.voltage_v": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.auxiliary.efficiency": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.auxiliary.max_current_a": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    },
+    "outputs.auxiliary.enabled": {
+      "class": "estimated",
+      "note": "Illustrative engineering estimate for the example project. Not a manufacturer specification."
+    }
+  }
+}

@@ -1,8 +1,17 @@
 {
+  "schema_version": "0.2",
   "id": "example/lithium-cell",
   "name": "Lithium primary cell",
-  "revision": "0.1.0",
+  "revision": "0.2.0",
   "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "out",
+      "name": "OUT",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
   "model": {
     "kind": "battery",
     "voltage_v": 3.6,
