@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "id": "exeger",
+  "name": "Exeger",
+  "aliases": [
+    "Powerfoyle"
+  ],
+  "website": "https://www.exeger.com/",
+  "source_domains": [
+    "exeger.com",
+    "powerfoyle.com"
+  ]
+}

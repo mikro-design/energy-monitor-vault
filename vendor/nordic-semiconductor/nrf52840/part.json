@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.2",
+  "id": "nordic-semiconductor/nrf52840",
+  "name": "nRF52840 · 3 V radio states",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vdd",
+      "name": "VDD",
+      "type": "power_in",
+      "package_pins": [
+        "12",
+        "17",
+        "25",
+        "37",
+        "48"
+      ]
+    }
+  ],
+  "model": {
+    "kind": "load",
+    "states": {
+      "ble_tx_0dbm": 0.0064,
+      "ble_tx_8dbm": 0.0164,
+      "ble_rx": 0.00626,
+      "ieee802154_tx_0dbm": 0.0064,
+      "ieee802154_rx": 0.00653,
+      "sleep_rtc": 3.16e-06
+    },
+    "default_state": "sleep_rtc",
+    "min_voltage_v": 3
+  },
+  "provenance": {
+    "states.ble_tx_0dbm": {
+      "class": "datasheet_typical",
+      "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX1; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "states.ble_tx_8dbm": {
+      "class": "datasheet_typical",
+      "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX0; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "states.ble_rx": {
+      "class": "datasheet_typical",
+      "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX0; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "states.ieee802154_tx_0dbm": {
+      "class": "datasheet_typical",
+      "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX5; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "states.ieee802154_rx": {
+      "class": "datasheet_typical",
+      "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX2; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "states.sleep_rtc": {
+      "class": "datasheet_typical",
+      "note": "3 V, 25 °C; System ON, full 256 kB RAM retention, RTC on LFRC, I_ON_RAMON_RTC; common conditions apply. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_sleep.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+    },
+    "default_state": {
+      "class": "derived",
+      "note": "Default to the characterized System ON RTC sleep state between explicit events; no wake cost is included."
+    },
+    "min_voltage_v": {
+      "class": "derived",
+      "note": "3 V baseline restriction for these fixed operating points; not the device minimum voltage. Engine does not enforce an upper voltage or temperature constraint."
+    }
+  }
+}

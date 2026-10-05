@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.1",
+  "id": "analog-devices",
+  "name": "Analog Devices",
+  "aliases": [
+    "ADI",
+    "Linear Technology",
+    "LTC",
+    "ADP"
+  ],
+  "website": "https://www.analog.com/",
+  "source_domains": [
+    "analog.com"
+  ]
+}

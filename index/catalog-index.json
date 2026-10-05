@@ -1,0 +1,355 @@
+{
+  "schema_version": "0.1",
+  "vendors": [
+    {
+      "id": "analog-devices",
+      "name": "Analog Devices",
+      "aliases": [
+        "ADI",
+        "Linear Technology",
+        "LTC",
+        "ADP"
+      ],
+      "path": "vendor/analog-devices/vendor.json"
+    },
+    {
+      "id": "example",
+      "name": "Illustrative examples",
+      "aliases": [
+        "example"
+      ],
+      "path": "vendor/example/vendor.json"
+    },
+    {
+      "id": "exeger",
+      "name": "Exeger",
+      "aliases": [
+        "Powerfoyle"
+      ],
+      "path": "vendor/exeger/vendor.json"
+    },
+    {
+      "id": "microchip",
+      "name": "Microchip Technology",
+      "aliases": [
+        "Microchip",
+        "MCHP",
+        "mchip",
+        "PIC",
+        "MCP",
+        "Atmel"
+      ],
+      "path": "vendor/microchip/vendor.json"
+    },
+    {
+      "id": "nordic-semiconductor",
+      "name": "Nordic Semiconductor",
+      "aliases": [
+        "Nordic",
+        "nRF",
+        "nPM"
+      ],
+      "path": "vendor/nordic-semiconductor/vendor.json"
+    },
+    {
+      "id": "onio",
+      "name": "ONiO",
+      "aliases": [
+        "ONIO",
+        "ONiO.zero"
+      ],
+      "path": "vendor/onio/vendor.json"
+    },
+    {
+      "id": "texas-instruments",
+      "name": "Texas Instruments",
+      "aliases": [
+        "TI",
+        "SimpleLink",
+        "MSP430"
+      ],
+      "path": "vendor/texas-instruments/vendor.json"
+    }
+  ],
+  "products": [
+    {
+      "id": "analog-devices/adp5091",
+      "vendor": "analog-devices",
+      "name": "ADP5091",
+      "category": "harvester_pmic",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/analog-devices/adp5091/catalog.json",
+      "model": null
+    },
+    {
+      "id": "analog-devices/adp5300",
+      "vendor": "analog-devices",
+      "name": "ADP5300",
+      "category": "buck",
+      "aliases": [],
+      "protocols": [],
+      "status": "runnable_approximation",
+      "path": "vendor/analog-devices/adp5300/catalog.json",
+      "model": {
+        "id": "analog-devices/adp5300",
+        "name": "ADP5300 · 2.5 V hysteresis approximation",
+        "kind": "converter",
+        "revision": "0.1.0",
+        "sha256": "7503ab90d4dd79db4ae138f987d45f5db4f8b8281e5006b911ddf8d3b51888ab",
+        "path": "vendor/analog-devices/adp5300/part.json"
+      }
+    },
+    {
+      "id": "analog-devices/ltc3108",
+      "vendor": "analog-devices",
+      "name": "LTC3108",
+      "category": "harvester_pmic",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/analog-devices/ltc3108/catalog.json",
+      "model": null
+    },
+    {
+      "id": "analog-devices/ltc3331",
+      "vendor": "analog-devices",
+      "name": "LTC3331",
+      "category": "harvester_pmic",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/analog-devices/ltc3331/catalog.json",
+      "model": null
+    },
+    {
+      "id": "exeger/powerfoyle-hybrid",
+      "vendor": "exeger",
+      "name": "Powerfoyle Hybrid",
+      "category": "solar_cell",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/exeger/powerfoyle-hybrid/catalog.json",
+      "model": null
+    },
+    {
+      "id": "exeger/powerfoyle-indoor",
+      "vendor": "exeger",
+      "name": "Powerfoyle Indoor",
+      "category": "solar_cell",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/exeger/powerfoyle-indoor/catalog.json",
+      "model": null
+    },
+    {
+      "id": "microchip/mcp1640",
+      "vendor": "microchip",
+      "name": "MCP1640",
+      "category": "boost",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/microchip/mcp1640/catalog.json",
+      "model": null
+    },
+    {
+      "id": "microchip/mcp1700",
+      "vendor": "microchip",
+      "name": "MCP1700",
+      "category": "ldo",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/microchip/mcp1700/catalog.json",
+      "model": null
+    },
+    {
+      "id": "microchip/mcp73831",
+      "vendor": "microchip",
+      "name": "MCP73831",
+      "category": "charger",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/microchip/mcp73831/catalog.json",
+      "model": null
+    },
+    {
+      "id": "microchip/pic16lf18313",
+      "vendor": "microchip",
+      "name": "PIC16LF18313",
+      "category": "mcu",
+      "aliases": [
+        "PIC16",
+        "XLP"
+      ],
+      "protocols": [],
+      "status": "runnable_approximation",
+      "path": "vendor/microchip/pic16lf18313/catalog.json",
+      "model": {
+        "id": "microchip/pic16lf18313",
+        "name": "PIC16LF18313 · 3 V states",
+        "kind": "load",
+        "revision": "0.1.0",
+        "sha256": "aef0776635a4864de5cd68da17d2dd9b2cf4440f175448fb8cc534f7b72cdd02",
+        "path": "vendor/microchip/pic16lf18313/part.json"
+      }
+    },
+    {
+      "id": "nordic-semiconductor/npm1300",
+      "vendor": "nordic-semiconductor",
+      "name": "nPM1300",
+      "category": "pmic",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/nordic-semiconductor/npm1300/catalog.json",
+      "model": null
+    },
+    {
+      "id": "nordic-semiconductor/nrf52832",
+      "vendor": "nordic-semiconductor",
+      "name": "nRF52832",
+      "category": "wireless_soc",
+      "aliases": [
+        "nRF52"
+      ],
+      "protocols": [
+        "ble"
+      ],
+      "status": "catalog_only",
+      "path": "vendor/nordic-semiconductor/nrf52832/catalog.json",
+      "model": null
+    },
+    {
+      "id": "nordic-semiconductor/nrf52840",
+      "vendor": "nordic-semiconductor",
+      "name": "nRF52840",
+      "category": "wireless_soc",
+      "aliases": [
+        "nRF52",
+        "Thread",
+        "Zigbee"
+      ],
+      "protocols": [
+        "ble",
+        "ieee802154"
+      ],
+      "status": "runnable_approximation",
+      "path": "vendor/nordic-semiconductor/nrf52840/catalog.json",
+      "model": {
+        "id": "nordic-semiconductor/nrf52840",
+        "name": "nRF52840 · 3 V radio states",
+        "kind": "load",
+        "revision": "0.1.0",
+        "sha256": "9ba0a07b3e5141cd9e12f8382c7350cae1f1fc343f60f6f49ca47352b318910c",
+        "path": "vendor/nordic-semiconductor/nrf52840/part.json"
+      }
+    },
+    {
+      "id": "nordic-semiconductor/nrf54l15",
+      "vendor": "nordic-semiconductor",
+      "name": "nRF54L15",
+      "category": "wireless_soc",
+      "aliases": [
+        "nRF54L",
+        "Thread",
+        "Zigbee"
+      ],
+      "protocols": [
+        "ble",
+        "ieee802154"
+      ],
+      "status": "catalog_only",
+      "path": "vendor/nordic-semiconductor/nrf54l15/catalog.json",
+      "model": null
+    },
+    {
+      "id": "onio/onio-zero",
+      "vendor": "onio",
+      "name": "ONiO.zero",
+      "category": "wireless_soc",
+      "aliases": [
+        "ONIO ZERO",
+        "ONiO zero"
+      ],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/onio/onio-zero/catalog.json",
+      "model": null
+    },
+    {
+      "id": "texas-instruments/bq25570",
+      "vendor": "texas-instruments",
+      "name": "BQ25570",
+      "category": "harvester_pmic",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/texas-instruments/bq25570/catalog.json",
+      "model": null
+    },
+    {
+      "id": "texas-instruments/cc2652r",
+      "vendor": "texas-instruments",
+      "name": "CC2652R",
+      "category": "wireless_soc",
+      "aliases": [
+        "SimpleLink",
+        "Thread",
+        "Zigbee"
+      ],
+      "protocols": [
+        "ble",
+        "ieee802154"
+      ],
+      "status": "catalog_only",
+      "path": "vendor/texas-instruments/cc2652r/catalog.json",
+      "model": null
+    },
+    {
+      "id": "texas-instruments/tps62740",
+      "vendor": "texas-instruments",
+      "name": "TPS62740",
+      "category": "buck",
+      "aliases": [],
+      "protocols": [],
+      "status": "runnable_approximation",
+      "path": "vendor/texas-instruments/tps62740/catalog.json",
+      "model": {
+        "id": "texas-instruments/tps62740",
+        "name": "TPS62740 · 1.8 V buck approximation",
+        "kind": "converter",
+        "revision": "0.1.0",
+        "sha256": "3a389a012473675820ea2ef2f6313fe2b3afcdfecac2835120ec1066eb3cf805",
+        "path": "vendor/texas-instruments/tps62740/part.json"
+      }
+    },
+    {
+      "id": "texas-instruments/tps62840",
+      "vendor": "texas-instruments",
+      "name": "TPS62840",
+      "category": "buck",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/texas-instruments/tps62840/catalog.json",
+      "model": null
+    },
+    {
+      "id": "texas-instruments/tps63900",
+      "vendor": "texas-instruments",
+      "name": "TPS63900",
+      "category": "buck_boost",
+      "aliases": [],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/texas-instruments/tps63900/catalog.json",
+      "model": null
+    }
+  ]
+}

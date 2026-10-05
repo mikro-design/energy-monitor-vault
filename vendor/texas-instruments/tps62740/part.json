@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.2",
+  "id": "texas-instruments/tps62740",
+  "name": "TPS62740 · 1.8 V buck approximation",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vin",
+      "name": "VIN",
+      "type": "power_in",
+      "package_pins": [
+        "1"
+      ]
+    },
+    {
+      "id": "vout",
+      "name": "VOUT",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "converter",
+    "iq_a": 3.6e-07,
+    "min_input_v": 2.5,
+    "outputs": {
+      "vout": {
+        "voltage_v": 1.8,
+        "efficiency": 0.9,
+        "max_current_a": 0.3,
+        "enabled": true
+      }
+    }
+  },
+  "provenance": {
+    "iq_a": {
+      "class": "datasheet_typical",
+      "note": "SLVSB02B section 8.5: 360 nA typical, VIN 3.6 V, 25 °C, EN high, CTRL low, VOUT 1.8 V, no load, device not switching. Switching no-load IQ is 460 nA; LOAD enabled changes IQ. This fixed baseline is an approximation under load. https://www.ti.com/lit/ds/symlink/tps62740.pdf"
+    },
+    "min_input_v": {
+      "class": "derived",
+      "note": "Restricted model input threshold, not a measured UVLO characteristic. Output selection 1.8 V; CTRL held low so LOAD is disabled. Current rating 300 mA applies with VIN >= VOUT + 0.7 V. https://www.ti.com/lit/ds/symlink/tps62740.pdf"
+    },
+    "outputs.vout.voltage_v": {
+      "class": "derived",
+      "note": "Output selection 1.8 V; CTRL held low so LOAD is disabled. Current rating 300 mA applies with VIN >= VOUT + 0.7 V. https://www.ti.com/lit/ds/symlink/tps62740.pdf"
+    },
+    "outputs.vout.efficiency": {
+      "class": "estimated",
+      "note": "Constant 0.90 conversion efficiency excluding separately modelled IQ. Illustrative estimate, not a datasheet efficiency curve; replace with characterized losses."
+    },
+    "outputs.vout.max_current_a": {
+      "class": "derived",
+      "note": "Output selection 1.8 V; CTRL held low so LOAD is disabled. Current rating 300 mA applies with VIN >= VOUT + 0.7 V. https://www.ti.com/lit/ds/symlink/tps62740.pdf"
+    },
+    "outputs.vout.enabled": {
+      "class": "derived",
+      "note": "Selected operating configuration: regulator enabled; no startup or shutdown transition."
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "id": "microchip/mcp1640",
+  "vendor": "microchip",
+  "name": "MCP1640",
+  "category": "boost",
+  "aliases": [],
+  "description": "Synchronous boost regulator with automatic PFM/PWM operation.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.microchip.com/en-us/product/MCP1640",
+      "title": "MCP1640 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "datasheet",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20002234D.pdf",
+      "title": "MCP1640 datasheet",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "IQ is specified at VOUT; engine currently accounts for IQ only at the input.",
+      "Add boost-ratio-dependent input IQ, startup and current capability."
+    ]
+  }
+}

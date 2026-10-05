@@ -1,0 +1,153 @@
+{
+  "schema_version": "0.1",
+  "id": "analog-devices/adp5300",
+  "vendor": "analog-devices",
+  "name": "ADP5300",
+  "category": "buck",
+  "aliases": [],
+  "description": "Buck regulator with hysteresis and PWM operating modes.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.analog.com/en/products/adp5300.html",
+      "title": "ADP5300 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "datasheet",
+      "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5300.pdf",
+      "title": "ADP5300 datasheet",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "LFCSP-10 CP-10-9",
+    "entries": [
+      {
+        "id": "pvin",
+        "name": "PVIN",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "10"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "sw",
+        "name": "SW",
+        "direction": "output",
+        "role": "switch_node",
+        "package_pins": [
+          "9"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "fb",
+        "name": "FB",
+        "direction": "input",
+        "role": "sense",
+        "package_pins": [
+          "5"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "pgnd",
+        "name": "PGND",
+        "direction": "passive",
+        "role": "return",
+        "package_pins": [
+          "8"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "agnd",
+        "name": "AGND",
+        "direction": "passive",
+        "role": "return",
+        "package_pins": [
+          "7"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "en",
+        "name": "EN",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "1"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "stop",
+        "name": "STOP",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "2"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "sync-mode",
+        "name": "SYNC/MODE",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "3"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vid",
+        "name": "VID",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "4"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "voutok",
+        "name": "VOUTOK",
+        "direction": "output",
+        "role": "control",
+        "package_pins": [
+          "6"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "Rev. B Table 4, p. 7. The regulated VOUT rail is external, after the inductor; there is no VOUT package pin."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "Buck circuit with external inductor/capacitor, VOUT 2.5 V, hysteresis mode, fixed 90% estimated conversion efficiency plus IQ. Intended VIN 3.6 V. Conservative 3.0 V cutoff is an estimate; maximum 6.5 V is not enforced. PWM, STOP and transients are omitted.",
+    "blockers": [
+      "Add efficiency curves and dynamic mode transitions."
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": "0.2",
+  "name": "nRF52840 explicit radio states",
+  "revision": 1,
+  "scenario": "Illustrative timing; excludes startup, protocol overhead and CPU work",
+  "duration_s": 10,
+  "parts": [
+    {
+      "schema_version": "0.2",
+      "id": "custom/bench-supply",
+      "name": "Ideal 3 V bench supply",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "out",
+          "name": "3V0",
+          "type": "power_out",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "supply",
+        "voltage_v": 3,
+        "max_current_a": 0.1
+      },
+      "provenance": {
+        "voltage_v": {
+          "class": "estimated",
+          "note": "Chosen ideal 3 V source matching the radio characterization point; no board losses."
+        },
+        "max_current_a": {
+          "class": "estimated",
+          "note": "Illustrative bench-supply limit of 100 mA."
+        }
+      }
+    },
+    {
+      "schema_version": "0.2",
+      "id": "nordic-semiconductor/nrf52840",
+      "name": "nRF52840 · 3 V radio states",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "vdd",
+          "name": "VDD",
+          "type": "power_in",
+          "package_pins": [
+            "12",
+            "17",
+            "25",
+            "37",
+            "48"
+          ]
+        }
+      ],
+      "model": {
+        "kind": "load",
+        "states": {
+          "ble_tx_0dbm": 0.0064,
+          "ble_tx_8dbm": 0.0164,
+          "ble_rx": 0.00626,
+          "ieee802154_tx_0dbm": 0.0064,
+          "ieee802154_rx": 0.00653,
+          "sleep_rtc": 0.00000316
+        },
+        "default_state": "sleep_rtc",
+        "min_voltage_v": 3
+      },
+      "provenance": {
+        "states.ble_tx_0dbm": {
+          "class": "datasheet_typical",
+          "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX1; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "states.ble_tx_8dbm": {
+          "class": "datasheet_typical",
+          "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX0; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "states.ble_rx": {
+          "class": "datasheet_typical",
+          "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX0; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "states.ieee802154_tx_0dbm": {
+          "class": "datasheet_typical",
+          "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX5; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "states.ieee802154_rx": {
+          "class": "datasheet_typical",
+          "note": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX2; HFXO, DC/DC. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "states.sleep_rtc": {
+          "class": "datasheet_typical",
+          "note": "3 V, 25 °C; System ON, full 256 kB RAM retention, RTC on LFRC, I_ON_RAMON_RTC; common conditions apply. https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_sleep.html Common conditions: https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html"
+        },
+        "default_state": {
+          "class": "derived",
+          "note": "Default to the characterized System ON RTC sleep state between explicit events; no wake cost is included."
+        },
+        "min_voltage_v": {
+          "class": "derived",
+          "note": "3 V baseline restriction for these fixed operating points; not the device minimum voltage. Engine does not enforce an upper voltage or temperature constraint."
+        }
+      }
+    }
+  ],
+  "lock": {
+    "custom/bench-supply": {
+      "revision": "0.1.0",
+      "sha256": "283f9ff381396032d82f001ef5a156598f3fae4d794414581b93b0a5644c1f67"
+    },
+    "nordic-semiconductor/nrf52840": {
+      "revision": "0.1.0",
+      "sha256": "9ba0a07b3e5141cd9e12f8382c7350cae1f1fc343f60f6f49ca47352b318910c"
+    }
+  },
+  "nodes": [
+    {
+      "id": "supply",
+      "label": "3 V characterization supply",
+      "part_id": "custom/bench-supply",
+      "x": 40,
+      "y": 140
+    },
+    {
+      "id": "radio",
+      "label": "nRF52840 · explicit states",
+      "part_id": "nordic-semiconductor/nrf52840",
+      "x": 400,
+      "y": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "power",
+      "from": {
+        "node": "supply",
+        "port": "out"
+      },
+      "to": {
+        "node": "radio",
+        "port": "vdd"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "ble-tx",
+      "name": "Illustrative BLE TX window",
+      "state": "ble_tx_0dbm",
+      "start_s": 0.1,
+      "duration_s": 0.001,
+      "node_id": "radio",
+      "period_s": 1,
+      "enabled": true
+    },
+    {
+      "id": "ble-rx",
+      "name": "Illustrative BLE RX window",
+      "state": "ble_rx",
+      "start_s": 0.102,
+      "duration_s": 0.002,
+      "node_id": "radio",
+      "period_s": 1,
+      "enabled": true
+    },
+    {
+      "id": "154-tx",
+      "name": "Illustrative 802.15.4 TX window",
+      "state": "ieee802154_tx_0dbm",
+      "start_s": 0.5,
+      "duration_s": 0.002,
+      "node_id": "radio",
+      "period_s": 1,
+      "enabled": true
+    },
+    {
+      "id": "154-rx",
+      "name": "Illustrative 802.15.4 RX window",
+      "state": "ieee802154_rx",
+      "start_s": 0.504,
+      "duration_s": 0.003,
+      "node_id": "radio",
+      "period_s": 1,
+      "enabled": true
+    }
+  ]
+}

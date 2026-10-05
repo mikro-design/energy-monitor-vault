@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.2",
+  "id": "analog-devices/adp5300",
+  "name": "ADP5300 · 2.5 V hysteresis approximation",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vin",
+      "name": "PVIN",
+      "type": "power_in",
+      "package_pins": [
+        "10"
+      ]
+    },
+    {
+      "id": "vout",
+      "name": "VOUT",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "converter",
+    "iq_a": 1.8e-07,
+    "min_input_v": 3.0,
+    "outputs": {
+      "vout": {
+        "voltage_v": 2.5,
+        "efficiency": 0.9,
+        "max_current_a": 0.05,
+        "enabled": true
+      }
+    }
+  },
+  "provenance": {
+    "iq_a": {
+      "class": "datasheet_typical",
+      "note": "Rev. B Table 1: IQ_HYS 180 nA typical at VIN 3.6 V, VOUT 2.5 V, 25 °C, hysteresis mode; not PWM or forced-stop operation. https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5300.pdf"
+    },
+    "min_input_v": {
+      "class": "estimated",
+      "note": "Restricted model input threshold, not a measured UVLO characteristic. 2.5 V selected using VID option 8 in default factory option; hysteresis-mode output rating 50 mA. https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5300.pdf"
+    },
+    "outputs.vout.voltage_v": {
+      "class": "derived",
+      "note": "2.5 V selected using VID option 8 in default factory option; hysteresis-mode output rating 50 mA. https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5300.pdf"
+    },
+    "outputs.vout.efficiency": {
+      "class": "estimated",
+      "note": "Constant 0.90 conversion efficiency excluding separately modelled IQ. Illustrative estimate, not a datasheet efficiency curve; replace with characterized losses."
+    },
+    "outputs.vout.max_current_a": {
+      "class": "derived",
+      "note": "2.5 V selected using VID option 8 in default factory option; hysteresis-mode output rating 50 mA. https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5300.pdf"
+    },
+    "outputs.vout.enabled": {
+      "class": "derived",
+      "note": "Selected operating configuration: regulator enabled; no startup or shutdown transition."
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # Contributing a model
 
-1. Create a branch and add `vendors/<vendor>/<part>/part.json` with a unique stable ID and model revision.
-2. Declare schema 0.2 and each power port with a stable ID, exact datasheet pin name/direction, and known package pins. Supply one output model per converter output port. Use an engine-supported declarative model. Store electrical values in SI base units; keep project wiring and activity in a profile.
+1. Register the manufacturer in `vendor/<vendor>/vendor.json` and create a sourced `catalog.json` with explicit pin/radio characterization status (see [catalog contract](docs/CATALOG.md)). Keep unsupported products `catalog_only`. For a runnable model, add `vendor/<vendor>/<part>/part.json` with a unique stable ID and model revision.
+2. Declare schema 0.2 and each power port with a stable ID, exact datasheet pin name/direction, and known package pins. Logical circuit rails without a physical output pin use an empty package-pin list; document external components and the abstraction. Supply one output model per converter output port. Use an engine-supported declarative model. Store electrical values in SI base units; keep project wiring and activity in a profile.
 3. Give every simulation-affecting field a provenance entry. Record the actual source, page or measurement method, operating conditions, and applicable rights. Do not label an estimate as a manufacturer value.
 4. Use a license you have the right to grant. Do not copy proprietary datasheet artwork or executable code into models.
 5. Run `npm ci`, `npm run validate`, `npm test`, and `npm run index`.

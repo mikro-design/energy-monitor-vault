@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "texas-instruments/tps63900",
+  "vendor": "texas-instruments",
+  "name": "TPS63900",
+  "category": "buck_boost",
+  "aliases": [],
+  "description": "Low-quiescent-current buck-boost regulator with programmable output settings.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.ti.com/product/TPS63900",
+      "title": "TPS63900 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Transcribe package pins and mode-dependent efficiency curves.",
+      "Model input current limiting and voltage-setting transitions."
+    ]
+  }
+}

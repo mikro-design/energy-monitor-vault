@@ -1,0 +1,131 @@
+{
+  "schema_version": "0.1",
+  "id": "texas-instruments/tps62740",
+  "vendor": "texas-instruments",
+  "name": "TPS62740",
+  "category": "buck",
+  "aliases": [],
+  "description": "Low-quiescent-current buck regulator with a controlled LOAD output.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.ti.com/product/TPS62740",
+      "title": "TPS62740 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "datasheet",
+      "url": "https://www.ti.com/lit/ds/symlink/tps62740.pdf",
+      "title": "TPS62740 datasheet",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "DSS WSON-12",
+    "entries": [
+      {
+        "id": "vin",
+        "name": "VIN",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "1"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "sw",
+        "name": "SW",
+        "direction": "output",
+        "role": "switch_node",
+        "package_pins": [
+          "2"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "gnd",
+        "name": "GND",
+        "direction": "passive",
+        "role": "return",
+        "package_pins": [
+          "3"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "ctrl",
+        "name": "CTRL",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "4"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vout",
+        "name": "VOUT",
+        "direction": "input",
+        "role": "sense",
+        "package_pins": [
+          "5"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "load",
+        "name": "LOAD",
+        "direction": "output",
+        "role": "power",
+        "package_pins": [
+          "6"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "pg",
+        "name": "PG",
+        "direction": "output",
+        "role": "control",
+        "package_pins": [
+          "7"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "en",
+        "name": "EN",
+        "direction": "input",
+        "role": "control",
+        "package_pins": [
+          "12"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "SLVSB02B pin functions, p. 3. VOUT is a sensing/load-switch input at the regulated rail after the external inductor; SW is not a regulated supply output."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "Buck circuit with external inductor/capacitor, VOUT 1.8 V, LOAD disabled, fixed 90% estimated conversion efficiency plus no-switching baseline IQ. Intended VIN 3.6 V; minimum 2.5 V enforces rating headroom; maximum 5.5 V is not enforced by the engine.",
+    "blockers": [
+      "Characterize efficiency curves and the dependent load-switch path."
+    ]
+  }
+}

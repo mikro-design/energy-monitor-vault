@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.2",
+  "id": "microchip/pic16lf18313",
+  "name": "PIC16LF18313 · 3 V states",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "vdd",
+      "name": "VDD",
+      "type": "power_in",
+      "package_pins": [
+        "1"
+      ]
+    }
+  ],
+  "model": {
+    "kind": "load",
+    "states": {
+      "sleep": 3e-08,
+      "run_xt_4mhz": 0.000292,
+      "run_hfintosc_16mhz": 0.0012,
+      "idle_hfintosc_16mhz": 0.000733
+    },
+    "default_state": "sleep",
+    "min_voltage_v": 3
+  },
+  "provenance": {
+    "states.sleep": {
+      "class": "datasheet_typical",
+      "note": "DS40001799E, PIC16LF18313 LF rows at 3 V, 25 °C. I/O tri-stated and pulled high, MCLR high, WDT disabled; extra peripheral and transition costs omitted. Table 35-3 D200 base IPD; optional peripherals disabled. https://ww1.microchip.com/downloads/en/DeviceDoc/PIC16-L-F18313_18323-Data-Sheet-40001799E.pdf"
+    },
+    "states.run_xt_4mhz": {
+      "class": "datasheet_typical",
+      "note": "DS40001799E, PIC16LF18313 LF rows at 3 V, 25 °C. I/O tri-stated and pulled high, MCLR high, WDT disabled; extra peripheral and transition costs omitted. Table 35-2 D100, XT 4 MHz. https://ww1.microchip.com/downloads/en/DeviceDoc/PIC16-L-F18313_18323-Data-Sheet-40001799E.pdf"
+    },
+    "states.run_hfintosc_16mhz": {
+      "class": "datasheet_typical",
+      "note": "DS40001799E, PIC16LF18313 LF rows at 3 V, 25 °C. I/O tri-stated and pulled high, MCLR high, WDT disabled; extra peripheral and transition costs omitted. Table 35-2 D101, HFINTOSC 16 MHz. https://ww1.microchip.com/downloads/en/DeviceDoc/PIC16-L-F18313_18323-Data-Sheet-40001799E.pdf"
+    },
+    "states.idle_hfintosc_16mhz": {
+      "class": "datasheet_typical",
+      "note": "DS40001799E, PIC16LF18313 LF rows at 3 V, 25 °C. I/O tri-stated and pulled high, MCLR high, WDT disabled; extra peripheral and transition costs omitted. Table 35-2 D104, IDLE with HFINTOSC 16 MHz. https://ww1.microchip.com/downloads/en/DeviceDoc/PIC16-L-F18313_18323-Data-Sheet-40001799E.pdf"
+    },
+    "default_state": {
+      "class": "derived",
+      "note": "Default to base sleep between explicit activity events."
+    },
+    "min_voltage_v": {
+      "class": "derived",
+      "note": "3 V baseline restriction for fixed current values; not the silicon minimum. Engine does not enforce upper voltage or temperature. Use 3 V profiles."
+    }
+  }
+}

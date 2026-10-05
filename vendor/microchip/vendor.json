@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1",
+  "id": "microchip",
+  "name": "Microchip Technology",
+  "aliases": [
+    "Microchip",
+    "MCHP",
+    "mchip",
+    "PIC",
+    "MCP",
+    "Atmel"
+  ],
+  "website": "https://www.microchip.com/",
+  "source_domains": [
+    "microchip.com"
+  ]
+}

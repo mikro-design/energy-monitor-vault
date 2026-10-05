@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "analog-devices/adp5091",
+  "vendor": "analog-devices",
+  "name": "ADP5091",
+  "category": "harvester_pmic",
+  "aliases": [],
+  "description": "Energy-harvesting PMU with MPPT and charge management.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.analog.com/en/products/adp5091.html",
+      "title": "ADP5091 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Engine needs MPPT, cold start, storage charging and backup power-path selection.",
+      "Transcribe operating modes and package pinout."
+    ]
+  }
+}

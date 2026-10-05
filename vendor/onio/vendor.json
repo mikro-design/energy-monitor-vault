@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1",
+  "id": "onio",
+  "name": "ONiO",
+  "aliases": [
+    "ONIO",
+    "ONiO.zero"
+  ],
+  "website": "https://www.onio.com/",
+  "source_domains": [
+    "onio.com"
+  ]
+}

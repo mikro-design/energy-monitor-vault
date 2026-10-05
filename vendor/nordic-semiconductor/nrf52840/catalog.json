@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1",
+  "id": "nordic-semiconductor/nrf52840",
+  "vendor": "nordic-semiconductor",
+  "name": "nRF52840",
+  "category": "wireless_soc",
+  "aliases": [
+    "nRF52",
+    "Thread",
+    "Zigbee"
+  ],
+  "description": "Wireless MCU supporting Bluetooth LE and IEEE 802.15.4.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.nordicsemi.com/Products/nRF52840",
+      "title": "nRF52840 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "spec",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/keyfeatures_html5.html",
+      "title": "nRF52840 product specification",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "pins",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/pin.html?contentId=hMpuE~dcsjrrIlIt8ErcrQ",
+      "title": "nRF52840 pin assignments",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "radio-current",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_radio.html",
+      "title": "PMU radio current scenarios",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "sleep-current",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/_tmp/nrf52840/autodita/current/parameters.i_sleep.html",
+      "title": "PMU sleep current scenarios",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "current-conditions",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52840/page/chapters/current_consumption/doc/frontpage.html",
+      "title": "Common current measurement conditions",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "QFN48",
+    "entries": [
+      {
+        "id": "vdd",
+        "name": "VDD",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "12",
+          "17",
+          "25",
+          "37",
+          "48"
+        ],
+        "source": "pins",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "Supply-pin subset only. Decoupling and RF pins are not external power outputs. QFN48 mapping; other packages require separate mappings. VDD and VDDH are connected inside QFN48; normal-voltage operation only."
+  },
+  "radio": {
+    "protocols": [
+      "ble",
+      "ieee802154"
+    ],
+    "phys": [
+      {
+        "id": "ble-1m",
+        "protocol": "ble",
+        "bitrate_bps": 1000000,
+        "source": "spec"
+      },
+      {
+        "id": "ble-2m",
+        "protocol": "ble",
+        "bitrate_bps": 2000000,
+        "source": "spec"
+      },
+      {
+        "id": "ble-coded-s2",
+        "protocol": "ble",
+        "bitrate_bps": 500000,
+        "source": "spec"
+      },
+      {
+        "id": "ble-coded-s8",
+        "protocol": "ble",
+        "bitrate_bps": 125000,
+        "source": "spec"
+      },
+      {
+        "id": "ieee802154-oqpsk-250k",
+        "protocol": "ieee802154",
+        "bitrate_bps": 250000,
+        "source": "spec"
+      }
+    ],
+    "operating_points": [
+      {
+        "id": "ble-tx-0dbm",
+        "mode": "tx",
+        "phy": "ble-1m",
+        "tx_power_dbm": 0,
+        "current_a": 0.0064,
+        "current_scope": "whole_device",
+        "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX1; HFXO, DC/DC.",
+        "source": "radio-current"
+      },
+      {
+        "id": "ble-tx-8dbm",
+        "mode": "tx",
+        "phy": "ble-1m",
+        "tx_power_dbm": 8,
+        "current_a": 0.0164,
+        "current_scope": "whole_device",
+        "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX0; HFXO, DC/DC.",
+        "source": "radio-current"
+      },
+      {
+        "id": "ble-rx",
+        "mode": "rx",
+        "phy": "ble-1m",
+        "tx_power_dbm": null,
+        "current_a": 0.00626,
+        "current_scope": "whole_device",
+        "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX0; HFXO, DC/DC.",
+        "source": "radio-current"
+      },
+      {
+        "id": "ieee802154-tx-0dbm",
+        "mode": "tx",
+        "phy": "ieee802154-oqpsk-250k",
+        "tx_power_dbm": 0,
+        "current_a": 0.0064,
+        "current_scope": "whole_device",
+        "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX5; HFXO, DC/DC.",
+        "source": "radio-current"
+      },
+      {
+        "id": "ieee802154-rx",
+        "mode": "rx",
+        "phy": "ieee802154-oqpsk-250k",
+        "tx_power_dbm": null,
+        "current_a": 0.00653,
+        "current_scope": "whole_device",
+        "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX2; HFXO, DC/DC.",
+        "source": "radio-current"
+      },
+      {
+        "id": "sleep-rtc",
+        "mode": "sleep",
+        "phy": null,
+        "tx_power_dbm": null,
+        "current_a": 3.16e-06,
+        "current_scope": "whole_device",
+        "conditions": "3 V, 25 °C; System ON, full 256 kB RAM retention, RTC on LFRC, I_ON_RAMON_RTC; common conditions apply.",
+        "source": "sleep-current"
+      }
+    ],
+    "timing_status": "not_characterized",
+    "notes": "PMU supply currents include the sleeping CPU and required clock/regulator resources. Do not add another base/sleep load to these states. CPU execution, firmware overhead, transitions, BLE 2M/coded current and timing remain uncharacterized."
+  },
+  "simulation": {
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "Explicit, mutually exclusive whole-device sleep/BLE 1M/IEEE 802.15.4 states at 3 V and 25 °C. CPU sleeps during radio activity. No packet generator or transition energy; QFN48 normal-voltage supply.",
+    "blockers": [
+      "Automatic packet scheduling and startup/turnaround energy are not implemented.",
+      "Currents are fixed 3 V, 25 °C operating points; no voltage or temperature interpolation.",
+      "Concurrent CPU execution and additional peripherals require measured combined states."
+    ]
+  }
+}

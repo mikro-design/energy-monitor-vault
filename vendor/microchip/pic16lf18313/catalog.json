@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1",
+  "id": "microchip/pic16lf18313",
+  "vendor": "microchip",
+  "name": "PIC16LF18313",
+  "category": "mcu",
+  "aliases": [
+    "PIC16",
+    "XLP"
+  ],
+  "description": "Low-power PIC MCU with configurable clock and sleep modes.",
+  "sources": [
+    {
+      "id": "datasheet",
+      "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/PIC16-L-F18313_18323-Data-Sheet-40001799E.pdf",
+      "title": "PIC16LF18313 datasheet",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "8-pin PDIP / SOIC / UDFN",
+    "entries": [
+      {
+        "id": "vdd",
+        "name": "VDD",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "1"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vss",
+        "name": "VSS",
+        "direction": "passive",
+        "role": "return",
+        "package_pins": [
+          "8"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "DS40001799E Figure 1, p. 4. This mapping is specific to the 8-pin PIC16LF18313 package family."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "Fixed 3 V, 25 °C whole-device sleep/run/idle states for the LF variant, 8-pin package. No clock startup, peripheral additions, voltage/temperature scaling or firmware-dependent transitions.",
+    "blockers": [
+      "Add voltage, temperature, peripheral and transition dependence."
+    ]
+  }
+}

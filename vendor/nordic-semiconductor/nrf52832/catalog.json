@@ -1,0 +1,118 @@
+{
+  "schema_version": "0.1",
+  "id": "nordic-semiconductor/nrf52832",
+  "vendor": "nordic-semiconductor",
+  "name": "nRF52832",
+  "category": "wireless_soc",
+  "aliases": [
+    "nRF52"
+  ],
+  "description": "Low-power Bluetooth LE wireless MCU.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.nordicsemi.com/Products/nRF52832",
+      "title": "nRF52832 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "spec",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52832/page/nrf52832_ps.html",
+      "title": "nRF52832 product specification",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "pins",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf52832/page/pin.html",
+      "title": "nRF52832 pin assignments",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "QFN48",
+    "entries": [
+      {
+        "id": "vdd",
+        "name": "VDD",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "13",
+          "36",
+          "48"
+        ],
+        "source": "pins",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "Supply-pin subset only. Decoupling and RF pins are not external power outputs. QFN48 mapping; other packages require separate mappings."
+  },
+  "radio": {
+    "protocols": [
+      "ble"
+    ],
+    "phys": [
+      {
+        "id": "ble-1m",
+        "protocol": "ble",
+        "bitrate_bps": 1000000,
+        "source": "spec"
+      },
+      {
+        "id": "ble-2m",
+        "protocol": "ble",
+        "bitrate_bps": 2000000,
+        "source": "spec"
+      }
+    ],
+    "operating_points": [
+      {
+        "id": "tx-0dbm-highlight",
+        "mode": "tx",
+        "phy": null,
+        "tx_power_dbm": 0,
+        "current_a": 0.0053,
+        "current_scope": "unspecified",
+        "conditions": "Product-spec headline peak figure; complete clock/CPU/supply conditions require the electrical table.",
+        "source": "spec"
+      },
+      {
+        "id": "rx-highlight",
+        "mode": "rx",
+        "phy": null,
+        "tx_power_dbm": null,
+        "current_a": 0.0054,
+        "current_scope": "unspecified",
+        "conditions": "Product-spec headline peak figure; not a packet-average current.",
+        "source": "spec"
+      },
+      {
+        "id": "system-off",
+        "mode": "sleep",
+        "phy": null,
+        "tx_power_dbm": null,
+        "current_a": 3e-07,
+        "current_scope": "whole_device",
+        "conditions": "3 V; System OFF without RAM retention.",
+        "source": "spec"
+      }
+    ],
+    "timing_status": "not_characterized",
+    "notes": "No IEEE 802.15.4 PHY is declared for this part. Headline radio figures are catalog evidence and not yet promoted to executable load states."
+  },
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Review complete supply-current conditions and radio transitions before creating a runnable model."
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "microchip/mcp73831",
+  "vendor": "microchip",
+  "name": "MCP73831",
+  "category": "charger",
+  "aliases": [],
+  "description": "Single-cell battery charger controller.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.microchip.com/en-us/product/MCP73831",
+      "title": "MCP73831 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Select charge-voltage option, package and programming resistor.",
+      "Engine needs battery charging phases and charge termination."
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "id": "example",
+  "name": "Illustrative examples",
+  "aliases": [
+    "example"
+  ],
+  "website": "https://github.com/mikro-design/energy-monitor-vault",
+  "source_domains": [
+    "github.com"
+  ]
+}

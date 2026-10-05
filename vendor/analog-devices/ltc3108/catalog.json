@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "analog-devices/ltc3108",
+  "vendor": "analog-devices",
+  "name": "LTC3108",
+  "category": "harvester_pmic",
+  "aliases": [],
+  "description": "Transformer-coupled energy harvester with regulated and storage outputs.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.analog.com/en/products/ltc3108.html",
+      "title": "LTC3108 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Model transformer, cold start, reservoir charging and dependent rails.",
+      "Select package and output-voltage setting."
+    ]
+  }
+}

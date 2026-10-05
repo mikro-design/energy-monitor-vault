@@ -1,0 +1,95 @@
+{
+  "schema_version": "0.1",
+  "id": "nordic-semiconductor/nrf54l15",
+  "vendor": "nordic-semiconductor",
+  "name": "nRF54L15",
+  "category": "wireless_soc",
+  "aliases": [
+    "nRF54L",
+    "Thread",
+    "Zigbee"
+  ],
+  "description": "Multiprotocol wireless MCU with an Arm Cortex-M33 processor.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.nordicsemi.com/Products/nRF54L15",
+      "title": "nRF54L15 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "spec",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf54l15/page/overview.html",
+      "title": "nRF54L15 product overview",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "radio-capabilities",
+      "url": "https://docs.nordicsemi.com/r/bundle/ps_nrf54l15/page/radio.html",
+      "title": "RADIO supported modes",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": {
+    "protocols": [
+      "ble",
+      "ieee802154"
+    ],
+    "phys": [
+      {
+        "id": "ble-1m",
+        "protocol": "ble",
+        "bitrate_bps": 1000000,
+        "source": "radio-capabilities"
+      },
+      {
+        "id": "ble-2m",
+        "protocol": "ble",
+        "bitrate_bps": 2000000,
+        "source": "radio-capabilities"
+      },
+      {
+        "id": "ble-coded-s2",
+        "protocol": "ble",
+        "bitrate_bps": 500000,
+        "source": "radio-capabilities"
+      },
+      {
+        "id": "ble-coded-s8",
+        "protocol": "ble",
+        "bitrate_bps": 125000,
+        "source": "radio-capabilities"
+      },
+      {
+        "id": "ieee802154-oqpsk-250k",
+        "protocol": "ieee802154",
+        "bitrate_bps": 250000,
+        "source": "radio-capabilities"
+      }
+    ],
+    "operating_points": [],
+    "timing_status": "not_characterized",
+    "notes": "Use production silicon-revision data; preliminary datasheet current figures were not imported."
+  },
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Select silicon revision and package.",
+      "Transcribe production datasheet current and timing tables."
+    ]
+  }
+}

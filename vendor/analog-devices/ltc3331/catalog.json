@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "analog-devices/ltc3331",
+  "vendor": "analog-devices",
+  "name": "LTC3331",
+  "category": "harvester_pmic",
+  "aliases": [],
+  "description": "Energy-harvesting power manager with a battery charger and buck-boost path.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.analog.com/en/products/ltc3331.html",
+      "title": "LTC3331 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Engine needs charging and multiple-source arbitration.",
+      "Transcribe package pins and operating-region data."
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": "0.1",
+  "id": "texas-instruments/cc2652r",
+  "vendor": "texas-instruments",
+  "name": "CC2652R",
+  "category": "wireless_soc",
+  "aliases": [
+    "SimpleLink",
+    "Thread",
+    "Zigbee"
+  ],
+  "description": "SimpleLink multiprotocol wireless MCU for Bluetooth LE and IEEE 802.15.4.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.ti.com/product/CC2652R",
+      "title": "CC2652R product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "datasheet",
+      "url": "https://www.ti.com/lit/ds/symlink/cc2652r.pdf",
+      "title": "CC2652R datasheet",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "partial",
+    "package": "RGZ VQFN-48",
+    "entries": [
+      {
+        "id": "vdds",
+        "name": "VDDS",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "44"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vdds2",
+        "name": "VDDS2",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "13"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vdds3",
+        "name": "VDDS3",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "22"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      },
+      {
+        "id": "vdds-dcdc",
+        "name": "VDDS_DCDC",
+        "direction": "input",
+        "role": "power",
+        "package_pins": [
+          "34"
+        ],
+        "source": "datasheet",
+        "note": "Power architecture subset; consult the complete pin table for board design."
+      }
+    ],
+    "notes": "SWRS207J Tables 7-1 and 8-1: these four external supply pins must share the VDDS potential. Internal VDDR outputs must not power external circuitry."
+  },
+  "radio": {
+    "protocols": [
+      "ble",
+      "ieee802154"
+    ],
+    "phys": [
+      {
+        "id": "ble-1m",
+        "protocol": "ble",
+        "bitrate_bps": 1000000,
+        "source": "product"
+      },
+      {
+        "id": "ble-2m",
+        "protocol": "ble",
+        "bitrate_bps": 2000000,
+        "source": "product"
+      },
+      {
+        "id": "ble-coded-s2",
+        "protocol": "ble",
+        "bitrate_bps": 500000,
+        "source": "product"
+      },
+      {
+        "id": "ble-coded-s8",
+        "protocol": "ble",
+        "bitrate_bps": 125000,
+        "source": "product"
+      },
+      {
+        "id": "ieee802154-oqpsk-250k",
+        "protocol": "ieee802154",
+        "bitrate_bps": 250000,
+        "source": "product"
+      }
+    ],
+    "operating_points": [
+      {
+        "id": "ble-tx-0dbm",
+        "mode": "tx",
+        "phy": null,
+        "tx_power_dbm": 0,
+        "current_a": 0.007,
+        "current_scope": "unspecified",
+        "conditions": "25 C, VDDS 3.0 V, DC/DC enabled, CC26x2REM-7ID reference board, 2440 MHz. Section 8.6 specifies BLE TX; PHY rate is not explicitly stated in that table.",
+        "source": "datasheet"
+      },
+      {
+        "id": "ble-tx-5dbm",
+        "mode": "tx",
+        "phy": null,
+        "tx_power_dbm": 5,
+        "current_a": 0.0092,
+        "current_scope": "unspecified",
+        "conditions": "Same Section 8.6 conditions as TX 0 dBm; no concurrent CPU workload specified.",
+        "source": "datasheet"
+      },
+      {
+        "id": "rx-2440mhz",
+        "mode": "rx",
+        "phy": null,
+        "tx_power_dbm": null,
+        "current_a": 0.0069,
+        "current_scope": "unspecified",
+        "conditions": "Section 8.6, 25 C, VDDS 3.0 V, DC/DC enabled, 2440 MHz; protocol/PHY not specified.",
+        "source": "datasheet"
+      }
+    ],
+    "timing_status": "not_characterized",
+    "notes": "PHY capability and electrical measurement conditions are distinct. Do not reuse the BLE TX samples as verified 802.15.4 current data. Radio supply-current accounting with an active application CPU still needs characterization."
+  },
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Characterize radio startup, CPU activity during radio use and packet scheduling."
+    ]
+  }
+}

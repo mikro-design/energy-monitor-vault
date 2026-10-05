@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1",
+  "id": "onio/onio-zero",
+  "vendor": "onio",
+  "name": "ONiO.zero",
+  "category": "wireless_soc",
+  "aliases": [
+    "ONIO ZERO",
+    "ONiO zero"
+  ],
+  "description": "Wireless MCU integrating a radio and energy-harvesting power management.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.onio.com/",
+      "title": "ONiO.zero product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "search_excerpt"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Official website search excerpt confirms product identity; direct page access returned HTTP 403. Electrical values and pinout remain unverified."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Obtain revision-specific public datasheet and package pinout.",
+      "Characterize supply paths, storage, radio states and startup before modelling."
+    ]
+  }
+}

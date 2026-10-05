@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "texas-instruments/tps62840",
+  "vendor": "texas-instruments",
+  "name": "TPS62840",
+  "category": "buck",
+  "aliases": [],
+  "description": "Low-quiescent-current step-down regulator for battery-powered equipment.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.ti.com/product/TPS62840",
+      "title": "TPS62840 product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Package-specific pins have not yet been transcribed; no inferred pin names or numbers."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Select package and voltage configuration.",
+      "Transcribe pins and load-dependent efficiency data."
+    ]
+  }
+}

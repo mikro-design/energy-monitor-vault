@@ -2,12 +2,20 @@
   "schema_version": "0.1",
   "parts": [
     {
+      "id": "analog-devices/adp5300",
+      "name": "ADP5300 · 2.5 V hysteresis approximation",
+      "kind": "converter",
+      "revision": "0.1.0",
+      "sha256": "7503ab90d4dd79db4ae138f987d45f5db4f8b8281e5006b911ddf8d3b51888ab",
+      "path": "vendor/analog-devices/adp5300/part.json"
+    },
+    {
       "id": "example/dual-output-pmic",
       "name": "Illustrative dual-output PMIC",
       "kind": "converter",
       "revision": "0.2.0",
       "sha256": "dc98bac9be2e2e5e3eef0c9b99004323c8eb2f176040346982e90158806c5e1d",
-      "path": "vendors/example/dual-output-pmic/part.json"
+      "path": "vendor/example/dual-output-pmic/part.json"
     },
     {
       "id": "example/lithium-cell",
@@ -15,7 +23,7 @@
       "kind": "battery",
       "revision": "0.2.0",
       "sha256": "aafd4699b05a47a25a48d0ca3806e53d7fee015169692b8743e731a1e2978a27",
-      "path": "vendors/example/lithium-cell/part.json"
+      "path": "vendor/example/lithium-cell/part.json"
     },
     {
       "id": "example/low-iq-buck",
@@ -23,7 +31,7 @@
       "kind": "converter",
       "revision": "0.2.0",
       "sha256": "faceb78c34dad6eecc7b66e8efdbeb6254ccffb3a33ada8d67ecc455d663211c",
-      "path": "vendors/example/low-iq-buck/part.json"
+      "path": "vendor/example/low-iq-buck/part.json"
     },
     {
       "id": "example/mcu-radio",
@@ -31,7 +39,7 @@
       "kind": "load",
       "revision": "0.2.0",
       "sha256": "1d4fbcb600551199154a6c69726ab4975f37ed43253af9ea2001587f469afd99",
-      "path": "vendors/example/mcu-radio/part.json"
+      "path": "vendor/example/mcu-radio/part.json"
     },
     {
       "id": "example/spi-flash",
@@ -39,7 +47,7 @@
       "kind": "load",
       "revision": "0.2.0",
       "sha256": "d358d743f3c4d96dd7ae03dfd603cf9734a07f7404d1cb43d5d4827a8cb36005",
-      "path": "vendors/example/spi-flash/part.json"
+      "path": "vendor/example/spi-flash/part.json"
     },
     {
       "id": "example/temperature-sensor",
@@ -47,7 +55,31 @@
       "kind": "load",
       "revision": "0.2.0",
       "sha256": "56578c5f4c335a0183a2031fcfc4f48885b55006fe33263253507fb178aeaa83",
-      "path": "vendors/example/temperature-sensor/part.json"
+      "path": "vendor/example/temperature-sensor/part.json"
+    },
+    {
+      "id": "microchip/pic16lf18313",
+      "name": "PIC16LF18313 · 3 V states",
+      "kind": "load",
+      "revision": "0.1.0",
+      "sha256": "aef0776635a4864de5cd68da17d2dd9b2cf4440f175448fb8cc534f7b72cdd02",
+      "path": "vendor/microchip/pic16lf18313/part.json"
+    },
+    {
+      "id": "nordic-semiconductor/nrf52840",
+      "name": "nRF52840 · 3 V radio states",
+      "kind": "load",
+      "revision": "0.1.0",
+      "sha256": "9ba0a07b3e5141cd9e12f8382c7350cae1f1fc343f60f6f49ca47352b318910c",
+      "path": "vendor/nordic-semiconductor/nrf52840/part.json"
+    },
+    {
+      "id": "texas-instruments/tps62740",
+      "name": "TPS62740 · 1.8 V buck approximation",
+      "kind": "converter",
+      "revision": "0.1.0",
+      "sha256": "3a389a012473675820ea2ef2f6313fe2b3afcdfecac2835120ec1066eb3cf805",
+      "path": "vendor/texas-instruments/tps62740/part.json"
     }
   ]
 }

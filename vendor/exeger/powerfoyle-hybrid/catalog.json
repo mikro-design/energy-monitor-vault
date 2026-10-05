@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.1",
+  "id": "exeger/powerfoyle-hybrid",
+  "vendor": "exeger",
+  "name": "Powerfoyle Hybrid",
+  "category": "solar_cell",
+  "aliases": [],
+  "description": "Custom photovoltaic cell technology for light-powered products.",
+  "sources": [
+    {
+      "id": "product",
+      "url": "https://www.exeger.com/powerfoyle/",
+      "title": "Powerfoyle Hybrid product information",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    },
+    {
+      "id": "brief",
+      "url": "https://www.exeger.com/uploads/2023/02/Product-Brief-Powerfoyle-Hybrid-1v3.pdf",
+      "title": "Powerfoyle Hybrid product brief",
+      "kind": "datasheet",
+      "reviewed_on": "2026-10-05",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Contacts depend on the supplied cell design; universal package pin numbers are not available."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "blockers": [
+      "Select cell geometry, series configuration and contact drawing.",
+      "Obtain I-V/MPP data with area, illuminance, spectrum and temperature.",
+      "Engine needs photovoltaic source and harvester operating-point support."
+    ]
+  }
+}
