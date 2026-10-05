@@ -8,7 +8,7 @@ The generated [catalog index](../index/catalog-index.json) includes aliases, pro
 
 ## Evidence and pins
 
-Sources point to manufacturers, rather than reseller estimates. `access: search_excerpt` records limited access explicitly; it cannot support numeric operating points or physical pin mappings. ONiO currently has identity-level evidence only. A successful domain check verifies the URL's host, not the accuracy of the source's contents; changes still require human source review.
+Sources point to manufacturers, rather than reseller estimates. `access: search_excerpt` records limited access explicitly; it cannot support numeric operating points or physical pin mappings. ONiO's official feature overview supplies protocol/PHY capabilities; package mapping and current/timing tables remain uncharacterized. A successful domain check verifies the URL's host, not the accuracy of the source's contents; changes still require human source review.
 
 Pin entries preserve the vendor's name, direction, role and package numbers. `partial` means a reviewed subset for a named package, not a complete schematic symbol. `not_characterized` means no pin mapping has been imported. Missing data is not inferred. Different packages need separate reviewed mappings before substitution.
 

@@ -12,27 +12,68 @@
   "sources": [
     {
       "id": "product",
-      "url": "https://www.onio.com/",
-      "title": "ONiO.zero product information",
+      "url": "https://www.onio.com/technology.html",
+      "title": "ONiO.zero official feature overview",
       "kind": "product_page",
       "reviewed_on": "2026-10-05",
-      "access": "search_excerpt"
+      "access": "reviewed"
     }
   ],
   "pins": {
     "status": "not_characterized",
     "package": null,
     "entries": [],
-    "notes": "Official website search excerpt confirms product identity; direct page access returned HTTP 403. Electrical values and pinout remain unverified."
+    "notes": "The official feature overview does not supply a revision-specific package pinout; pin names and numbers remain unverified."
   },
-  "radio": null,
+  "radio": {
+    "protocols": [
+      "ble",
+      "ieee802154"
+    ],
+    "phys": [
+      {
+        "id": "ble-1m",
+        "protocol": "ble",
+        "bitrate_bps": 1000000,
+        "source": "product"
+      },
+      {
+        "id": "ble-2m",
+        "protocol": "ble",
+        "bitrate_bps": 2000000,
+        "source": "product"
+      },
+      {
+        "id": "ble-coded-s2",
+        "protocol": "ble",
+        "bitrate_bps": 500000,
+        "source": "product"
+      },
+      {
+        "id": "ble-coded-s8",
+        "protocol": "ble",
+        "bitrate_bps": 125000,
+        "source": "product"
+      },
+      {
+        "id": "ieee802154-oqpsk-250k",
+        "protocol": "ieee802154",
+        "bitrate_bps": 250000,
+        "source": "product"
+      }
+    ],
+    "operating_points": [],
+    "timing_status": "not_characterized",
+    "notes": "Official feature overview advertises Bluetooth LE 5.4 (1M, 2M, 125/500 kbit/s coded PHY), IEEE 802.15.4-2020 using 2.4 GHz O-QPSK, and programmable TX power from -40 to 0 dBm. The 250 kbit/s entry maps the declared 2.4 GHz O-QPSK PHY to its standard data rate. These are product-level capabilities, not revision-specific stack certification or characterized current/timing data. Do not substitute older ONiO.zero transmitter-only descriptions for this feature set."
+  },
   "simulation": {
     "status": "catalog_only",
     "model_file": null,
-    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
+    "scope": "Catalog includes BLE and IEEE 802.15.4 capabilities. A runnable model needs qualified radio/CPU states plus the integrated harvesting, storage and power-management paths.",
     "blockers": [
-      "Obtain revision-specific public datasheet and package pinout.",
-      "Characterize supply paths, storage, radio states and startup before modelling."
+      "Obtain revision-specific datasheet and package pinout.",
+      "Characterize TX current versus output power, RX, CPU, sleep and radio/clock startup with supply and temperature conditions.",
+      "Model harvesting and storage, cold start, available-energy thresholds and brownout before predicting energy-limited radio traffic."
     ]
   }
 }

@@ -277,7 +277,10 @@
         "ONIO ZERO",
         "ONiO zero"
       ],
-      "protocols": [],
+      "protocols": [
+        "ble",
+        "ieee802154"
+      ],
       "status": "catalog_only",
       "path": "vendor/onio/onio-zero/catalog.json",
       "model": null
