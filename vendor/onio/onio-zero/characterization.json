@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "part_id": "onio/onio-zero",
+  "status": "incomplete_user_characterization",
+  "source": "User-supplied values in this project conversation, 2026-10-05; not independently verified.",
+  "preferred_display_unit": "uW",
+  "input_voltage_v": {
+    "min": 0.25,
+    "max": 3.0
+  },
+  "states": {
+    "sleep_ram_retained": {
+      "power_w": null
+    }
+  },
+  "unconverted_observations": {
+    "sleep_ram_retained": {
+      "current_a": 1e-06,
+      "measurement_voltage_v": null
+    }
+  },
+  "notes": [
+    "Power-first characterization requested for all devices. Canonical power values use watts; editors display microwatts.",
+    "The earlier 1000 nA retained-RAM sleep observation cannot establish a power value without its measurement voltage. Await a direct sleep-power value.",
+    "This is an incomplete intake record, not a runnable part or verified datasheet specification."
+  ]
+}

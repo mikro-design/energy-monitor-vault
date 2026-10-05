@@ -128,7 +128,10 @@
         "current_a": 0.0064,
         "current_scope": "whole_device",
         "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX1; HFXO, DC/DC.",
-        "source": "radio-current"
+        "source": "radio-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 0.0192,
+        "power_basis": "derived_vi"
       },
       {
         "id": "ble-tx-8dbm",
@@ -138,7 +141,10 @@
         "current_a": 0.0164,
         "current_scope": "whole_device",
         "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX0; HFXO, DC/DC.",
-        "source": "radio-current"
+        "source": "radio-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 0.0492,
+        "power_basis": "derived_vi"
       },
       {
         "id": "ble-rx",
@@ -148,7 +154,10 @@
         "current_a": 0.00626,
         "current_scope": "whole_device",
         "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX0; HFXO, DC/DC.",
-        "source": "radio-current"
+        "source": "radio-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 0.01878,
+        "power_basis": "derived_vi"
       },
       {
         "id": "ieee802154-tx-0dbm",
@@ -158,7 +167,10 @@
         "current_a": 0.0064,
         "current_scope": "whole_device",
         "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_TX5; HFXO, DC/DC.",
-        "source": "radio-current"
+        "source": "radio-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 0.0192,
+        "power_basis": "derived_vi"
       },
       {
         "id": "ieee802154-rx",
@@ -168,7 +180,10 @@
         "current_a": 0.00653,
         "current_scope": "whole_device",
         "conditions": "3 V normal-voltage supply, 25 °C, CPU WFI/WFE, other peripherals idle, 256 kB RAM powered; see current-conditions source. I_RADIO_RX2; HFXO, DC/DC.",
-        "source": "radio-current"
+        "source": "radio-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 0.01959,
+        "power_basis": "derived_vi"
       },
       {
         "id": "sleep-rtc",
@@ -178,11 +193,14 @@
         "current_a": 3.16e-06,
         "current_scope": "whole_device",
         "conditions": "3 V, 25 °C; System ON, full 256 kB RAM retention, RTC on LFRC, I_ON_RAMON_RTC; common conditions apply.",
-        "source": "sleep-current"
+        "source": "sleep-current",
+        "supply_voltage_v": 3.0,
+        "power_w": 9.48e-06,
+        "power_basis": "derived_vi"
       }
     ],
     "timing_status": "not_characterized",
-    "notes": "PMU supply currents include the sleeping CPU and required clock/regulator resources. Do not add another base/sleep load to these states. CPU execution, firmware overhead, transitions, BLE 2M/coded current and timing remain uncharacterized."
+    "notes": "PMU supply currents include the sleeping CPU and required clock/regulator resources. Do not add another base/sleep load to these states. CPU execution, firmware overhead, transitions, BLE 2M/coded current and timing remain uncharacterized. Where a 3 V measurement supply is specified, power_w is derived as V × I; the original current and its measurement scope are retained. This does not establish constant power across supply voltages."
   },
   "simulation": {
     "status": "runnable_approximation",

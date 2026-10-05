@@ -28,3 +28,7 @@ Both buck models use **estimated 90% constant conversion efficiency**, excluding
 Harvesters, photovoltaic cells, chargers and the remaining products stay catalog-only. A Powerfoyle model needs cell geometry, illumination/spectrum and I–V curves. Charging and harvesting PMICs need storage, source selection, cold-start and charging behavior. MCP1640's cited PFM IQ is measured at VOUT, while the present converter model applies IQ at VIN; importing that number unchanged would assign its losses to the wrong rail.
 
 These records contain original structured metadata and numerical facts with links. CC0-1.0 in a runnable part applies to the authored model record, not the linked datasheet, manufacturer trademarks or vendor artwork. Datasheets are not redistributed here.
+
+## Power operating points
+
+Radio operating points accept `power_w` directly (`power_basis: "provided"`) or retain `current_a` evidence. Derived power uses `power_basis: "derived_vi"` plus `supply_voltage_v` and `current_a`; validation checks P = V × I. Power and current, when both given, refer to the same measurement rail and accounting scope. The historical `current_scope` field describes which circuitry the operating point includes, including for power-only points. Values without a known measurement voltage are not automatically converted. The application displays µW while the files retain SI watts.

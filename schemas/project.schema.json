@@ -190,6 +190,13 @@
         "note"
       ]
     },
+    "LoadStateUnit": {
+      "type": "string",
+      "enum": [
+        "A",
+        "W"
+      ]
+    },
     "Model": {
       "oneOf": [
         {
@@ -319,6 +326,10 @@
             "min_voltage_v": {
               "type": "number",
               "format": "double"
+            },
+            "state_unit": {
+              "description": "New models use W. Omission preserves legacy constant-current states and hashes.",
+              "$ref": "#/$defs/LoadStateUnit"
             },
             "states": {
               "type": "object",

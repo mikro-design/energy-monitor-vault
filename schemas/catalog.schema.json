@@ -220,7 +220,6 @@
                   "mode",
                   "phy",
                   "tx_power_dbm",
-                  "current_a",
                   "current_scope",
                   "conditions",
                   "source"
@@ -253,7 +252,30 @@
                   "source": {
                     "type": "string",
                     "pattern": "^[a-z0-9-]+$"
+                  },
+                  "power_w": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "supply_voltage_v": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "power_basis": {
+                    "enum": ["provided", "derived_vi"]
                   }
+                },
+                "anyOf": [
+                  {
+                    "required": ["power_w"]
+                  },
+                  {
+                    "required": ["current_a"]
+                  }
+                ],
+                "dependentRequired": {
+                  "power_w": ["power_basis"],
+                  "power_basis": ["power_w"]
                 }
               }
             },

@@ -101,11 +101,14 @@
         "current_a": 3e-07,
         "current_scope": "whole_device",
         "conditions": "3 V; System OFF without RAM retention.",
-        "source": "spec"
+        "source": "spec",
+        "supply_voltage_v": 3.0,
+        "power_w": 9e-07,
+        "power_basis": "derived_vi"
       }
     ],
     "timing_status": "not_characterized",
-    "notes": "No IEEE 802.15.4 PHY is declared for this part. Headline radio figures are catalog evidence and not yet promoted to executable load states."
+    "notes": "No IEEE 802.15.4 PHY is declared for this part. Headline radio figures are catalog evidence and not yet promoted to executable load states. Where a 3 V measurement supply is specified, power_w is derived as V × I; the original current and its measurement scope are retained. This does not establish constant power across supply voltages."
   },
   "simulation": {
     "status": "catalog_only",

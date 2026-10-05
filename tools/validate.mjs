@@ -261,6 +261,23 @@ export function validateCatalog(catalog, vendor, part = null) {
     }
     for (const point of radio.operating_points) {
       checkSource(point);
+      if (
+        point.power_basis === "derived_vi" ||
+        (point.power_w !== undefined && point.current_a !== undefined)
+      ) {
+        if (
+          point.supply_voltage_v === undefined ||
+          point.current_a === undefined
+        )
+          errors.push(
+            `Power conversion requires voltage and current: ${point.id}`,
+          );
+        else if (
+          Math.abs(point.power_w - point.supply_voltage_v * point.current_a) >
+          Math.max(1e-15, Math.abs(point.power_w) * 1e-9)
+        )
+          errors.push(`Power must equal voltage times current: ${point.id}`);
+      }
       if (point.phy !== null && !phys.has(point.phy))
         errors.push(`Unknown PHY: ${point.phy}`);
       if (point.mode !== "tx" && point.tx_power_dbm !== null)

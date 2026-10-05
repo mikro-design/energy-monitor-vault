@@ -114,6 +114,43 @@ test("catalog status cannot claim a missing model or conceal an executable one",
     ),
   );
 });
+
+test("power operating points support direct watts and require valid current conversions", () => {
+  const c = structuredClone(catalog);
+  const point = c.radio.operating_points[0];
+  point.power_w = 0.0064 * 3;
+  point.power_basis = "provided";
+  delete point.current_a;
+  delete point.supply_voltage_v;
+  assert.deepEqual(validateCatalog(c, vendor, radioPart), []);
+  point.power_basis = "derived_vi";
+  assert.ok(
+    validateCatalog(c, vendor, radioPart).some((e) =>
+      e.includes("requires voltage and current"),
+    ),
+  );
+  point.current_a = 0.0064;
+  point.supply_voltage_v = 1;
+  assert.ok(
+    validateCatalog(c, vendor, radioPart).some((e) =>
+      e.includes("voltage times current"),
+    ),
+  );
+  point.supply_voltage_v = 3;
+  assert.deepEqual(validateCatalog(c, vendor, radioPart), []);
+});
+test("watt load states require unit evidence and preserve explicit unit semantics", () => {
+  const part = structuredClone(radioPart);
+  part.model.state_unit = "W";
+  assert.ok(validatePart(part).some((e) => e.includes("state_unit")));
+  part.provenance.state_unit = {
+    class: "estimated",
+    note: "Test power state model.",
+  };
+  assert.deepEqual(validatePart(part), []);
+  part.model.state_unit = "uW";
+  assert.ok(validatePart(part).length > 0);
+});
 test("vault discovers catalogs, checks paths, and reports malformed records", () => {
   const dir = mkdtempSync(join(tmpdir(), "energy-vault-"));
   try {

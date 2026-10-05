@@ -8,4 +8,4 @@
 6. For profile changes, run `energy validate` and `energy run` with the application CLI. Check numerical diagnostics and compare the previous result.
 7. Open a pull request describing changed values, their evidence, and intended operating range. Maintainers should review the evidence and model behavior before merging.
 
-The current schema supports battery/supply, multi-output constant-efficiency converter (one input, up to 16 outputs, shared IQ), switch, and constant-current load states. Curves, capacitors, harvesting, composites, and advanced battery behavior require future engine/schema versions. Model files never execute contributed algorithms.
+The current schema supports battery/supply, multi-output constant-efficiency converter (one input, up to 16 outputs, shared IQ), switch, and constant-power load states (`state_unit: "W"`) and legacy constant-current states. Curves, capacitors, harvesting, composites, and advanced battery behavior require future engine/schema versions. Model files never execute contributed algorithms.

@@ -62,3 +62,7 @@ Part definitions contain `ports`: stable `id`, exact vendor `name`, `type` (`pow
 Keep vendor labels faithful to the applicable datasheet and package variant. The sample labels are illustrative; they do not claim manufacturer verification. Ground/return is currently implicit. Control/signal pins and multiple power inputs are not supported by the engine; catalog records can describe these pin roles independently.
 
 See the application's [port contract and migration instructions](https://github.com/mikro-design/energy-monitor/blob/main/docs/PORTS.md). JSON remains canonical; XML interchange is not implemented.
+
+## Power values
+
+The application edits and displays device power in µW. New load models specify `state_unit: "W"` and store state values in watts (10 µW = 0.000010 W). Omitted `state_unit`, or `"A"`, preserves constant-current models and their source data. Current-based models display derived power at the connected nominal input voltage. Selecting fixed-power behavior deliberately converts at that voltage; these two behaviors differ when voltage changes. See [the power contract](https://github.com/mikro-design/energy-monitor/blob/main/docs/POWER.md).
