@@ -4,9 +4,27 @@ Requirements extracted from the user-supplied application discussion on 2026-10-
 
 The target system combines indoor PV, a supercapacitor or rechargeable cell, ONiO.zero and an EINK/e-paper display. Compare harvested energy, display refreshes and radio listening/transmission over realistic store opening, night and weekend lighting. Radio synchronization/listening can occur independently of display updates.
 
-The discussion suggests approximately 20–30 µW/cm² at 500 lux, approximately linear over 50–1000 lux, with around 5 cm² of PV in a 2.1-inch label. That gives an illustrative 100–150 µW before conversion/storage losses at 500 lux. It is not an Exeger part characterization; PV material, spectrum, orientation, geometry and measured light profiles are still needed. Do not assume that illumination is continuous or extrapolate the stated approximation outside its range.
+## Latest application targets
 
-The discussion references 2–4 display updates per day. This is a comparison range, not a fixed traffic schedule or a measured energy-neutral result. BLE PAwR is a requested scenario; support and qualification statements in the correspondence are historical, not current certification evidence. Explicit ONiO TX/RX states do not implement PAwR packet scheduling or predict network capacity.
+The final request in the supplied thread, dated **2026-09-24** (PDF page 20), supersedes the earlier illustrative 2–4 display updates/day assumption. These remain tentative application targets:
+
+| Input | Starting case |
+| --- | --- |
+| Indoor PV area | Approximately 5 cm² |
+| Normal low-light level | Approximately 200 lux; daily illuminated hours remain unspecified |
+| Display size | 2–4 inch diagonal; the three selected 2.13-inch presets are comparison alternatives |
+| Radio activity | 1,000–5,000 BLE PAwR RX/TX events per tag per day; event definition, airtime and timing remain unspecified |
+| Display updates | One per day as the initial maximum case; one per week as the lower-activity case |
+| Initial storage alternative | 10–20 F hybrid lithium supercapacitor, restricted to 2.5–4.0 V |
+| Second storage alternative | Supercapacitor plus rechargeable lithium cell; hardware topology and cell characteristics remain unspecified |
+| No-light tolerance | At least 48 hours; also explore several-day outages |
+| Recovery requirement | One complete display update after light returns; permitted recharge delay remains unspecified |
+
+Daily radio counts do not define a radio energy cost: RX windows, TX airtime, synchronization, retries and any image-transfer burst must be accounted for separately. For an initial uniformly spaced schedule only, 1,000 and 5,000 events/day correspond to 86.4 s and 17.28 s intervals; these are scenario assumptions, not a PAwR implementation.
+
+The earlier discussion suggests approximately 20–30 µW/cm² at 500 lux, approximately linear over 50–1000 lux. With 5 cm², this implies a provisional **40–60 µW at 200 lux**, before conversion/storage losses. This scaling is an initial estimate from the correspondence, not an Exeger part characterization. PV material, spectrum, orientation, geometry and measured light profiles are still needed. Do not assume continuous illumination.
+
+BLE PAwR is requested. Support and qualification statements in the correspondence are historical, not current certification evidence. Explicit ONiO TX/RX states do not implement PAwR packet scheduling or predict network capacity.
 
 [Custom display intake](../vendor/example/eink-display/characterization.json) retains unknown values as null. It is a template rather than a runnable part.
 
@@ -25,3 +43,14 @@ ONiO image preparation and SPI transfer use explicit CPU events. Display refresh
 The existing ONiO profile exercises consumption from an ideal supply. It does not yet solve photovoltaic harvesting, MPPT, supercapacitor charge/discharge, storage leakage, nighttime reserve, cold start or brownout recovery. Integrated hardware power management should not create invented CPU maintenance events; hardware losses still need characterization. External display/radio rail losses must be counted once at their actual power path.
 
 A complete comparison needs a daily/weekend lux schedule, PV performance data, chosen storage capacity/voltage/leakage, conversion efficiency, display refresh data and update cadence, and radio receive/synchronization/response schedules. Compare minimum stored energy, unserved operations, brownouts and recovery in addition to daily average power. The current load-only approximation cannot establish batteryless feasibility.
+
+## Scenario setup order
+
+1. Set the daily lighting schedule: illuminated hours at 200 lux, then the off-hours light level. Add a separate continuous 48-hour zero-light test and a longer-outage comparison.
+2. Compare 5 cm² PV with low/high provisional output (40 and 60 µW at 200 lux). Replace the estimate with the chosen cell's measured light/power behavior when available.
+3. Define storage at 10 and 20 F with the 2.5–4.0 V window, starting charge, leakage, losses and charge/discharge behavior. A real hybrid device needs part-specific characterization; any constant-capacitance approximation must be labeled. Keep its storage voltage separate from the ONiO/device supply rails. Add the rechargeable-cell alternative once its power path and cell data are known.
+4. Define what one radio event contains, then compare 1,000 and 5,000 events/day using the existing ONiO power/transition data. Specify whether radio activity continues, slows or stops during darkness.
+5. Compare all three display presets with daily and weekly updates. Include CPU/image transfer work, then schedule one recovery refresh after illumination returns. Set the allowed recovery delay explicitly.
+6. Inspect harvested/consumed energy, storage voltage, minimum reserve, unmet operations and recovery time. A full refresh succeeds only when the supply can sustain the whole operation; average energy alone does not establish this.
+
+The current app can configure the ONiO/display load side. The lighting, harvesting, storage and energy-aware scheduling models above still require implementation; these requirements are not an executable project profile.
