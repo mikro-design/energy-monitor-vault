@@ -1,0 +1,518 @@
+{
+  "schema_version": "0.2",
+  "name": "Exeger + ONiO VMAIN storage",
+  "revision": 1,
+  "scenario": "Indoor harvest, radio activity and darkness",
+  "duration_s": 3600,
+  "parts": [
+    {
+      "schema_version": "0.2",
+      "id": "exeger/powerfoyle-hybrid",
+      "name": "Exeger Powerfoyle Hybrid",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "pv",
+          "name": "MPP output (logical)",
+          "type": "power_out",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "solar",
+        "area_m2": 0.0005,
+        "states_lux": {
+          "indoor": 200,
+          "dark": 0,
+          "bright": 500
+        },
+        "default_state": "indoor",
+        "curve": [
+          {
+            "illuminance_lux": 200,
+            "power_density_w_m2": 0.054,
+            "voltage_v": 0.39
+          },
+          {
+            "illuminance_lux": 500,
+            "power_density_w_m2": 0.155,
+            "voltage_v": 0.43
+          },
+          {
+            "illuminance_lux": 1000,
+            "power_density_w_m2": 0.361,
+            "voltage_v": 0.47
+          },
+          {
+            "illuminance_lux": 2000,
+            "power_density_w_m2": 0.779,
+            "voltage_v": 0.5
+          },
+          {
+            "illuminance_lux": 5000,
+            "power_density_w_m2": 1.934,
+            "voltage_v": 0.51
+          },
+          {
+            "illuminance_lux": 10000,
+            "power_density_w_m2": 4.056,
+            "voltage_v": 0.53
+          },
+          {
+            "illuminance_lux": 20000,
+            "power_density_w_m2": 7.755,
+            "voltage_v": 0.53
+          },
+          {
+            "illuminance_lux": 30000,
+            "power_density_w_m2": 10.985,
+            "voltage_v": 0.51
+          },
+          {
+            "illuminance_lux": 50000,
+            "power_density_w_m2": 17.103,
+            "voltage_v": 0.49
+          }
+        ]
+      },
+      "provenance": {
+        "area_m2": {
+          "class": "estimated",
+          "note": "5 cm² absorber area from the shelf-label design target; not an Exeger orderable cell geometry. Linear scaling of absorber area is an engineering approximation."
+        },
+        "states_lux.indoor": {
+          "class": "estimated",
+          "note": "200 lux scenario from the application discussion. Set lighting states and timed events to match the installation."
+        },
+        "states_lux.dark": {
+          "class": "estimated",
+          "note": "Zero illumination scenario; assumes zero photovoltaic generation. Reverse leakage is not characterized."
+        },
+        "default_state": {
+          "class": "estimated",
+          "note": "Constant indoor illumination between lighting events; this is not a measured daily light profile."
+        },
+        "curve.0.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.0.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.0.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.1.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.1.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.1.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.2.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.2.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.2.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.3.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.3.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.3.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.4.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.4.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.4.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.5.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.5.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.5.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.6.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.6.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.6.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.7.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.7.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.7.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "curve.8.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.8.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.8.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+        },
+        "states_lux.bright": {
+          "class": "estimated",
+          "note": "Illustrative 500-lux lighting state; not a measured installation schedule."
+        }
+      }
+    },
+    {
+      "schema_version": "0.2",
+      "id": "onio/onio-zero",
+      "name": "ONiO.zero · user-provided power states",
+      "revision": "0.3.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "power",
+          "name": "Power input (logical)",
+          "type": "power_in",
+          "package_pins": []
+        },
+        {
+          "id": "vmain",
+          "name": "VMAIN",
+          "type": "power_storage",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "load",
+        "state_unit": "W",
+        "states": {
+          "sleep_ram_retained": 0.000001,
+          "cpu_4mhz": 0.000088,
+          "cpu_16mhz": 0.000352,
+          "cpu_32mhz": 0.000704,
+          "ble_1m_tx_0dbm": 0.004,
+          "ble_1m_rx": 0.003,
+          "ieee802154_tx_0dbm": 0.004,
+          "ieee802154_rx": 0.003,
+          "radio_ready": 0.0005,
+          "cpu_wake": 0.0001,
+          "ble_1m_tx_startup": 0.001,
+          "ble_1m_rx_startup": 0.001,
+          "ieee802154_tx_startup": 0.001,
+          "ieee802154_rx_startup": 0.001,
+          "ble_1m_tx_to_rx": 0.0005,
+          "ble_1m_rx_to_tx": 0.0005,
+          "ieee802154_tx_to_rx": 0.0005,
+          "ieee802154_rx_to_tx": 0.0005,
+          "enter_sleep": 0.0001
+        },
+        "default_state": "sleep_ram_retained",
+        "min_voltage_v": 0.25,
+        "harvester": {
+          "storage_port": "vmain",
+          "efficiency": 0.85,
+          "min_storage_v": 0.25,
+          "max_storage_v": 3.3,
+          "charge_stop_v": 2.7,
+          "restart_v": 2.2,
+          "off_power_w": 0
+        }
+      },
+      "provenance": {
+        "states.sleep_ram_retained": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1 µW. RAM retained. Direct power value supersedes the unconverted 1000 nA observation."
+        },
+        "states.cpu_4mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 4 MHz = 88 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_16mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 16 MHz = 352 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_32mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 32 MHz = 704 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.ble_1m_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ble_1m_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.radio_ready": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW. Total chip consumption with CPU asleep."
+        },
+        "states.cpu_wake": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 60 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.enter_sleep": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 100 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "state_unit": {
+          "class": "derived",
+          "note": "User requested power-defined states. Values converted from µW/mW into canonical watts. Fixed-power approximation; voltage dependence and input/output conversion losses are not separately characterized."
+        },
+        "default_state": {
+          "class": "derived",
+          "note": "Return to the user-provided RAM-retention sleep state between explicit events."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. Input operating range reported as 250–3000 mV. This engine diagnoses undervoltage at the minimum; maximum remains documented in characterization.json. Logical power input, with no verified physical pin names or package mapping."
+        },
+        "harvester.storage_port": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.efficiency": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.min_storage_v": {
+          "class": "estimated",
+          "note": "User-confirmed minimum operating voltage is 0.25 V. The approximation uses it as shutdown cutoff; a distinct shutdown threshold has not been characterized."
+        },
+        "harvester.max_storage_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.charge_stop_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.restart_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.off_power_w": {
+          "class": "estimated",
+          "note": "Uncharacterized waiting consumption. Zero is an editable ideal estimate, not a measured ONiO value."
+        }
+      }
+    },
+    {
+      "schema_version": "0.2",
+      "id": "example/vmain-capacitor",
+      "name": "VMAIN capacitor · 1000 µF estimate",
+      "revision": "0.3.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "store",
+          "name": "Storage",
+          "type": "power_storage",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "storage",
+        "store": {
+          "type": "capacitor",
+          "capacitance_f": 0.001,
+          "initial_voltage_v": 2.7,
+          "rated_voltage_v": 3.3
+        },
+        "leakage_w": 0
+      },
+      "provenance": {
+        "store.type": {
+          "class": "estimated",
+          "note": "Editable illustrative storage configuration, not a characterized physical component. Ideal capacitance and zero leakage; verify with actual component data."
+        },
+        "store.capacitance_f": {
+          "class": "estimated",
+          "note": "Editable illustrative storage configuration, not a characterized physical component. Ideal capacitance and zero leakage; verify with actual component data."
+        },
+        "store.initial_voltage_v": {
+          "class": "estimated",
+          "note": "Editable illustrative storage configuration, not a characterized physical component. Ideal capacitance and zero leakage; verify with actual component data."
+        },
+        "store.rated_voltage_v": {
+          "class": "estimated",
+          "note": "Editable illustrative storage configuration, not a characterized physical component. Ideal capacitance and zero leakage; verify with actual component data."
+        },
+        "leakage_w": {
+          "class": "estimated",
+          "note": "Editable illustrative storage configuration, not a characterized physical component. Ideal capacitance and zero leakage; verify with actual component data."
+        }
+      }
+    }
+  ],
+  "lock": {
+    "exeger/powerfoyle-hybrid": {
+      "revision": "0.1.0",
+      "sha256": "8266010e53c7e45b7f3097decf34e047a45df0edfe35018b337f6e2f9241f425"
+    },
+    "onio/onio-zero": {
+      "revision": "0.3.0",
+      "sha256": "b7a0d8fee92b53db6ed50557b3117a0566ca041f450b16f68152cb194c376ade"
+    },
+    "example/vmain-capacitor": {
+      "revision": "0.3.0",
+      "sha256": "9bc03fd0dbf5834f7cae522934d4aa899a2a0a5e23dfe02d409db9ee35d89f65"
+    }
+  },
+  "nodes": [
+    {
+      "id": "solar",
+      "label": "Exeger Powerfoyle Hybrid",
+      "part_id": "exeger/powerfoyle-hybrid",
+      "x": 40,
+      "y": 100,
+      "profile_period_s": 3600
+    },
+    {
+      "id": "onio",
+      "label": "ONiO.zero",
+      "part_id": "onio/onio-zero",
+      "x": 390,
+      "y": 100,
+      "profile_period_s": 3600
+    },
+    {
+      "id": "store",
+      "label": "VMAIN capacitor",
+      "part_id": "example/vmain-capacitor",
+      "x": 740,
+      "y": 100
+    }
+  ],
+  "edges": [
+    {
+      "id": "harvest",
+      "from": {
+        "node": "solar",
+        "port": "pv"
+      },
+      "to": {
+        "node": "onio",
+        "port": "power"
+      }
+    },
+    {
+      "id": "vmain-storage",
+      "from": {
+        "node": "onio",
+        "port": "vmain"
+      },
+      "to": {
+        "node": "store",
+        "port": "store"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "darkness",
+      "name": "Lights off",
+      "node_id": "solar",
+      "state": "dark",
+      "start_s": 1800,
+      "duration_s": 1800,
+      "period_s": 3600,
+      "enabled": true
+    },
+    {
+      "id": "radio",
+      "name": "BLE transmission",
+      "node_id": "onio",
+      "state": "ble_1m_tx_0dbm",
+      "start_s": 1801,
+      "duration_s": 1,
+      "period_s": 3600,
+      "enabled": true
+    }
+  ]
+}

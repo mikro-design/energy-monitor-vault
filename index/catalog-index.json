@@ -366,8 +366,8 @@
         "id": "onio/onio-zero",
         "name": "ONiO.zero · user-provided power states",
         "kind": "load",
-        "revision": "0.1.0",
-        "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2",
+        "revision": "0.3.0",
+        "sha256": "b7a0d8fee92b53db6ed50557b3117a0566ca041f450b16f68152cb194c376ade",
         "path": "vendor/onio/onio-zero/part.json"
       }
     },

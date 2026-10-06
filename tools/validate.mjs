@@ -68,6 +68,7 @@ export function validatePart(part) {
     solar: [0, 1],
     switch: [1, 1],
     load: [1, 0],
+    storage: [0, 0],
   };
   const count = counts[part.model.kind];
   if (
@@ -76,6 +77,14 @@ export function validatePart(part) {
       : inputs.length !== 1 || outputs.length < 1 || outputs.length > 16
   )
     errors.push("Ports do not match the model family");
+  const storagePorts = part.ports.filter((p) => p.type === "power_storage");
+  const expectedStorage =
+    part.model.kind === "storage" ||
+    (part.model.kind === "load" && part.model.harvester)
+      ? 1
+      : 0;
+  if (storagePorts.length !== expectedStorage)
+    errors.push("Storage ports do not match the model family");
   const portIds = new Set(),
     packagePins = new Set();
   for (const port of part.ports) {
@@ -100,6 +109,39 @@ export function validatePart(part) {
   const m = part.model;
   for (const key of ["voltage_v", "capacity_ah", "max_current_a"])
     if (key in m && m[key] <= 0) errors.push(`${key} must be positive`);
+  if (m.kind === "storage") {
+    const t = m.store;
+    if (t.type === "battery") {
+      if (!(
+        t.capacity_ah > 0 &&
+        t.empty_voltage_v > 0 &&
+        t.full_voltage_v > t.empty_voltage_v &&
+        t.initial_soc <= 1
+      ))
+        errors.push("Invalid storage battery range");
+    } else if (!(
+      t.capacitance_f > 0 &&
+      t.rated_voltage_v > 0 &&
+      t.initial_voltage_v <= t.rated_voltage_v
+    ))
+      errors.push("Invalid capacitor range");
+  }
+  if (m.kind === "load" && m.harvester) {
+    const h = m.harvester;
+    if (!(
+      m.state_unit === "W" &&
+      h.efficiency > 0 &&
+      h.efficiency <= 1 &&
+      h.min_storage_v > 0 &&
+      h.min_storage_v < h.restart_v &&
+      h.restart_v <= h.charge_stop_v &&
+      h.charge_stop_v <= h.max_storage_v &&
+      storagePorts[0]?.id === h.storage_port
+    ))
+      errors.push(
+        "Invalid harvester efficiency, voltage thresholds or storage port",
+      );
+  }
   if (m.kind === "solar") {
     const points = m.curve;
     const states = Object.values(m.states_lux);
@@ -220,7 +262,51 @@ export function validateProfile(profile) {
     )
       errors.push(`Unknown solar lighting state: ${event.state}`);
   }
+  const storageOwners = new Set(),
+    storageTargets = new Set();
+  const modelFor = (id) =>
+    profile.parts.find((p) => p.id === nodes.get(id)?.part_id);
   for (const edge of profile.edges) {
+    const a = modelFor(edge.from.node),
+      b = modelFor(edge.to.node);
+    const ap = a?.ports.find((p) => p.id === edge.from.port),
+      bp = b?.ports.find((p) => p.id === edge.to.port);
+    if (ap?.type === "power_storage" || bp?.type === "power_storage") {
+      if (
+        ap?.type !== "power_storage" ||
+        bp?.type !== "power_storage" ||
+        a?.model.kind !== "load" ||
+        !a.model.harvester ||
+        b?.model.kind !== "storage"
+      )
+        errors.push("Invalid storage connection");
+      else {
+        if (
+          storageOwners.has(edge.from.node) ||
+          storageTargets.has(edge.to.node)
+        )
+          errors.push("Storage requires one owner and one store");
+        storageOwners.add(edge.from.node);
+        storageTargets.add(edge.to.node);
+        const h = a.model.harvester,
+          t = b.model.store;
+        const battery = t.type === "battery",
+          max = battery ? t.full_voltage_v : t.rated_voltage_v;
+        const initial = battery
+          ? t.empty_voltage_v +
+            (t.full_voltage_v - t.empty_voltage_v) * t.initial_soc
+          : t.initial_voltage_v;
+        if (
+          initial > h.max_storage_v ||
+          ((!battery || t.rechargeable) && max < h.charge_stop_v) ||
+          (battery &&
+            (h.restart_v <= t.empty_voltage_v ||
+              h.min_storage_v >= t.full_voltage_v))
+        )
+          errors.push("Incompatible storage voltage");
+      }
+      continue;
+    }
     for (const [endpoint, direction] of [
       [edge.from, "power_out"],
       [edge.to, "power_in"],

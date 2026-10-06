@@ -23,7 +23,7 @@
     "status": "not_characterized",
     "package": null,
     "entries": [],
-    "notes": "The official feature overview does not supply a revision-specific package pinout. The user identifies VMAIN as a bidirectional storage connection for a capacitor, supercapacitor or battery, with a 250 mV–3.3 V operating range. Charge/discharge behavior and package pin numbers remain uncharacterized. See characterization.json vmain_storage. VMAIN is not yet implemented by the runnable load model."
+    "notes": "User-named VMAIN bidirectional storage port is modeled; revision-specific package pin numbers remain unknown. See characterization.json for user-confirmed voltage thresholds and efficiency."
   },
   "radio": {
     "protocols": [
@@ -69,12 +69,11 @@
   "simulation": {
     "status": "runnable_approximation",
     "model_file": "part.json",
-    "scope": "User-provided fixed-power CPU, sleep, BLE 1M and IEEE 802.15.4 states, with explicit wake/startup/turnaround/sleep-entry timing in characterization.json. These values are not manufacturer-verified catalog operating points. Logical power input only. Harvesting, storage, output rails and automatic radio traffic remain outside this load approximation.",
+    "scope": "User-provided fixed-power CPU/sleep/BLE 1M/802.15.4 states and optional VMAIN storage. Direct solar, supply or battery harvesting input converts at 85%; surplus charges a connected capacitor, supercapacitor or compatible storage battery. Explicit activity timings remain required. Values and thresholds are not manufacturer-verified.",
     "blockers": [
       "Obtain revision-specific datasheet, package pinout and measurement conditions.",
       "Characterize voltage dependence, other PHYs/TX powers and combined CPU/radio states.",
-      "Model harvesting, storage, cold start, conversion losses and brownout before predicting energy-limited operation.",
-      "Characterize VMAIN charging power, conversion losses and any distinct shutdown threshold; implement a bidirectional storage path for capacitor, supercapacitor or compatible battery attachments. The user has confirmed a 250 mV–3.3 V operating range, a 2.7 V charging stop and a 2.2 V restart voltage."
+      "Characterize cold-start dynamics, off-state consumption, distinct shutdown threshold, voltage-dependent efficiency, output rails and storage battery charging chemistry."
     ]
   }
 }

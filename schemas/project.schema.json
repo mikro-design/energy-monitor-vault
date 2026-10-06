@@ -190,6 +190,49 @@
         "note"
       ]
     },
+    "Harvester": {
+      "type": "object",
+      "properties": {
+        "charge_stop_v": {
+          "type": "number",
+          "format": "double"
+        },
+        "efficiency": {
+          "type": "number",
+          "format": "double"
+        },
+        "max_storage_v": {
+          "type": "number",
+          "format": "double"
+        },
+        "min_storage_v": {
+          "type": "number",
+          "format": "double"
+        },
+        "off_power_w": {
+          "description": "Explicit estimate while waiting to restart, excluding storage leakage.",
+          "type": "number",
+          "format": "double"
+        },
+        "restart_v": {
+          "type": "number",
+          "format": "double"
+        },
+        "storage_port": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "storage_port",
+        "efficiency",
+        "min_storage_v",
+        "max_storage_v",
+        "charge_stop_v",
+        "restart_v",
+        "off_power_w"
+      ]
+    },
     "LoadOperation": {
       "type": "object",
       "properties": {
@@ -372,8 +415,40 @@
         {
           "type": "object",
           "properties": {
+            "kind": {
+              "type": "string",
+              "const": "storage"
+            },
+            "leakage_w": {
+              "type": "number",
+              "format": "double"
+            },
+            "store": {
+              "$ref": "#/$defs/Storage"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "store",
+            "leakage_w"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
             "default_state": {
               "type": "string"
+            },
+            "harvester": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Harvester"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "kind": {
               "type": "string",
@@ -545,7 +620,8 @@
       "type": "string",
       "enum": [
         "power_in",
-        "power_out"
+        "power_out",
+        "power_storage"
       ]
     },
     "SolarPoint": {
@@ -569,6 +645,104 @@
         "illuminance_lux",
         "power_density_w_m2",
         "voltage_v"
+      ]
+    },
+    "Storage": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "capacitance_f": {
+              "type": "number",
+              "format": "double"
+            },
+            "initial_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "rated_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": {
+              "type": "string",
+              "const": "capacitor"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "capacitance_f",
+            "initial_voltage_v",
+            "rated_voltage_v"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "capacitance_f": {
+              "type": "number",
+              "format": "double"
+            },
+            "initial_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "rated_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": {
+              "type": "string",
+              "const": "supercapacitor"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "capacitance_f",
+            "initial_voltage_v",
+            "rated_voltage_v"
+          ]
+        },
+        {
+          "description": "Linear open-circuit voltage versus charge, without ESR or rate effects.",
+          "type": "object",
+          "properties": {
+            "capacity_ah": {
+              "type": "number",
+              "format": "double"
+            },
+            "empty_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "full_voltage_v": {
+              "type": "number",
+              "format": "double"
+            },
+            "initial_soc": {
+              "type": "number",
+              "format": "double"
+            },
+            "rechargeable": {
+              "type": "boolean"
+            },
+            "type": {
+              "type": "string",
+              "const": "battery"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "capacity_ah",
+            "empty_voltage_v",
+            "full_voltage_v",
+            "initial_soc",
+            "rechargeable"
+          ]
+        }
       ]
     }
   }

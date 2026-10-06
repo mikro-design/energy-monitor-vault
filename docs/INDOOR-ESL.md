@@ -40,9 +40,9 @@ ONiO image preparation and SPI transfer use explicit CPU events. Display refresh
 
 ## Remaining system model
 
-The existing ONiO profile exercises consumption from an ideal supply. It does not yet solve photovoltaic harvesting, MPPT, supercapacitor charge/discharge, storage leakage, nighttime reserve, cold start or brownout recovery. Integrated hardware power management should not create invented CPU maintenance events; hardware losses still need characterization. External display/radio rail losses must be counted once at their actual power path.
+The original ONiO radio profile exercises consumption from an ideal supply. The additional VMAIN storage profile models harvest, storage energy/leakage and cutoff/restart with user-supplied thresholds and 85% harvesting efficiency. MPPT transients, measured cold-start behavior and external display rails remain uncharacterized. Integrated hardware power management should not create invented CPU maintenance events; hardware losses still need characterization. External display/radio rail losses must be counted once at their actual power path.
 
-A complete comparison needs a daily/weekend lux schedule, PV performance data, chosen storage capacity/voltage/leakage, conversion efficiency, display refresh data and update cadence, and radio receive/synchronization/response schedules. Compare minimum stored energy, unserved operations, brownouts and recovery in addition to daily average power. The current solar/load approximation has no charging or storage dynamics and cannot establish batteryless feasibility.
+A complete comparison needs a daily/weekend lux schedule, PV performance data, chosen storage capacity/voltage/leakage, conversion efficiency, display refresh data and update cadence, and radio receive/synchronization/response schedules. Compare minimum stored energy, unserved operations, brownouts and recovery in addition to daily average power. The VMAIN energy approximation alone cannot establish the full display system’s batteryless feasibility.
 
 ## Scenario setup order
 
@@ -53,4 +53,4 @@ A complete comparison needs a daily/weekend lux schedule, PV performance data, c
 5. Compare all three display presets with daily and weekly updates. Include CPU/image transfer work, then schedule one recovery refresh after illumination returns. Set the allowed recovery delay explicitly.
 6. Inspect harvested/consumed energy, storage voltage, minimum reserve, unmet operations and recovery time. A full refresh succeeds only when the supply can sustain the whole operation; average energy alone does not establish this.
 
-The current app can configure ONiO/display loads, Exeger area/illumination and timed lighting, and report available/supplied/unused/unserved solar energy. Harvesting dynamics, storage and energy-aware scheduling still require implementation; these requirements are not an executable project profile.
+The current app can configure ONiO/display loads, Exeger area/illumination and timed lighting, and report available/supplied/unused/unserved solar energy. VMAIN storage is now available as an energy approximation; MPPT dynamics, external display rails and energy-aware scheduling remain future work; these requirements are not an executable project profile.

@@ -39,13 +39,19 @@
       "schema_version": "0.2",
       "id": "onio/onio-zero",
       "name": "ONiO.zero · user-provided power states",
-      "revision": "0.1.0",
+      "revision": "0.3.0",
       "license": "CC0-1.0",
       "ports": [
         {
           "id": "power",
           "name": "Power input (logical)",
           "type": "power_in",
+          "package_pins": []
+        },
+        {
+          "id": "vmain",
+          "name": "VMAIN",
+          "type": "power_storage",
           "package_pins": []
         }
       ],
@@ -74,7 +80,16 @@
           "enter_sleep": 0.0001
         },
         "default_state": "sleep_ram_retained",
-        "min_voltage_v": 0.25
+        "min_voltage_v": 0.25,
+        "harvester": {
+          "storage_port": "vmain",
+          "efficiency": 0.85,
+          "min_storage_v": 0.25,
+          "max_storage_v": 3.3,
+          "charge_stop_v": 2.7,
+          "restart_v": 2.2,
+          "off_power_w": 0
+        }
       },
       "provenance": {
         "states.sleep_ram_retained": {
@@ -164,6 +179,34 @@
         "min_voltage_v": {
           "class": "estimated",
           "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. Input operating range reported as 250–3000 mV. This engine diagnoses undervoltage at the minimum; maximum remains documented in characterization.json. Logical power input, with no verified physical pin names or package mapping."
+        },
+        "harvester.storage_port": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.efficiency": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.min_storage_v": {
+          "class": "estimated",
+          "note": "User-confirmed minimum operating voltage is 0.25 V. The approximation uses it as shutdown cutoff; a distinct shutdown threshold has not been characterized."
+        },
+        "harvester.max_storage_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.charge_stop_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.restart_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO VMAIN characterization, 2026-10-06. Harvested input-to-VMAIN efficiency 85%; operating range 0.25–3.3 V, charging stops at 2.7 V, restart 2.2 V. Not independently datasheet-verified; package pin mapping unknown."
+        },
+        "harvester.off_power_w": {
+          "class": "estimated",
+          "note": "Uncharacterized waiting consumption. Zero is an editable ideal estimate, not a measured ONiO value."
         }
       }
     }
@@ -174,8 +217,8 @@
       "sha256": "81644c03fcea76ce6a3961643619198421a4e621cb7f0ae9653a62bc58606638"
     },
     "onio/onio-zero": {
-      "revision": "0.1.0",
-      "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2"
+      "revision": "0.3.0",
+      "sha256": "b7a0d8fee92b53db6ed50557b3117a0566ca041f450b16f68152cb194c376ade"
     }
   },
   "nodes": [

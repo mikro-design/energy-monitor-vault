@@ -137,17 +137,17 @@
   },
   "limitations": [
     "User-provided baseline, not manufacturer-verified electrical data. Silicon revision, package, measurement rail and temperature are unspecified.",
-    "Runnable model has a logical power input only. User-confirmed VMAIN storage capability is recorded separately; physical package pin numbers are unknown.",
+    "The model has a logical harvesting input and a user-named VMAIN bidirectional storage port; physical package pins are unknown.",
     "Whole-device radio states include a sleeping CPU. Do not add CPU or sleep baseline power to them.",
     "CPU run powers use 22 µW/MHz with no added fixed baseline; this remains a model assumption.",
     "Power is held constant within the stated range; voltage-dependent curves and the 3 V upper limit are not enforced by the current engine.",
     "Transition durations require explicit timeline events; they are not automatically inserted by the engine.",
     "BLE 2M/coded operation and TX powers other than 0 dBm remain uncharacterized.",
-    "Harvesting, storage, cold start, output rails and brownout/restart behavior remain outside this baseline."
+    "Storage is an energy-balance approximation with constant harvesting efficiency. Cold-start dynamics, external output rails and battery-chemistry control remain uncharacterized."
   ],
   "vmain_storage": {
-    "status": "user_confirmed_voltage_range_charge_discharge_pending",
-    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV and a maximum operating voltage of 3.3 V. The user confirmed that charging stops at 2.7 V. The user corrected the restart voltage to 2.2 V; the minimum operating voltage remains 250 mV.",
+    "status": "user_characterized_energy_storage_approximation",
+    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV and a maximum operating voltage of 3.3 V. The user confirmed that charging stops at 2.7 V. The user corrected the restart voltage to 2.2 V; the minimum operating voltage remains 250 mV. The user confirmed 85% harvesting input-to-VMAIN efficiency.",
     "port_name": "VMAIN",
     "energy_flow": "bidirectional",
     "supported_storage_types": [
@@ -163,11 +163,12 @@
     "charging_limit": {
       "stop_voltage_v": 2.7
     },
-    "charge_discharge_efficiency": null,
     "cutoff_restart_thresholds_v": {
       "cutoff": null,
       "restart": 2.2
     },
-    "note": "Capability, vendor port name, 0.25–3.3 V operating range, 2.7 V charging stop and 2.2 V restart voltage are user supplied. Package mapping, charging power, conversion efficiency and any distinct shutdown threshold remain uncharacterized. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
+    "note": "Harvesting input power is determined by the source profile and converted at 85%; no fixed VMAIN charging power is invented. Charging stops at 2.7 V and device restarts at 2.2 V. The minimum operating voltage 0.25 V is used as a modeled cutoff, not an independently characterized shutdown threshold. Waiting power defaults to an uncharacterized zero estimate. Capacitor/supercapacitor energy is 0.5CV²; batteries use a user-configured linear voltage versus charge approximation. Package mapping, voltage-dependent losses, current transients, charging chemistry and output rails remain uncharacterized.",
+    "harvesting_efficiency": 0.85,
+    "modeled_cutoff_v": 0.25
   }
 }
