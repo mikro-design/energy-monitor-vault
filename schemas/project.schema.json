@@ -424,6 +424,13 @@
         "part_id": {
           "type": "string"
         },
+        "profile_period_s": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double"
+        },
         "x": {
           "type": "number",
           "format": "double"

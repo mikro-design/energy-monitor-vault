@@ -191,14 +191,28 @@ export function validateProfile(profile) {
     if (!pin || pin.revision !== part.revision || pin.sha256 !== hash(part))
       errors.push(`Pinned model mismatch: ${part.id}`);
   }
-  for (const node of profile.nodes)
+  for (const node of profile.nodes) {
     if (!ids.has(node.part_id))
       errors.push(`Unresolved model: ${node.part_id}`);
+    if (
+      node.profile_period_s != null &&
+      !(Number.isFinite(node.profile_period_s) && node.profile_period_s > 0)
+    )
+      errors.push(`Invalid profile period: ${node.id}`);
+  }
   const nodes = new Map(profile.nodes.map((n) => [n.id, n]));
   if (nodes.size !== profile.nodes.length) errors.push("Duplicate node ID");
   const incoming = new Set();
   for (const event of profile.events) {
     const node = nodes.get(event.node_id);
+    if (
+      node?.profile_period_s != null &&
+      (event.period_s !== node.profile_period_s ||
+        event.start_s + event.duration_s > node.profile_period_s + 1e-12)
+    )
+      errors.push(
+        `Activity must fit inside and repeat with profile period: ${event.name}`,
+      );
     const model = profile.parts.find((p) => p.id === node?.part_id)?.model;
     if (
       model?.kind === "solar" &&

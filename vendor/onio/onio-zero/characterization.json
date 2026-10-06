@@ -137,12 +137,29 @@
   },
   "limitations": [
     "User-provided baseline, not manufacturer-verified electrical data. Silicon revision, package, measurement rail and temperature are unspecified.",
-    "Logical power input only; no physical pin names/numbers are inferred.",
+    "Runnable model has a logical power input only. User-confirmed VMAIN storage capability is recorded separately; physical package pin numbers are unknown.",
     "Whole-device radio states include a sleeping CPU. Do not add CPU or sleep baseline power to them.",
     "CPU run powers use 22 µW/MHz with no added fixed baseline; this remains a model assumption.",
     "Power is held constant within the stated range; voltage-dependent curves and the 3 V upper limit are not enforced by the current engine.",
     "Transition durations require explicit timeline events; they are not automatically inserted by the engine.",
     "BLE 2M/coded operation and TX powers other than 0 dBm remain uncharacterized.",
     "Harvesting, storage, cold start, output rails and brownout/restart behavior remain outside this baseline."
-  ]
+  ],
+  "vmain_storage": {
+    "status": "user_confirmed_capability_electrical_limits_pending",
+    "source": "User statement in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery.",
+    "port_name": "VMAIN",
+    "energy_flow": "bidirectional",
+    "supported_storage_types": [
+      "capacitor",
+      "supercapacitor",
+      "battery"
+    ],
+    "package_pins": [],
+    "voltage_range_v": null,
+    "charging_limit": null,
+    "charge_discharge_efficiency": null,
+    "cutoff_restart_thresholds_v": null,
+    "note": "Capability and vendor port name are user supplied. Package mapping and electrical behavior are uncharacterized. Earlier 0.25–3 V input limits must not be applied to VMAIN without confirmation. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
+  }
 }
