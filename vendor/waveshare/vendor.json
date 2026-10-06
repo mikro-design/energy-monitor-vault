@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "id": "waveshare",
+  "name": "Waveshare",
+  "aliases": [],
+  "website": "https://www.waveshare.com/",
+  "source_domains": [
+    "waveshare.com",
+    "waveshare.net"
+  ]
+}

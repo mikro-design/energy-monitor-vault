@@ -25,6 +25,8 @@ The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-pr
 
 ## Layout
 
+Four [EINK datasheet research records](docs/EINK-DATASHEETS.md) now sit under `vendor/good-display/`, `vendor/pervasive-displays/` and `vendor/waveshare/`. They retain derived mJ/refresh, timing, conditions, revision-specific pins and unknown values. They are separate from the 20 catalog products and have not been promoted to executable parts.
+
 - `vendor/<vendor>/vendor.json`: manufacturer identity, aliases and official source domains.
 - `vendor/<vendor>/<part>/catalog.json`: sourced product metadata, reviewed pin subsets, radio capabilities and modeling status.
 - `vendor/<vendor>/<part>/part.json`: reusable electrical models, logical power port names/directions and reviewed package mappings where applicable, and field-level provenance.

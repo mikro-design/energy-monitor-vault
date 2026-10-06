@@ -1,0 +1,205 @@
+{
+  "schema_version": "0.1",
+  "part_id": "good-display/gdey0213b74",
+  "status": "datasheet_research_only",
+  "name": "GDEY0213B74",
+  "description": "2.13-inch monochrome panel, 250 × 122, SSD1680 family; raw panel with integrated driver.",
+  "reviewed_on": "2026-10-06",
+  "preferred_energy_display_units": [
+    "nJ",
+    "uJ",
+    "mJ"
+  ],
+  "preferred_power_display_unit": "uW",
+  "scope": "Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+  "sources": [
+    {
+      "id": "datasheet",
+      "url": "https://files.seeedstudio.com/wiki/Other_Display/213-epaper/GDEY0213B74.pdf",
+      "revision": "1.0",
+      "date": "2021-03-17",
+      "publisher": "Dalian Good Display Co., Ltd.",
+      "host_role": "distributor_mirror",
+      "pages": [
+        2,
+        8,
+        9,
+        10
+      ],
+      "sha256": "63ba1b38eae3cd69998be833b8834247843067517dadd0af812b10787680a137",
+      "manufacturer_reference_url": "https://www.good-display.com/companyfile/635.html"
+    },
+    {
+      "id": "product",
+      "url": "https://www.good-display.com/product/391.html",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-06"
+    }
+  ],
+  "input_voltage_v": {
+    "min": 2.2,
+    "typical": 3,
+    "max": 3.7
+  },
+  "reference_temperature_c": 25,
+  "operations": [
+    {
+      "id": "full_refresh",
+      "duration_s": 3,
+      "power_w": 0.0105,
+      "energy_j": 0.0315,
+      "basis": "derived_power_time",
+      "classification": "typical_estimate",
+      "source_pages": [
+        9,
+        10
+      ],
+      "note": "Ptyp × full-update time at 3.0 V and 25 °C; not a directly measured energy specification."
+    },
+    {
+      "id": "fast_refresh",
+      "duration_s": 1.5,
+      "power_w": null,
+      "energy_j": null,
+      "basis": "not_characterized",
+      "classification": "unknown_energy",
+      "source_pages": [
+        10
+      ],
+      "note": "Do not reuse full-refresh average power without an explicit assumption."
+    },
+    {
+      "id": "partial_refresh",
+      "duration_s": 0.42,
+      "power_w": null,
+      "energy_j": null,
+      "basis": "not_characterized",
+      "classification": "unknown_energy",
+      "source_pages": [
+        10
+      ],
+      "note": "Reviewed PDF gives 0.42 s; current product page advertises 0.3 s. Preserve revision-specific timing."
+    }
+  ],
+  "states": [
+    {
+      "id": "deep_sleep",
+      "power_w": 0.000003,
+      "current_a": 0.000001,
+      "voltage_v": 3,
+      "classification": "typical",
+      "source_pages": [
+        10
+      ],
+      "note": "RAM not retained; maximum listed current 5 µA."
+    },
+    {
+      "id": "sleep_ram_retained",
+      "power_w": 0.00006,
+      "current_a": 0.00002,
+      "voltage_v": 3,
+      "classification": "derived_from_typical_current",
+      "source_pages": [
+        10
+      ],
+      "note": "DC/DC and clock off, no input load, RAM retained."
+    }
+  ],
+  "pins": {
+    "status": "reviewed_subset",
+    "package": "24-pin panel FPC",
+    "source": "datasheet",
+    "entries": [
+      {
+        "name": "VDDIO",
+        "package_pins": [
+          "15"
+        ],
+        "direction": "input",
+        "role": "power",
+        "note": "Tie to VCI per pin description."
+      },
+      {
+        "name": "VCI",
+        "package_pins": [
+          "16"
+        ],
+        "direction": "input",
+        "role": "power",
+        "note": ""
+      },
+      {
+        "name": "VSS",
+        "package_pins": [
+          "17"
+        ],
+        "direction": "passive",
+        "role": "return",
+        "note": ""
+      },
+      {
+        "name": "BUSY",
+        "package_pins": [
+          "9"
+        ],
+        "direction": "output",
+        "role": "control",
+        "note": "Active high busy."
+      },
+      {
+        "name": "RES#",
+        "package_pins": [
+          "10"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "D/C#",
+        "package_pins": [
+          "11"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "CS#",
+        "package_pins": [
+          "12"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "SCL",
+        "package_pins": [
+          "13"
+        ],
+        "direction": "input",
+        "role": "signal",
+        "note": ""
+      },
+      {
+        "name": "SDA",
+        "package_pins": [
+          "14"
+        ],
+        "direction": "bidirectional",
+        "role": "signal",
+        "note": ""
+      }
+    ],
+    "note": "Vendor pin names retained for this exact document revision. These are research metadata, not executable engine ports. Booster nodes and capacitor pins are not generic load supply rails."
+  },
+  "limitations": [
+    "Power and timing depend on vendor waveform, image transition and temperature.",
+    "The datasheet recommends a full refresh after five consecutive fast/partial operations; do not model indefinite partial-only activity.",
+    "No independently characterized fast/partial refresh energy or peak current was imported.",
+    "The current product-page partial time differs from the reviewed PDF; this is not a claim that the PDF is the latest revision.",
+    "Derived energy assumes the typical power/current applies over the stated refresh interval. Actual energy needs a complete operation trace.",
+    "No executable part is published by this research record; unknown values remain null."
+  ]
+}

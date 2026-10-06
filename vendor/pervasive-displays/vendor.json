@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "id": "pervasive-displays",
+  "name": "Pervasive Displays",
+  "aliases": [
+    "PDI"
+  ],
+  "website": "https://www.pervasivedisplays.com/",
+  "source_domains": [
+    "pervasivedisplays.com"
+  ]
+}

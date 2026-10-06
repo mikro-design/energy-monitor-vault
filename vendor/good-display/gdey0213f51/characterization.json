@@ -1,0 +1,171 @@
+{
+  "schema_version": "0.1",
+  "part_id": "good-display/gdey0213f51",
+  "status": "datasheet_research_only",
+  "name": "GDEY0213F51",
+  "description": "2.13-inch four-colour black/white/red/yellow panel, 250 × 122; model-specific 2023 baseline.",
+  "reviewed_on": "2026-10-06",
+  "preferred_energy_display_units": [
+    "nJ",
+    "uJ",
+    "mJ"
+  ],
+  "preferred_power_display_unit": "uW",
+  "scope": "Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+  "sources": [
+    {
+      "id": "datasheet",
+      "url": "https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf",
+      "revision": "1.0",
+      "date": "2023-03-21",
+      "publisher": "Dalian Good Display Co., Ltd.",
+      "host_role": "distributor_mirror",
+      "pages": [
+        2,
+        7,
+        9
+      ],
+      "sha256": "6a6d96b4ed8408ea073bf7a38e5fe7e8b6333134625b0b1967687614f9371067",
+      "manufacturer_reference_url": "https://www.good-display.com/companyfile/1000.html"
+    }
+  ],
+  "input_voltage_v": {
+    "min": 2.3,
+    "typical": 3.3,
+    "max": 3.6
+  },
+  "reference_temperature_c": 25,
+  "operations": [
+    {
+      "id": "full_refresh",
+      "duration_s": 25,
+      "power_w": 0.0099,
+      "energy_j": 0.2475,
+      "basis": "derived_power_time",
+      "classification": "typical_estimate",
+      "source_pages": [
+        9
+      ],
+      "note": "9.9 mW × 25 s at 3.3 V/25 °C; not a directly measured energy specification. Do not substitute GDEY0213F52 timing."
+    }
+  ],
+  "states": [
+    {
+      "id": "deep_sleep",
+      "power_w": 0.000003,
+      "classification": "typical",
+      "source_pages": [
+        9
+      ],
+      "note": "Directly listed deep-sleep power at 3.3 V."
+    },
+    {
+      "id": "standby",
+      "power_w": 0.0000033,
+      "current_a": 0.000001,
+      "voltage_v": 3.3,
+      "classification": "derived_from_typical_current",
+      "source_pages": [
+        9
+      ],
+      "note": "Standby current row: typical 1 µA, maximum 5 µA. Retained separately from the direct deep-sleep power row; values are rounded."
+    }
+  ],
+  "pins": {
+    "status": "reviewed_subset",
+    "package": "24-pin panel FPC",
+    "source": "datasheet",
+    "entries": [
+      {
+        "name": "VDDIO",
+        "package_pins": [
+          "15"
+        ],
+        "direction": "input",
+        "role": "power",
+        "note": ""
+      },
+      {
+        "name": "VDD",
+        "package_pins": [
+          "16"
+        ],
+        "direction": "input",
+        "role": "power",
+        "note": ""
+      },
+      {
+        "name": "VSS",
+        "package_pins": [
+          "17"
+        ],
+        "direction": "passive",
+        "role": "return",
+        "note": ""
+      },
+      {
+        "name": "BUSY_N",
+        "package_pins": [
+          "9"
+        ],
+        "direction": "output",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "RST_N",
+        "package_pins": [
+          "10"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "DC",
+        "package_pins": [
+          "11"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "CSB",
+        "package_pins": [
+          "12"
+        ],
+        "direction": "input",
+        "role": "control",
+        "note": ""
+      },
+      {
+        "name": "SCL",
+        "package_pins": [
+          "13"
+        ],
+        "direction": "input",
+        "role": "signal",
+        "note": ""
+      },
+      {
+        "name": "SDA",
+        "package_pins": [
+          "14"
+        ],
+        "direction": "bidirectional",
+        "role": "signal",
+        "note": ""
+      }
+    ],
+    "note": "Vendor pin names retained for this exact document revision. These are research metadata, not executable engine ports. Booster nodes and capacitor pins are not generic load supply rails."
+  },
+  "limitations": [
+    "An older model-specific datasheet, not a statement of current availability or a recommendation over newer variants.",
+    "Full-refresh power is specified for the vendor test-pattern transition; fast/partial energies remain uncharacterized.",
+    "The previously associated product/463.html page now names GDEY0213F52; do not merge its values with F51.",
+    "Maximum refresh energy and peak supply current are not established by the imported typical numbers.",
+    "Derived energy assumes the typical power/current applies over the stated refresh interval. Actual energy needs a complete operation trace.",
+    "No executable part is published by this research record; unknown values remain null."
+  ]
+}

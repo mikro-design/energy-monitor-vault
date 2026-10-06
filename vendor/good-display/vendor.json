@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "id": "good-display",
+  "name": "Good Display",
+  "aliases": [
+    "GooDisplay",
+    "Goodisplay"
+  ],
+  "website": "https://www.good-display.com/",
+  "source_domains": [
+    "good-display.com",
+    "good-display.cn"
+  ]
+}

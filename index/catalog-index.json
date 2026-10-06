@@ -29,6 +29,15 @@
       "path": "vendor/exeger/vendor.json"
     },
     {
+      "id": "good-display",
+      "name": "Good Display",
+      "aliases": [
+        "GooDisplay",
+        "Goodisplay"
+      ],
+      "path": "vendor/good-display/vendor.json"
+    },
+    {
       "id": "microchip",
       "name": "Microchip Technology",
       "aliases": [
@@ -61,6 +70,14 @@
       "path": "vendor/onio/vendor.json"
     },
     {
+      "id": "pervasive-displays",
+      "name": "Pervasive Displays",
+      "aliases": [
+        "PDI"
+      ],
+      "path": "vendor/pervasive-displays/vendor.json"
+    },
+    {
       "id": "texas-instruments",
       "name": "Texas Instruments",
       "aliases": [
@@ -69,6 +86,12 @@
         "MSP430"
       ],
       "path": "vendor/texas-instruments/vendor.json"
+    },
+    {
+      "id": "waveshare",
+      "name": "Waveshare",
+      "aliases": [],
+      "path": "vendor/waveshare/vendor.json"
     }
   ],
   "products": [

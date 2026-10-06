@@ -10,6 +10,8 @@ The discussion references 2–4 display updates per day. This is a comparison ra
 
 [Display intake](../vendor/example/eink-display/characterization.json) retains missing values as null until the user supplies them. It is not a runnable part or a manufacturer catalog record.
 
+[Initial datasheet research](EINK-DATASHEETS.md) provides model-specific full-refresh energy estimates and records missing mode data. Select the vendor, exact panel/module, revision and refresh mode before choosing an energy value. No display has been selected for the actual ONiO design yet.
+
 ## Display accounting
 
 Add a separate display load beside the ONiO load. Enter full-refresh average input power including the display controller/driver, refresh duration and whole-module standby power. Keep display power in µW in the editor and W in JSON. The app's **Add component → EINK display** flow asks for these values one at a time and creates a full-refresh event. No display manufacturer or electrical values have yet been supplied for this project.
