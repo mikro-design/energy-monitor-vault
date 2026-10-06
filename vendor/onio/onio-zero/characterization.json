@@ -146,8 +146,8 @@
     "Harvesting, storage, cold start, output rails and brownout/restart behavior remain outside this baseline."
   ],
   "vmain_storage": {
-    "status": "user_confirmed_capability_electrical_limits_pending",
-    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV.",
+    "status": "user_confirmed_voltage_range_charge_discharge_pending",
+    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV and a maximum operating voltage of 3.3 V.",
     "port_name": "VMAIN",
     "energy_flow": "bidirectional",
     "supported_storage_types": [
@@ -158,11 +158,11 @@
     "package_pins": [],
     "voltage_range_v": {
       "min": 0.25,
-      "max": null
+      "max": 3.3
     },
     "charging_limit": null,
     "charge_discharge_efficiency": null,
     "cutoff_restart_thresholds_v": null,
-    "note": "Capability, vendor port name and 250 mV minimum operating voltage are user supplied. Maximum operating voltage, package mapping and charge/discharge behavior remain uncharacterized. The earlier 3 V input maximum must not be applied to VMAIN without confirmation. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
+    "note": "Capability, vendor port name and 0.25–3.3 V operating range are user supplied. Package mapping and charge/discharge behavior remain uncharacterized. The maximum operating voltage is not yet a characterized charging stop voltage. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
   }
 }
