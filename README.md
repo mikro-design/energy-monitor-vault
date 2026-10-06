@@ -25,7 +25,7 @@ Open [the nRF52840 radio-state profile](profiles/nrf52840-radio-states.json) in 
 
 The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-provided wake, startup, turnaround and sleep-entry costs. Engine 0.2.2 or later is required for correct adjoining-event accounting. See [indoor ESL requirements](docs/INDOOR-ESL.md) for PV, storage, radio scheduling and EINK display intake.
 
-The user-confirmed **VMAIN** storage connection for a capacitor, supercapacitor or battery is recorded in [ONiO characterization](vendor/onio/onio-zero/characterization.json). Its voltage limits and charge/discharge behavior are still unknown; the runnable load model does not yet simulate this path. The input-voltage range is not a VMAIN rating.
+The user-confirmed **VMAIN** storage connection for a capacitor, supercapacitor or battery is recorded in [ONiO characterization](vendor/onio/onio-zero/characterization.json). The user separately confirmed a **250 mV minimum operating voltage**. The maximum and charge/discharge behavior remain unknown; the runnable load model does not yet simulate this path. The earlier input maximum is not a VMAIN rating.
 
 Engine 0.2.5 supports a per-node `profile_period_s`: all activities on that component must fit within the period and carry the same `period_s`. This lets a daily lighting pattern and a CPU/radio activity pattern repeat independently. See [building profiles](https://github.com/mikro-design/energy-monitor/blob/main/docs/PROFILES.md).
 

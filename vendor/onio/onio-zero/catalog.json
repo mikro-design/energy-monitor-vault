@@ -23,7 +23,7 @@
     "status": "not_characterized",
     "package": null,
     "entries": [],
-    "notes": "The official feature overview does not supply a revision-specific package pinout. The user identifies VMAIN as a bidirectional storage connection for a capacitor, supercapacitor or battery; electrical limits and package pin numbers remain uncharacterized. See characterization.json vmain_storage. VMAIN is not yet implemented by the runnable load model."
+    "notes": "The official feature overview does not supply a revision-specific package pinout. The user identifies VMAIN as a bidirectional storage connection for a capacitor, supercapacitor or battery, with a 250 mV minimum operating voltage. Maximum voltage, charge/discharge behavior and package pin numbers remain uncharacterized. See characterization.json vmain_storage. VMAIN is not yet implemented by the runnable load model."
   },
   "radio": {
     "protocols": [
@@ -74,7 +74,7 @@
       "Obtain revision-specific datasheet, package pinout and measurement conditions.",
       "Characterize voltage dependence, other PHYs/TX powers and combined CPU/radio states.",
       "Model harvesting, storage, cold start, conversion losses and brownout before predicting energy-limited operation.",
-      "Characterize user-confirmed VMAIN storage voltage limits, charging behavior, conversion losses and cutoff/restart thresholds; implement a bidirectional storage path for capacitor, supercapacitor or compatible battery attachments."
+      "Characterize VMAIN maximum voltage, charging behavior, conversion losses and cutoff/restart thresholds; implement a bidirectional storage path for capacitor, supercapacitor or compatible battery attachments. The user has confirmed the minimum operating voltage as 250 mV."
     ]
   }
 }

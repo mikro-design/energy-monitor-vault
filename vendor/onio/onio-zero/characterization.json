@@ -147,7 +147,7 @@
   ],
   "vmain_storage": {
     "status": "user_confirmed_capability_electrical_limits_pending",
-    "source": "User statement in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery.",
+    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV.",
     "port_name": "VMAIN",
     "energy_flow": "bidirectional",
     "supported_storage_types": [
@@ -156,10 +156,13 @@
       "battery"
     ],
     "package_pins": [],
-    "voltage_range_v": null,
+    "voltage_range_v": {
+      "min": 0.25,
+      "max": null
+    },
     "charging_limit": null,
     "charge_discharge_efficiency": null,
     "cutoff_restart_thresholds_v": null,
-    "note": "Capability and vendor port name are user supplied. Package mapping and electrical behavior are uncharacterized. Earlier 0.25–3 V input limits must not be applied to VMAIN without confirmation. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
+    "note": "Capability, vendor port name and 250 mV minimum operating voltage are user supplied. Maximum operating voltage, package mapping and charge/discharge behavior remain uncharacterized. The earlier 3 V input maximum must not be applied to VMAIN without confirmation. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
   }
 }
