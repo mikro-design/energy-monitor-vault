@@ -147,7 +147,7 @@
   ],
   "vmain_storage": {
     "status": "user_confirmed_voltage_range_charge_discharge_pending",
-    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV and a maximum operating voltage of 3.3 V.",
+    "source": "User statements in the project conversation, 2026-10-06: ONiO.zero supports energy storage attached at VMAIN, using a capacitor, supercapacitor or battery. The user separately confirmed a VMAIN minimum operating voltage of 250 mV and a maximum operating voltage of 3.3 V. The user confirmed that charging stops at 2.7 V.",
     "port_name": "VMAIN",
     "energy_flow": "bidirectional",
     "supported_storage_types": [
@@ -160,9 +160,11 @@
       "min": 0.25,
       "max": 3.3
     },
-    "charging_limit": null,
+    "charging_limit": {
+      "stop_voltage_v": 2.7
+    },
     "charge_discharge_efficiency": null,
     "cutoff_restart_thresholds_v": null,
-    "note": "Capability, vendor port name and 0.25–3.3 V operating range are user supplied. Package mapping and charge/discharge behavior remain uncharacterized. The maximum operating voltage is not yet a characterized charging stop voltage. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
+    "note": "Capability, vendor port name, 0.25–3.3 V operating range and 2.7 V charging stop voltage are user supplied. Package mapping, charging power, conversion efficiency and cutoff/restart behavior remain uncharacterized. Battery charging depends on chemistry and an explicitly characterized charging path. The current runnable part remains a consumption-only load and does not simulate VMAIN storage."
   }
 }
