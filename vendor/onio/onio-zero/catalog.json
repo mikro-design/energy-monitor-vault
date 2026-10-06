@@ -74,7 +74,7 @@
       "Obtain revision-specific datasheet, package pinout and measurement conditions.",
       "Characterize voltage dependence, other PHYs/TX powers and combined CPU/radio states.",
       "Model harvesting, storage, cold start, conversion losses and brownout before predicting energy-limited operation.",
-      "Characterize VMAIN charging power, conversion losses and cutoff/restart thresholds; implement a bidirectional storage path for capacitor, supercapacitor or compatible battery attachments. The user has confirmed a 250 mV–3.3 V operating range and a 2.7 V charging stop voltage."
+      "Characterize VMAIN charging power, conversion losses and any distinct shutdown threshold; implement a bidirectional storage path for capacitor, supercapacitor or compatible battery attachments. The user has confirmed a 250 mV–3.3 V operating range, a 2.7 V charging stop and a 2.2 V restart voltage."
     ]
   }
 }
