@@ -65,6 +65,7 @@ export function validatePart(part) {
   const counts = {
     battery: [0, 1],
     supply: [0, 1],
+    solar: [0, 1],
     switch: [1, 1],
     load: [1, 0],
   };
@@ -99,6 +100,44 @@ export function validatePart(part) {
   const m = part.model;
   for (const key of ["voltage_v", "capacity_ah", "max_current_a"])
     if (key in m && m[key] <= 0) errors.push(`${key} must be positive`);
+  if (m.kind === "solar") {
+    const points = m.curve;
+    const states = Object.values(m.states_lux);
+    if (
+      !(m.area_m2 > 0) ||
+      !states.length ||
+      states.length > 100 ||
+      !Object.hasOwn(m.states_lux, m.default_state)
+    )
+      errors.push("Solar area and default lighting state must be valid");
+    if (
+      points.length < 2 ||
+      points.length > 100 ||
+      points.some(
+        (p, i) =>
+          !(
+            p.illuminance_lux > 0 &&
+            p.power_density_w_m2 > 0 &&
+            p.voltage_v > 0
+          ) ||
+          (i && p.illuminance_lux <= points[i - 1].illuminance_lux),
+      )
+    )
+      errors.push(
+        "Solar MPP samples must be positive and strictly ordered by lux",
+      );
+    if (
+      states.some(
+        (lux) =>
+          lux !== 0 &&
+          !(
+            lux >= points[0]?.illuminance_lux &&
+            lux <= points.at(-1)?.illuminance_lux
+          ),
+      )
+    )
+      errors.push("Solar lighting must be zero or within the MPP table range");
+  }
   if (m.kind === "converter") {
     if (
       canonical(Object.keys(m.outputs).sort()) !==
@@ -158,6 +197,15 @@ export function validateProfile(profile) {
   const nodes = new Map(profile.nodes.map((n) => [n.id, n]));
   if (nodes.size !== profile.nodes.length) errors.push("Duplicate node ID");
   const incoming = new Set();
+  for (const event of profile.events) {
+    const node = nodes.get(event.node_id);
+    const model = profile.parts.find((p) => p.id === node?.part_id)?.model;
+    if (
+      model?.kind === "solar" &&
+      !Object.hasOwn(model.states_lux, event.state)
+    )
+      errors.push(`Unknown solar lighting state: ${event.state}`);
+  }
   for (const edge of profile.edges) {
     for (const [endpoint, direction] of [
       [edge.from, "power_out"],
@@ -387,6 +435,36 @@ function files(dir) {
     e.isDirectory() ? files(resolve(dir, e.name)) : [resolve(dir, e.name)],
   );
 }
+export function validateSolarCharacterization(part, characterization) {
+  const c = characterization,
+    errors = [];
+  if (!c || c.part_id !== part.id)
+    return ["Solar model requires matching characterization"];
+  if (canonical(c.mpp_samples ?? null) !== canonical(part.model.curve))
+    errors.push("Solar MPP samples must match characterization");
+  if (
+    !c.source?.url?.startsWith("https://") ||
+    !c.source?.revision ||
+    !/^[a-f0-9]{64}$/.test(c.source?.sha256 ?? "")
+  )
+    errors.push("Solar source requires a revision, URL and SHA-256");
+  if (
+    !Number.isFinite(c.conditions?.temperature_c) ||
+    !c.conditions?.illuminant
+  )
+    errors.push("Solar measurement conditions are required");
+  for (let i = 0; i < part.model.curve.length; i++) {
+    for (const field of [
+      "illuminance_lux",
+      "power_density_w_m2",
+      "voltage_v",
+    ]) {
+      if (!part.provenance[`curve.${i}.${field}`]?.note.includes(c.source?.url))
+        errors.push("Solar curve evidence must cite the characterized source");
+    }
+  }
+  return errors;
+}
 export function validateVault(vaultRoot = root) {
   const root = vaultRoot;
   const errors = [],
@@ -432,6 +510,10 @@ export function validateVault(vaultRoot = root) {
     const part = read(path);
     if (!part) continue;
     const problems = validatePart(part);
+    if (!problems.length && part.model.kind === "solar") {
+      const characterization = read(resolve(path, "../characterization.json"));
+      problems.push(...validateSolarCharacterization(part, characterization));
+    }
     if (ids.has(part.id)) problems.push(`Duplicate part ID ${part.id}`);
     ids.add(part.id);
     if (typeof part.id !== "string" || !vendorMap.has(part.id.split("/")[0]))

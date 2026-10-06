@@ -1,0 +1,202 @@
+{
+  "schema_version": "0.2",
+  "id": "exeger/powerfoyle-hybrid",
+  "name": "Exeger Powerfoyle Hybrid",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "pv",
+      "name": "MPP output (logical)",
+      "type": "power_out",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "solar",
+    "area_m2": 0.0005,
+    "states_lux": {
+      "indoor": 200,
+      "dark": 0,
+      "bright": 500
+    },
+    "default_state": "indoor",
+    "curve": [
+      {
+        "illuminance_lux": 200,
+        "power_density_w_m2": 0.054,
+        "voltage_v": 0.39
+      },
+      {
+        "illuminance_lux": 500,
+        "power_density_w_m2": 0.155,
+        "voltage_v": 0.43
+      },
+      {
+        "illuminance_lux": 1000,
+        "power_density_w_m2": 0.361,
+        "voltage_v": 0.47
+      },
+      {
+        "illuminance_lux": 2000,
+        "power_density_w_m2": 0.779,
+        "voltage_v": 0.5
+      },
+      {
+        "illuminance_lux": 5000,
+        "power_density_w_m2": 1.934,
+        "voltage_v": 0.51
+      },
+      {
+        "illuminance_lux": 10000,
+        "power_density_w_m2": 4.056,
+        "voltage_v": 0.53
+      },
+      {
+        "illuminance_lux": 20000,
+        "power_density_w_m2": 7.755,
+        "voltage_v": 0.53
+      },
+      {
+        "illuminance_lux": 30000,
+        "power_density_w_m2": 10.985,
+        "voltage_v": 0.51
+      },
+      {
+        "illuminance_lux": 50000,
+        "power_density_w_m2": 17.103,
+        "voltage_v": 0.49
+      }
+    ]
+  },
+  "provenance": {
+    "area_m2": {
+      "class": "estimated",
+      "note": "5 cm² absorber area from the shelf-label design target; not an Exeger orderable cell geometry. Linear scaling of absorber area is an engineering approximation."
+    },
+    "states_lux.indoor": {
+      "class": "estimated",
+      "note": "200 lux scenario from the application discussion. Set lighting states and timed events to match the installation."
+    },
+    "states_lux.dark": {
+      "class": "estimated",
+      "note": "Zero illumination scenario; assumes zero photovoltaic generation. Reverse leakage is not characterized."
+    },
+    "default_state": {
+      "class": "estimated",
+      "note": "Constant indoor illumination between lighting events; this is not a measured daily light profile."
+    },
+    "curve.0.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.0.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.0.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.1.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.1.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.1.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.2.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.2.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.2.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.3.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.3.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.3.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.4.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.4.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.4.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.5.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.5.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.5.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.6.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.6.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.6.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.7.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.7.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.7.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "curve.8.illuminance_lux": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Exact tabulated illuminance; interpolation between points is a model assumption."
+    },
+    "curve.8.power_density_w_m2": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+    },
+    "curve.8.voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent. MPP-voltage table p. 3."
+    },
+    "states_lux.bright": {
+      "class": "estimated",
+      "note": "Illustrative 500-lux lighting state; not a measured installation schedule."
+    }
+  }
+}

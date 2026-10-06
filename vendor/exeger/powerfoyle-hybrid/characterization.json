@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.1",
+  "part_id": "exeger/powerfoyle-hybrid",
+  "status": "runnable_mpp_approximation",
+  "reviewed_on": "2026-10-06",
+  "source": {
+    "url": "https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf",
+    "revision": "1.4.1",
+    "pages": [1, 2, 3],
+    "sha256": "67b59bb550a3d9572ee1299fa4e54416de5afa63eeb91ac80e53bbaae17ae255",
+    "publisher": "Exeger Operations AB",
+    "linked_from": "https://www.exeger.com/powerfoyle/downloads/"
+  },
+  "conditions": {
+    "temperature_c": 25,
+    "illuminant": "YUJI D50",
+    "lux_meter": "DIG LUX 9500",
+    "measurement_scope": "Raw photovoltaic cell at maximum power point, before boost conversion losses",
+    "reference_design": "PF105 / PF107",
+    "notes": "Exeger Powerfoyle Hybrid 1.4.1, pp. 1–3. https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Initial measurements after manufacturing; typical variation ±10%, design dependent."
+  },
+  "mpp_samples": [
+    {
+      "illuminance_lux": 200,
+      "power_density_w_m2": 0.054,
+      "voltage_v": 0.39
+    },
+    {
+      "illuminance_lux": 500,
+      "power_density_w_m2": 0.155,
+      "voltage_v": 0.43
+    },
+    {
+      "illuminance_lux": 1000,
+      "power_density_w_m2": 0.361,
+      "voltage_v": 0.47
+    },
+    {
+      "illuminance_lux": 2000,
+      "power_density_w_m2": 0.779,
+      "voltage_v": 0.5
+    },
+    {
+      "illuminance_lux": 5000,
+      "power_density_w_m2": 1.934,
+      "voltage_v": 0.51
+    },
+    {
+      "illuminance_lux": 10000,
+      "power_density_w_m2": 4.056,
+      "voltage_v": 0.53
+    },
+    {
+      "illuminance_lux": 20000,
+      "power_density_w_m2": 7.755,
+      "voltage_v": 0.53
+    },
+    {
+      "illuminance_lux": 30000,
+      "power_density_w_m2": 10.985,
+      "voltage_v": 0.51
+    },
+    {
+      "illuminance_lux": 50000,
+      "power_density_w_m2": 17.103,
+      "voltage_v": 0.49
+    }
+  ],
+  "reference_absorber_areas_m2": [0.0078, 0.00335],
+  "boost_reference": {
+    "name": "Boost102",
+    "output_voltage_v": 3.7,
+    "output_load": "LiPo battery",
+    "temperature": "room",
+    "scope": "Reference design only; not automatically applied to cell output or to ONiO",
+    "samples": [
+      {
+        "input_power_w": 0.00009,
+        "dc_dc_efficiency": 0.469,
+        "tracking_efficiency": 0.736,
+        "overall_efficiency": 0.345
+      },
+      {
+        "input_power_w": 0.00026,
+        "dc_dc_efficiency": 0.634,
+        "tracking_efficiency": 0.79,
+        "overall_efficiency": 0.501
+      },
+      {
+        "input_power_w": 0.00097,
+        "dc_dc_efficiency": 0.708,
+        "tracking_efficiency": 0.911,
+        "overall_efficiency": 0.644
+      },
+      {
+        "input_power_w": 0.00235,
+        "dc_dc_efficiency": 0.765,
+        "tracking_efficiency": 0.974,
+        "overall_efficiency": 0.745
+      },
+      {
+        "input_power_w": 0.00503,
+        "dc_dc_efficiency": 0.762,
+        "tracking_efficiency": 0.962,
+        "overall_efficiency": 0.732
+      },
+      {
+        "input_power_w": 0.01295,
+        "dc_dc_efficiency": 0.81,
+        "tracking_efficiency": 0.954,
+        "overall_efficiency": 0.773
+      },
+      {
+        "input_power_w": 0.02496,
+        "dc_dc_efficiency": 0.833,
+        "tracking_efficiency": 0.936,
+        "overall_efficiency": 0.78
+      },
+      {
+        "input_power_w": 0.04518,
+        "dc_dc_efficiency": 0.834,
+        "tracking_efficiency": 0.946,
+        "overall_efficiency": 0.789
+      },
+      {
+        "input_power_w": 0.07074,
+        "dc_dc_efficiency": 0.811,
+        "tracking_efficiency": 0.934,
+        "overall_efficiency": 0.757
+      },
+      {
+        "input_power_w": 0.10312,
+        "dc_dc_efficiency": 0.813,
+        "tracking_efficiency": 0.926,
+        "overall_efficiency": 0.753
+      },
+      {
+        "input_power_w": 0.12575,
+        "dc_dc_efficiency": 0.806,
+        "tracking_efficiency": 0.909,
+        "overall_efficiency": 0.733
+      },
+      {
+        "input_power_w": 0.1399,
+        "dc_dc_efficiency": 0.784,
+        "tracking_efficiency": 0.893,
+        "overall_efficiency": 0.7
+      }
+    ]
+  },
+  "limitations": [
+    "Custom-area scaling and linear interpolation are engineering approximations.",
+    "Only darkness or the tabulated lux range is executable. No extrapolation beyond the table.",
+    "Spectrum and temperature differ between installations; these tables are for the cited conditions.",
+    "Contact geometry and physical terminal names depend on the cell design; logical output has no inferred physical pin mapping.",
+    "Available MPP energy is not necessarily captured energy. Excess power is unused without storage.",
+    "A downstream demand exceeding available cell power turns the whole branch off in this approximation. No charging, restart or refresh-success prediction."
+  ],
+  "indication_only": [
+    {
+      "illuminance_lux": 100000,
+      "power_density_w_m2": 26.587,
+      "voltage_v": null,
+      "note": "Power marked indication by vendor; no 100,000-lux MPP voltage row. Retained as metadata, excluded from executable interpolation."
+    }
+  ]
+}

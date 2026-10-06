@@ -175,6 +175,44 @@
         {
           "type": "object",
           "properties": {
+            "area_m2": {
+              "type": "number",
+              "format": "double"
+            },
+            "curve": {
+              "description": "Ordered manufacturer MPP samples; linear interpolation within the table only.",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SolarPoint"
+              }
+            },
+            "default_state": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string",
+              "const": "solar"
+            },
+            "states_lux": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "area_m2",
+            "states_lux",
+            "default_state",
+            "curve"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
             "iq_a": {
               "type": "number",
               "format": "double"
@@ -308,6 +346,29 @@
       "enum": [
         "power_in",
         "power_out"
+      ]
+    },
+    "SolarPoint": {
+      "type": "object",
+      "properties": {
+        "illuminance_lux": {
+          "type": "number",
+          "format": "double"
+        },
+        "power_density_w_m2": {
+          "type": "number",
+          "format": "double"
+        },
+        "voltage_v": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "illuminance_lux",
+        "power_density_w_m2",
+        "voltage_v"
       ]
     }
   }

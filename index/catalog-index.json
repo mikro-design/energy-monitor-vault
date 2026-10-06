@@ -153,9 +153,16 @@
       "category": "solar_cell",
       "aliases": [],
       "protocols": [],
-      "status": "catalog_only",
+      "status": "runnable_approximation",
       "path": "vendor/exeger/powerfoyle-hybrid/catalog.json",
-      "model": null
+      "model": {
+        "id": "exeger/powerfoyle-hybrid",
+        "name": "Exeger Powerfoyle Hybrid",
+        "kind": "solar",
+        "revision": "0.1.0",
+        "sha256": "8266010e53c7e45b7f3097decf34e047a45df0edfe35018b337f6e2f9241f425",
+        "path": "vendor/exeger/powerfoyle-hybrid/part.json"
+      }
     },
     {
       "id": "exeger/powerfoyle-indoor",
@@ -164,9 +171,16 @@
       "category": "solar_cell",
       "aliases": [],
       "protocols": [],
-      "status": "catalog_only",
+      "status": "runnable_approximation",
       "path": "vendor/exeger/powerfoyle-indoor/catalog.json",
-      "model": null
+      "model": {
+        "id": "exeger/powerfoyle-indoor",
+        "name": "Exeger Powerfoyle Indoor",
+        "kind": "solar",
+        "revision": "0.1.0",
+        "sha256": "4a6528262d3be2e712d681c0124625ac26e138bd2374421567ef895b4f67f5b2",
+        "path": "vendor/exeger/powerfoyle-indoor/part.json"
+      }
     },
     {
       "id": "good-display/gdey0213b74",

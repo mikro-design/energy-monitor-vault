@@ -1,0 +1,319 @@
+{
+  "schema_version": "0.2",
+  "name": "Exeger indoor lighting",
+  "revision": 1,
+  "scenario": "Illustrative 60-second lighting sequence: 200 lux, 500 lux, then darkness; ONiO sleep only, no storage or converter. Not a store schedule or batteryless-service prediction.",
+  "duration_s": 60,
+  "parts": [
+    {
+      "schema_version": "0.2",
+      "id": "exeger/powerfoyle-indoor",
+      "name": "Exeger Powerfoyle Indoor",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "pv",
+          "name": "MPP output (logical)",
+          "type": "power_out",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "solar",
+        "area_m2": 0.0005,
+        "states_lux": {
+          "indoor": 200,
+          "dark": 0,
+          "bright": 500
+        },
+        "default_state": "indoor",
+        "curve": [
+          {
+            "illuminance_lux": 100,
+            "power_density_w_m2": 0.06,
+            "voltage_v": 0.57
+          },
+          {
+            "illuminance_lux": 200,
+            "power_density_w_m2": 0.124,
+            "voltage_v": 0.59
+          },
+          {
+            "illuminance_lux": 500,
+            "power_density_w_m2": 0.3,
+            "voltage_v": 0.6
+          },
+          {
+            "illuminance_lux": 1000,
+            "power_density_w_m2": 0.54,
+            "voltage_v": 0.59
+          }
+        ]
+      },
+      "provenance": {
+        "area_m2": {
+          "class": "estimated",
+          "note": "5 cm² absorber area from the shelf-label design target; not an Exeger orderable cell geometry. Linear scaling of absorber area is an engineering approximation."
+        },
+        "states_lux.indoor": {
+          "class": "estimated",
+          "note": "200 lux scenario from the application discussion. Set lighting states and timed events to match the installation."
+        },
+        "states_lux.dark": {
+          "class": "estimated",
+          "note": "Zero illumination scenario; assumes zero photovoltaic generation. Reverse leakage is not characterized."
+        },
+        "default_state": {
+          "class": "estimated",
+          "note": "Constant indoor illumination between lighting events; this is not a measured daily light profile."
+        },
+        "curve.0.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.0.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.0.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. MPP-voltage table p. 3."
+        },
+        "curve.1.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.1.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.1.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. MPP-voltage table p. 3."
+        },
+        "curve.2.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.2.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.2.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. MPP-voltage table p. 3."
+        },
+        "curve.3.illuminance_lux": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Exact tabulated illuminance; interpolation between points is a model assumption."
+        },
+        "curve.3.power_density_w_m2": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. Power-density table p. 2; µW/cm² converted to W/m² (×0.01)."
+        },
+        "curve.3.voltage_v": {
+          "class": "datasheet_typical",
+          "note": "Exeger Powerfoyle Indoor 3.0, pp. 1–3. https://www.exeger.com/uploads/2023/12/Product-Brief-Powerfoyle-Indoor-v3.0.pdf 25 °C, YUJI D50 illumination calibrated with DIG LUX 9500. Preliminary data based on PF110; custom-area scaling is indicative. MPP-voltage table p. 3."
+        },
+        "states_lux.bright": {
+          "class": "estimated",
+          "note": "Illustrative 500-lux lighting state; not a measured installation schedule."
+        }
+      }
+    },
+    {
+      "schema_version": "0.2",
+      "id": "onio/onio-zero",
+      "name": "ONiO.zero · user-provided power states",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "power",
+          "name": "Power input (logical)",
+          "type": "power_in",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "load",
+        "state_unit": "W",
+        "states": {
+          "sleep_ram_retained": 0.000001,
+          "cpu_4mhz": 0.000088,
+          "cpu_16mhz": 0.000352,
+          "cpu_32mhz": 0.000704,
+          "ble_1m_tx_0dbm": 0.004,
+          "ble_1m_rx": 0.003,
+          "ieee802154_tx_0dbm": 0.004,
+          "ieee802154_rx": 0.003,
+          "radio_ready": 0.0005,
+          "cpu_wake": 0.0001,
+          "ble_1m_tx_startup": 0.001,
+          "ble_1m_rx_startup": 0.001,
+          "ieee802154_tx_startup": 0.001,
+          "ieee802154_rx_startup": 0.001,
+          "ble_1m_tx_to_rx": 0.0005,
+          "ble_1m_rx_to_tx": 0.0005,
+          "ieee802154_tx_to_rx": 0.0005,
+          "ieee802154_rx_to_tx": 0.0005,
+          "enter_sleep": 0.0001
+        },
+        "default_state": "sleep_ram_retained",
+        "min_voltage_v": 0.25
+      },
+      "provenance": {
+        "states.sleep_ram_retained": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1 µW. RAM retained. Direct power value supersedes the unconverted 1000 nA observation."
+        },
+        "states.cpu_4mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 4 MHz = 88 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_16mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 16 MHz = 352 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_32mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 32 MHz = 704 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.ble_1m_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ble_1m_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.radio_ready": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW. Total chip consumption with CPU asleep."
+        },
+        "states.cpu_wake": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 60 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.enter_sleep": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 100 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "state_unit": {
+          "class": "derived",
+          "note": "User requested power-defined states. Values converted from µW/mW into canonical watts. Fixed-power approximation; voltage dependence and input/output conversion losses are not separately characterized."
+        },
+        "default_state": {
+          "class": "derived",
+          "note": "Return to the user-provided RAM-retention sleep state between explicit events."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. Input operating range reported as 250–3000 mV. This engine diagnoses undervoltage at the minimum; maximum remains documented in characterization.json. Logical power input, with no verified physical pin names or package mapping."
+        }
+      }
+    }
+  ],
+  "lock": {
+    "exeger/powerfoyle-indoor": {
+      "revision": "0.1.0",
+      "sha256": "4a6528262d3be2e712d681c0124625ac26e138bd2374421567ef895b4f67f5b2"
+    },
+    "onio/onio-zero": {
+      "revision": "0.1.0",
+      "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2"
+    }
+  },
+  "nodes": [
+    {
+      "id": "solar",
+      "label": "Powerfoyle Indoor · 5 cm²",
+      "part_id": "exeger/powerfoyle-indoor",
+      "x": 80,
+      "y": 160
+    },
+    {
+      "id": "onio",
+      "label": "ONiO.zero · sleep",
+      "part_id": "onio/onio-zero",
+      "x": 440,
+      "y": 160
+    }
+  ],
+  "edges": [
+    {
+      "id": "solar-onio",
+      "from": {
+        "node": "solar",
+        "port": "pv"
+      },
+      "to": {
+        "node": "onio",
+        "port": "power"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "bright",
+      "name": "500 lux",
+      "node_id": "solar",
+      "state": "bright",
+      "start_s": 20,
+      "duration_s": 20,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "dark",
+      "name": "Darkness",
+      "node_id": "solar",
+      "state": "dark",
+      "start_s": 40,
+      "duration_s": 20,
+      "period_s": null,
+      "enabled": true
+    }
+  ]
+}

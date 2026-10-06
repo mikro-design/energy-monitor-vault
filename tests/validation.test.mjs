@@ -164,7 +164,7 @@ test("vault discovers catalogs, checks paths, and reports malformed records", ()
     assert.equal(
       initial.catalog.filter((c) => c.status === "runnable_approximation")
         .length,
-      7,
+      9,
     );
     const nordic = join(dir, "vendor/nordic-semiconductor");
     renameSync(join(nordic, "nrf52840"), join(nordic, "wrong-path"));

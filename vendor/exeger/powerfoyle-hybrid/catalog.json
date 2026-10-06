@@ -17,10 +17,10 @@
     },
     {
       "id": "brief",
-      "url": "https://www.exeger.com/uploads/2023/02/Product-Brief-Powerfoyle-Hybrid-1v3.pdf",
-      "title": "Powerfoyle Hybrid product brief",
+      "url": "https://www.exeger.com/uploads/2025/03/Product-Brief-Powerfoyle-Hybrid-1v4.pdf",
+      "title": "Powerfoyle Hybrid product brief 1.4.1",
       "kind": "datasheet",
-      "reviewed_on": "2026-10-05",
+      "reviewed_on": "2026-10-06",
       "access": "reviewed"
     }
   ],
@@ -32,13 +32,9 @@
   },
   "radio": null,
   "simulation": {
-    "status": "catalog_only",
-    "model_file": null,
-    "scope": "Catalog reference; not accepted by the simulation engine as a part model.",
-    "blockers": [
-      "Select cell geometry, series configuration and contact drawing.",
-      "Obtain I-V/MPP data with area, illuminance, spectrum and temperature.",
-      "Engine needs photovoltaic source and harvester operating-point support."
-    ]
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "MPP power-availability model using absorber area, named lighting states and linear interpolation of the reviewed light/power/voltage tables. Cell output before harvester losses; no storage, full I–V curves or MPPT transient simulation. 5 cm² is an indicative custom-area scenario.",
+    "blockers": []
   }
 }
