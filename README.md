@@ -23,13 +23,13 @@ The environmental-sensor and dual-output-sensor designs are illustrative. Every 
 
 Open [the nRF52840 radio-state profile](profiles/nrf52840-radio-states.json) in the app to exercise explicit BLE/802.15.4 states. Packet timing is illustrative; [automatic radio traffic generation is a proposed extension](https://github.com/mikro-design/energy-monitor/blob/main/docs/RADIO.md).
 
-The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-provided wake, startup, turnaround and sleep-entry costs. Engine 0.2.2 or later is required for correct adjoining-event accounting. See [indoor ESL requirements](docs/INDOOR-ESL.md) for PV, storage, radio scheduling and EINK display intake.
+The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-provided wake, startup, turnaround and sleep-entry costs. The current embedded ONiO model requires engine 0.3.0; adjoining-event accounting has been supported since 0.2.2. See [indoor ESL requirements](docs/INDOOR-ESL.md) for PV, storage, radio scheduling and EINK display intake.
 
 The user-confirmed **VMAIN** storage connection for a capacitor, supercapacitor or battery is recorded in [ONiO characterization](vendor/onio/onio-zero/characterization.json). The user separately confirmed an operating range of **250 mV–3.3 V**, a **2.7 V charging stop voltage**, and a **2.2 V restart voltage**. The user confirmed **85% harvesting input-to-VMAIN efficiency**. Engine 0.3.0 implements capacitor/supercapacitor and approximate storage-battery energy models; harvesting power derives from the source profile and load demand. The minimum operating voltage serves as the modeled cutoff; a separate shutdown threshold and waiting consumption remain uncharacterized. See the [VMAIN example](profiles/onio-vmain-storage.json) and [application storage guide](https://github.com/mikro-design/energy-monitor/blob/main/docs/STORAGE.md).
 
 Engine 0.2.5 supports a per-node `profile_period_s`: all activities on that component must fit within the period and carry the same `period_s`. This lets a daily lighting pattern and a CPU/radio activity pattern repeat independently. See [building profiles](https://github.com/mikro-design/energy-monitor/blob/main/docs/PROFILES.md).
 
-The [Exeger lighting profile](profiles/exeger-indoor-lighting.json) runs a 5 cm² Indoor cell through 200 lux, 500 lux and darkness with ONiO asleep. Engine 0.2.4 is required. [Exeger source records](vendor/exeger/README.md) describe both MPP tables, reference conditions and separate boost data; this example has no storage and is not an overnight-autonomy claim.
+The [Exeger lighting profile](profiles/exeger-indoor-lighting.json) runs a 5 cm² Indoor cell through 200 lux, 500 lux and darkness with ONiO asleep. The current embedded ONiO model requires engine 0.3.0 (solar support began in 0.2.4). [Exeger source records](vendor/exeger/README.md) describe both MPP tables, reference conditions and separate boost data; this example has no storage and is not an overnight-autonomy claim.
 
 ## Layout
 
