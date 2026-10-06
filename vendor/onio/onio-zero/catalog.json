@@ -64,16 +64,16 @@
     ],
     "operating_points": [],
     "timing_status": "not_characterized",
-    "notes": "Official feature overview advertises Bluetooth LE 5.4 (1M, 2M, 125/500 kbit/s coded PHY), IEEE 802.15.4-2020 using 2.4 GHz O-QPSK, and programmable TX power from -40 to 0 dBm. The 250 kbit/s entry maps the declared 2.4 GHz O-QPSK PHY to its standard data rate. These are product-level capabilities, not revision-specific stack certification or characterized current/timing data. Do not substitute older ONiO.zero transmitter-only descriptions for this feature set."
+    "notes": "Official feature overview advertises Bluetooth LE 5.4 (1M, 2M, 125/500 kbit/s coded PHY), IEEE 802.15.4-2020 using 2.4 GHz O-QPSK, and programmable TX power from -40 to 0 dBm. The 250 kbit/s entry maps the declared 2.4 GHz O-QPSK PHY to its standard data rate. These are product-level capabilities, not revision-specific stack certification or characterized current/timing data. Do not substitute older ONiO.zero transmitter-only descriptions for this feature set. User-provided powers and timings are recorded separately in characterization.json and the runnable approximation; timing_status here describes manufacturer-source characterization."
   },
   "simulation": {
-    "status": "catalog_only",
-    "model_file": null,
-    "scope": "Catalog includes BLE and IEEE 802.15.4 capabilities. A runnable model needs qualified radio/CPU states plus the integrated harvesting, storage and power-management paths.",
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "User-provided fixed-power CPU, sleep, BLE 1M and IEEE 802.15.4 states, with explicit wake/startup/turnaround/sleep-entry timing in characterization.json. These values are not manufacturer-verified catalog operating points. Logical power input only. Harvesting, storage, output rails and automatic radio traffic remain outside this load approximation.",
     "blockers": [
-      "Obtain revision-specific datasheet and package pinout.",
-      "Characterize TX current versus output power, RX, CPU, sleep and radio/clock startup with supply and temperature conditions.",
-      "Model harvesting and storage, cold start, available-energy thresholds and brownout before predicting energy-limited radio traffic."
+      "Obtain revision-specific datasheet, package pinout and measurement conditions.",
+      "Characterize voltage dependence, other PHYs/TX powers and combined CPU/radio states.",
+      "Model harvesting, storage, cold start, conversion losses and brownout before predicting energy-limited operation."
     ]
   }
 }

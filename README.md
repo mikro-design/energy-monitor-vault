@@ -17,9 +17,11 @@ The environmental-sensor and dual-output-sensor designs are illustrative. Every 
 | [Analog Devices](vendor/analog-devices)             | ADP5300, ADP5091, LTC3108, LTC3331             |
 | [Microchip](vendor/microchip)                       | MCP1700, MCP1640, MCP73831, PIC16LF18313       |
 
-**Four runnable approximations:** nRF52840, TPS62740, ADP5300 and PIC16LF18313. The other 16 records are catalog-only, with missing characterization or engine capabilities stated explicitly. No product is presented as a complete manufacturer-validated simulation. See [catalog scope and evidence](docs/CATALOG.md).
+**Five runnable approximations:** ONiO.zero (user-provided power characterization), nRF52840, TPS62740, ADP5300 and PIC16LF18313. The other 15 records are catalog-only, with missing characterization or engine capabilities stated explicitly. No product is presented as a complete manufacturer-validated simulation. See [catalog scope and evidence](docs/CATALOG.md).
 
 Open [the nRF52840 radio-state profile](profiles/nrf52840-radio-states.json) in the app to exercise explicit BLE/802.15.4 states. Packet timing is illustrative; [automatic radio traffic generation is a proposed extension](https://github.com/mikro-design/energy-monitor/blob/main/docs/RADIO.md).
+
+The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-provided wake, startup, turnaround and sleep-entry costs. Engine 0.2.2 or later is required for correct adjoining-event accounting. See [indoor ESL requirements](docs/INDOOR-ESL.md) for PV, storage, radio scheduling and EINK display intake.
 
 ## Layout
 
@@ -49,7 +51,7 @@ Validate the topology and run a profile with the application CLI:
 cargo run --manifest-path ../energy-monitor/Cargo.toml -p energy-cli -- validate profiles/environmental-sensor.json
 ```
 
-You can also open a profile JSON file through the web application's project menu. The current app bundles one example and does not automatically synchronize this remote repository.
+You can also open a profile JSON file through the web application's project menu. The current app bundles environmental-sensor and ONiO examples and does not automatically synchronize this remote repository.
 
 Changes to library models do not change an existing profile's embedded model snapshot. Updating a profile requires deliberately copying the new definition, updating its revision/content hash, and comparing before/after simulation results.
 

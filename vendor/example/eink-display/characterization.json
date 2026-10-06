@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "part_id": "example/eink-display",
+  "status": "awaiting_user_characterization",
+  "source": "User requested an EINK display for the ONiO indoor shelf-label use case on 2026-10-06. No display electrical values have been supplied yet.",
+  "preferred_display_unit": "uW",
+  "manufacturer": null,
+  "model": null,
+  "states": {
+    "full_refresh": { "power_w": null, "duration_s": null },
+    "standby": { "power_w": null }
+  },
+  "input_voltage_v": { "min": null, "max": null },
+  "notes": [
+    "Generic intake only; no executable part.json or assumed manufacturer identity.",
+    "Collect one number at a time: full-refresh average input power including controller/driver, refresh duration, then whole-module standby power.",
+    "Do not use zero for unknown standby power, derive partial-refresh energy without evidence, or include ONiO CPU power twice.",
+    "Physical power and SPI/control pin names and package mapping await a selected display module."
+  ]
+}

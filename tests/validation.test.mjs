@@ -164,7 +164,7 @@ test("vault discovers catalogs, checks paths, and reports malformed records", ()
     assert.equal(
       initial.catalog.filter((c) => c.status === "runnable_approximation")
         .length,
-      4,
+      5,
     );
     const nordic = join(dir, "vendor/nordic-semiconductor");
     renameSync(join(nordic, "nrf52840"), join(nordic, "wrong-path"));
@@ -192,6 +192,38 @@ test("radio profile embeds the current model and avoids overlapping radio modes"
     events.at(-1).start_s + events.at(-1).duration_s <
       events[0].period_s + events[0].start_s,
   );
+});
+test("ONiO characterization, executable states and pinned profile agree", () => {
+  const part = read("vendor/onio/onio-zero/part.json");
+  const characterization = read("vendor/onio/onio-zero/characterization.json");
+  const p = read("profiles/onio-radio-states.json");
+  assert.deepEqual(validateProfile(p), []);
+  assert.deepEqual(
+    p.parts.find((entry) => entry.id === part.id),
+    part,
+  );
+  assert.equal(part.model.state_unit, "W");
+  for (const [name, state] of Object.entries(characterization.states))
+    assert.equal(part.model.states[name], state.power_w);
+  for (const [name, transition] of Object.entries(
+    characterization.transitions,
+  )) {
+    assert.equal(part.model.states[name], transition.average_power_w);
+    assert.ok(
+      Math.abs(
+        transition.energy_j -
+          transition.duration_s * transition.average_power_w,
+      ) < 1e-18,
+    );
+    for (const event of p.events.filter((e) => e.state === name))
+      assert.equal(event.duration_s, transition.duration_s);
+  }
+  const events = [...p.events].sort((a, b) => a.start_s - b.start_s);
+  for (let i = 1; i < events.length; i++)
+    assert.ok(
+      events[i - 1].start_s + events[i - 1].duration_s <=
+        events[i].start_s + 1e-12,
+    );
 });
 test("changed pinned models are rejected", () => {
   const p = structuredClone(profile);

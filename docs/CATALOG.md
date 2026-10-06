@@ -8,7 +8,7 @@ The generated [catalog index](../index/catalog-index.json) includes aliases, pro
 
 ## Evidence and pins
 
-Sources point to manufacturers, rather than reseller estimates. `access: search_excerpt` records limited access explicitly; it cannot support numeric operating points or physical pin mappings. ONiO's official feature overview supplies protocol/PHY capabilities; package mapping and current/timing tables remain uncharacterized. A successful domain check verifies the URL's host, not the accuracy of the source's contents; changes still require human source review.
+Sources point to manufacturers, rather than reseller estimates. `access: search_excerpt` records limited access explicitly; it cannot support numeric operating points or physical pin mappings. ONiO's official feature overview supplies protocol/PHY capabilities; manufacturer-qualified package mapping and operating points remain uncharacterized. Its runnable part and characterization file hold user-provided powers and timings separately, with estimated/derived provenance. A successful domain check verifies the URL's host, not the accuracy of the source's contents; changes still require human source review.
 
 Pin entries preserve the vendor's name, direction, role and package numbers. `partial` means a reviewed subset for a named package, not a complete schematic symbol. `not_characterized` means no pin mapping has been imported. Missing data is not inferred. Different packages need separate reviewed mappings before substitution.
 
@@ -18,6 +18,7 @@ Catalog pins can describe control, return, sense and switching nodes. Engine por
 
 | Model        | Qualified baseline                                                                                          | Principal omissions                                                                      |
 | ------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| ONiO.zero | User-provided 250–3000 mV fixed-power sleep/CPU/BLE 1M/802.15.4 states and explicit transition timing | Manufacturer validation, physical pins, integrated power management/storage, voltage curves, other PHYs |
 | nRF52840     | 3 V, 25 °C, normal-voltage supply; PMU whole-device BLE 1M and 802.15.4 radio states, CPU asleep; RTC sleep | Wake/turnaround, application CPU work, automatic packet timing, other PHY current tables |
 | TPS62740     | 1.8 V output, LOAD disabled; 360 nA no-switching baseline IQ; intended input 3.6 V                          | Efficiency curve, switching IQ changes, controlled LOAD path, transients                 |
 | ADP5300      | 2.5 V output, hysteresis mode; 180 nA typical IQ; intended input 3.6 V                                      | Efficiency curve, PWM/STOP and transition behavior                                       |

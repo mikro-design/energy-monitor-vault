@@ -1,0 +1,402 @@
+{
+  "schema_version": "0.2",
+  "name": "ONiO explicit BLE and 802.15.4 states",
+  "revision": 1,
+  "scenario": "User-provided powers and transition timings; illustrative CPU/TX/RX/idle windows, not packet-derived traffic",
+  "duration_s": 1,
+  "parts": [
+    {
+      "schema_version": "0.2",
+      "id": "custom/onio-bench-supply",
+      "name": "Ideal characterization supply",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "out",
+          "name": "OUT",
+          "type": "power_out",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "supply",
+        "voltage_v": 1,
+        "max_current_a": 0.1
+      },
+      "provenance": {
+        "voltage_v": {
+          "class": "estimated",
+          "note": "Illustrative 1 V external supply within the user-provided input range; not a measurement condition."
+        },
+        "max_current_a": {
+          "class": "estimated",
+          "note": "Illustrative 100 mA source limit."
+        }
+      }
+    },
+    {
+      "schema_version": "0.2",
+      "id": "onio/onio-zero",
+      "name": "ONiO.zero · user-provided power states",
+      "revision": "0.1.0",
+      "license": "CC0-1.0",
+      "ports": [
+        {
+          "id": "power",
+          "name": "Power input (logical)",
+          "type": "power_in",
+          "package_pins": []
+        }
+      ],
+      "model": {
+        "kind": "load",
+        "state_unit": "W",
+        "states": {
+          "sleep_ram_retained": 0.000001,
+          "cpu_4mhz": 0.000088,
+          "cpu_16mhz": 0.000352,
+          "cpu_32mhz": 0.000704,
+          "ble_1m_tx_0dbm": 0.004,
+          "ble_1m_rx": 0.003,
+          "ieee802154_tx_0dbm": 0.004,
+          "ieee802154_rx": 0.003,
+          "radio_ready": 0.0005,
+          "cpu_wake": 0.0001,
+          "ble_1m_tx_startup": 0.001,
+          "ble_1m_rx_startup": 0.001,
+          "ieee802154_tx_startup": 0.001,
+          "ieee802154_rx_startup": 0.001,
+          "ble_1m_tx_to_rx": 0.0005,
+          "ble_1m_rx_to_tx": 0.0005,
+          "ieee802154_tx_to_rx": 0.0005,
+          "ieee802154_rx_to_tx": 0.0005,
+          "enter_sleep": 0.0001
+        },
+        "default_state": "sleep_ram_retained",
+        "min_voltage_v": 0.25
+      },
+      "provenance": {
+        "states.sleep_ram_retained": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1 µW. RAM retained. Direct power value supersedes the unconverted 1000 nA observation."
+        },
+        "states.cpu_4mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 4 MHz = 88 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_16mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 16 MHz = 352 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.cpu_32mhz": {
+          "class": "derived",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 32 MHz = 704 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+        },
+        "states.ble_1m_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ble_1m_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_tx_0dbm": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.ieee802154_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+        },
+        "states.radio_ready": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW. Total chip consumption with CPU asleep."
+        },
+        "states.cpu_wake": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 60 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_startup": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ble_1m_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_tx_to_rx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.ieee802154_rx_to_tx": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "states.enter_sleep": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 100 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+        },
+        "state_unit": {
+          "class": "derived",
+          "note": "User requested power-defined states. Values converted from µW/mW into canonical watts. Fixed-power approximation; voltage dependence and input/output conversion losses are not separately characterized."
+        },
+        "default_state": {
+          "class": "derived",
+          "note": "Return to the user-provided RAM-retention sleep state between explicit events."
+        },
+        "min_voltage_v": {
+          "class": "estimated",
+          "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. Input operating range reported as 250–3000 mV. This engine diagnoses undervoltage at the minimum; maximum remains documented in characterization.json. Logical power input, with no verified physical pin names or package mapping."
+        }
+      }
+    }
+  ],
+  "lock": {
+    "custom/onio-bench-supply": {
+      "revision": "0.1.0",
+      "sha256": "81644c03fcea76ce6a3961643619198421a4e621cb7f0ae9653a62bc58606638"
+    },
+    "onio/onio-zero": {
+      "revision": "0.1.0",
+      "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2"
+    }
+  },
+  "nodes": [
+    {
+      "id": "supply",
+      "label": "Ideal 1 V supply",
+      "part_id": "custom/onio-bench-supply",
+      "x": 40,
+      "y": 140
+    },
+    {
+      "id": "onio",
+      "label": "ONiO.zero",
+      "part_id": "onio/onio-zero",
+      "x": 400,
+      "y": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "power",
+      "from": {
+        "node": "supply",
+        "port": "out"
+      },
+      "to": {
+        "node": "onio",
+        "port": "power"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "BLE-1",
+      "name": "BLE: cpu_wake",
+      "node_id": "onio",
+      "state": "cpu_wake",
+      "start_s": 0.1,
+      "duration_s": 0.00006,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-2",
+      "name": "BLE: cpu_4mhz",
+      "node_id": "onio",
+      "state": "cpu_4mhz",
+      "start_s": 0.10006,
+      "duration_s": 0.001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-3",
+      "name": "BLE: ble_1m_tx_startup",
+      "node_id": "onio",
+      "state": "ble_1m_tx_startup",
+      "start_s": 0.10106,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-4",
+      "name": "BLE: ble_1m_tx_0dbm",
+      "node_id": "onio",
+      "state": "ble_1m_tx_0dbm",
+      "start_s": 0.10115,
+      "duration_s": 0.001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-5",
+      "name": "BLE: ble_1m_tx_to_rx",
+      "node_id": "onio",
+      "state": "ble_1m_tx_to_rx",
+      "start_s": 0.10215,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-6",
+      "name": "BLE: ble_1m_rx",
+      "node_id": "onio",
+      "state": "ble_1m_rx",
+      "start_s": 0.10224,
+      "duration_s": 0.002,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-7",
+      "name": "BLE: ble_1m_rx_to_tx",
+      "node_id": "onio",
+      "state": "ble_1m_rx_to_tx",
+      "start_s": 0.10424,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-8",
+      "name": "BLE: ble_1m_tx_0dbm",
+      "node_id": "onio",
+      "state": "ble_1m_tx_0dbm",
+      "start_s": 0.10433,
+      "duration_s": 0.001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-9",
+      "name": "BLE: radio_ready",
+      "node_id": "onio",
+      "state": "radio_ready",
+      "start_s": 0.10533,
+      "duration_s": 0.0002,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "BLE-10",
+      "name": "BLE: enter_sleep",
+      "node_id": "onio",
+      "state": "enter_sleep",
+      "start_s": 0.10553,
+      "duration_s": 0.0001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-11",
+      "name": "802.15.4: cpu_wake",
+      "node_id": "onio",
+      "state": "cpu_wake",
+      "start_s": 0.5,
+      "duration_s": 0.00006,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-12",
+      "name": "802.15.4: cpu_16mhz",
+      "node_id": "onio",
+      "state": "cpu_16mhz",
+      "start_s": 0.50006,
+      "duration_s": 0.001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-13",
+      "name": "802.15.4: ieee802154_rx_startup",
+      "node_id": "onio",
+      "state": "ieee802154_rx_startup",
+      "start_s": 0.50106,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-14",
+      "name": "802.15.4: ieee802154_rx",
+      "node_id": "onio",
+      "state": "ieee802154_rx",
+      "start_s": 0.50115,
+      "duration_s": 0.002,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-15",
+      "name": "802.15.4: ieee802154_rx_to_tx",
+      "node_id": "onio",
+      "state": "ieee802154_rx_to_tx",
+      "start_s": 0.50315,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-16",
+      "name": "802.15.4: ieee802154_tx_0dbm",
+      "node_id": "onio",
+      "state": "ieee802154_tx_0dbm",
+      "start_s": 0.50324,
+      "duration_s": 0.001,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-17",
+      "name": "802.15.4: ieee802154_tx_to_rx",
+      "node_id": "onio",
+      "state": "ieee802154_tx_to_rx",
+      "start_s": 0.50424,
+      "duration_s": 0.00009,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-18",
+      "name": "802.15.4: ieee802154_rx",
+      "node_id": "onio",
+      "state": "ieee802154_rx",
+      "start_s": 0.50433,
+      "duration_s": 0.002,
+      "period_s": null,
+      "enabled": true
+    },
+    {
+      "id": "802.15.4-19",
+      "name": "802.15.4: enter_sleep",
+      "node_id": "onio",
+      "state": "enter_sleep",
+      "start_s": 0.50633,
+      "duration_s": 0.0001,
+      "period_s": null,
+      "enabled": true
+    }
+  ]
+}

@@ -281,9 +281,16 @@
         "ble",
         "ieee802154"
       ],
-      "status": "catalog_only",
+      "status": "runnable_approximation",
       "path": "vendor/onio/onio-zero/catalog.json",
-      "model": null
+      "model": {
+        "id": "onio/onio-zero",
+        "name": "ONiO.zero · user-provided power states",
+        "kind": "load",
+        "revision": "0.1.0",
+        "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2",
+        "path": "vendor/onio/onio-zero/part.json"
+      }
     },
     {
       "id": "texas-instruments/bq25570",

@@ -1,0 +1,132 @@
+{
+  "schema_version": "0.2",
+  "id": "onio/onio-zero",
+  "name": "ONiO.zero · user-provided power states",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "power",
+      "name": "Power input (logical)",
+      "type": "power_in",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "load",
+    "state_unit": "W",
+    "states": {
+      "sleep_ram_retained": 0.000001,
+      "cpu_4mhz": 0.000088,
+      "cpu_16mhz": 0.000352,
+      "cpu_32mhz": 0.000704,
+      "ble_1m_tx_0dbm": 0.004,
+      "ble_1m_rx": 0.003,
+      "ieee802154_tx_0dbm": 0.004,
+      "ieee802154_rx": 0.003,
+      "radio_ready": 0.0005,
+      "cpu_wake": 0.0001,
+      "ble_1m_tx_startup": 0.001,
+      "ble_1m_rx_startup": 0.001,
+      "ieee802154_tx_startup": 0.001,
+      "ieee802154_rx_startup": 0.001,
+      "ble_1m_tx_to_rx": 0.0005,
+      "ble_1m_rx_to_tx": 0.0005,
+      "ieee802154_tx_to_rx": 0.0005,
+      "ieee802154_rx_to_tx": 0.0005,
+      "enter_sleep": 0.0001
+    },
+    "default_state": "sleep_ram_retained",
+    "min_voltage_v": 0.25
+  },
+  "provenance": {
+    "states.sleep_ram_retained": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1 µW. RAM retained. Direct power value supersedes the unconverted 1000 nA observation."
+    },
+    "states.cpu_4mhz": {
+      "class": "derived",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 4 MHz = 88 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+    },
+    "states.cpu_16mhz": {
+      "class": "derived",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 16 MHz = 352 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+    },
+    "states.cpu_32mhz": {
+      "class": "derived",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 22 µW/MHz × 32 MHz = 704 µW. Radio-off CPU state; additional fixed overhead is uncharacterized."
+    },
+    "states.ble_1m_tx_0dbm": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+    },
+    "states.ble_1m_rx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+    },
+    "states.ieee802154_tx_0dbm": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 4000 µW. Total chip consumption with CPU asleep."
+    },
+    "states.ieee802154_rx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 3000 µW. Total chip consumption with CPU asleep."
+    },
+    "states.radio_ready": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW. Total chip consumption with CPU asleep."
+    },
+    "states.cpu_wake": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 60 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ble_1m_tx_startup": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ble_1m_rx_startup": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ieee802154_tx_startup": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ieee802154_rx_startup": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 1000 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ble_1m_tx_to_rx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ble_1m_rx_to_tx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ieee802154_tx_to_rx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.ieee802154_rx_to_tx": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 500 µW average total chip power for 90 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "states.enter_sleep": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. 100 µW average total chip power for 100 µs. Duration is stored in characterization.json and must be scheduled explicitly."
+    },
+    "state_unit": {
+      "class": "derived",
+      "note": "User requested power-defined states. Values converted from µW/mW into canonical watts. Fixed-power approximation; voltage dependence and input/output conversion losses are not separately characterized."
+    },
+    "default_state": {
+      "class": "derived",
+      "note": "Return to the user-provided RAM-retention sleep state between explicit events."
+    },
+    "min_voltage_v": {
+      "class": "estimated",
+      "note": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet. Input operating range reported as 250–3000 mV. This engine diagnoses undervoltage at the minimum; maximum remains documented in characterization.json. Logical power input, with no verified physical pin names or package mapping."
+    }
+  }
+}

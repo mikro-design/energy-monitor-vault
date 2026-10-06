@@ -2,10 +2,16 @@
 
 See [catalog scope and evidence](../../docs/CATALOG.md). Pin mappings are partial; read the package and operating conditions before use.
 
-| Product                             | Category     | Simulation status |
-| ----------------------------------- | ------------ | ----------------- |
-| [ONiO.zero](onio-zero/catalog.json) | wireless_soc | catalog_only      |
+| Product                             | Category     | Simulation status      |
+| ----------------------------------- | ------------ | ---------------------- |
+| [ONiO.zero](onio-zero/catalog.json) | wireless_soc | runnable_approximation |
 
-ONiO.zero declares BLE 1M/2M/coded and 2.4 GHz IEEE 802.15.4 capabilities in its [official feature overview](https://www.onio.com/technology.html). Current tables, startup timing and package pins remain uncharacterized. A complete power model must include its integrated harvesting and storage paths.
+ONiO.zero declares BLE 1M/2M/coded and 2.4 GHz IEEE 802.15.4 capabilities in its [official feature overview](https://www.onio.com/technology.html). Manufacturer-qualified operating points and package pins remain uncharacterized. User-provided powers and timings are recorded separately from official catalog evidence.
 
-[Characterization in progress](onio-zero/characterization.json) records user-supplied inputs separately from verified manufacturer information. The supplied input range is 250–3000 mV. Retained-RAM sleep power is awaiting a direct µW value; the earlier current observation has not been converted without its measurement voltage.
+[Characterization](onio-zero/characterization.json) and the [runnable model](onio-zero/part.json) contain 19 constant-power states and 10 transition timings. Input range: 250–3000 mV; RAM-retention sleep: 1 µW; CPU: 22 µW/MHz at 4/16/32 MHz (88/352/704 µW). BLE 1M and IEEE 802.15.4 use 4000 µW TX at 0 dBm and 3000 µW RX, with the CPU asleep. Radio-ready power is 500 µW. These whole-device states must not have an extra CPU or sleep baseline added.
+
+CPU wake is 60 µs at 100 µW. Radio startup after CPU wake is 90 µs at 1000 µW for either direction/protocol. Both turnaround directions take 90 µs at 500 µW. Sleep entry is 100 µs at 100 µW. Timings require explicit activity events; the load model does not automatically insert them.
+
+Open the [radio-state profile](../../profiles/onio-radio-states.json) in the app. Its CPU/TX/RX windows are illustrative; transition times use the supplied values. The one-second example consumes 31.91994 µJ from an ideal source. Engine 0.2.2 fixes event-boundary rounding that could otherwise undercount this sequence. [Workspace settings](../../settings/onio-radio-states.json) select dark mode and the power graph; settings ingestion remains planned.
+
+The input port is explicitly logical; no physical vendor pin names or numbers are invented. This approximation does not model ONiO's integrated harvesting, storage or output rails. See the [indoor shelf-label use case](../../docs/INDOOR-ESL.md) for the display and energy-supply requirements.

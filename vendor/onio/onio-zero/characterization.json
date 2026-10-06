@@ -1,27 +1,148 @@
 {
   "schema_version": "0.1",
   "part_id": "onio/onio-zero",
-  "status": "incomplete_user_characterization",
-  "source": "User-supplied values in this project conversation, 2026-10-05; not independently verified.",
+  "status": "user_characterized_baseline",
+  "source": "User-supplied ONiO characterization in the project conversation, 2026-10-05–2026-10-06; not independently verified against a revision-specific datasheet.",
   "preferred_display_unit": "uW",
   "input_voltage_v": {
     "min": 0.25,
-    "max": 3.0
+    "max": 3
+  },
+  "cpu": {
+    "power_w_per_mhz": 0.000022,
+    "frequencies_mhz": [
+      4,
+      16,
+      32
+    ],
+    "radio_state": "off_assumed"
   },
   "states": {
     "sleep_ram_retained": {
-      "power_w": null
+      "power_w": 0.000001
+    },
+    "cpu_4mhz": {
+      "power_w": 0.000088
+    },
+    "cpu_16mhz": {
+      "power_w": 0.000352
+    },
+    "cpu_32mhz": {
+      "power_w": 0.000704
+    },
+    "ble_1m_tx_0dbm": {
+      "power_w": 0.004
+    },
+    "ble_1m_rx": {
+      "power_w": 0.003
+    },
+    "ieee802154_tx_0dbm": {
+      "power_w": 0.004
+    },
+    "ieee802154_rx": {
+      "power_w": 0.003
+    },
+    "radio_ready": {
+      "power_w": 0.0005
+    },
+    "cpu_wake": {
+      "power_w": 0.0001
+    },
+    "ble_1m_tx_startup": {
+      "power_w": 0.001
+    },
+    "ble_1m_rx_startup": {
+      "power_w": 0.001
+    },
+    "ieee802154_tx_startup": {
+      "power_w": 0.001
+    },
+    "ieee802154_rx_startup": {
+      "power_w": 0.001
+    },
+    "ble_1m_tx_to_rx": {
+      "power_w": 0.0005
+    },
+    "ble_1m_rx_to_tx": {
+      "power_w": 0.0005
+    },
+    "ieee802154_tx_to_rx": {
+      "power_w": 0.0005
+    },
+    "ieee802154_rx_to_tx": {
+      "power_w": 0.0005
+    },
+    "enter_sleep": {
+      "power_w": 0.0001
+    }
+  },
+  "transitions": {
+    "cpu_wake": {
+      "duration_s": 0.00006,
+      "average_power_w": 0.0001,
+      "energy_j": 6e-9
+    },
+    "ble_1m_tx_startup": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.001,
+      "energy_j": 9e-8
+    },
+    "ble_1m_rx_startup": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.001,
+      "energy_j": 9e-8
+    },
+    "ieee802154_tx_startup": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.001,
+      "energy_j": 9e-8
+    },
+    "ieee802154_rx_startup": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.001,
+      "energy_j": 9e-8
+    },
+    "ble_1m_tx_to_rx": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.0005,
+      "energy_j": 4.5e-8
+    },
+    "ble_1m_rx_to_tx": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.0005,
+      "energy_j": 4.5e-8
+    },
+    "ieee802154_tx_to_rx": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.0005,
+      "energy_j": 4.5e-8
+    },
+    "ieee802154_rx_to_tx": {
+      "duration_s": 0.00009,
+      "average_power_w": 0.0005,
+      "energy_j": 4.5e-8
+    },
+    "enter_sleep": {
+      "duration_s": 0.0001,
+      "average_power_w": 0.0001,
+      "energy_j": 1e-8
     }
   },
   "unconverted_observations": {
     "sleep_ram_retained": {
-      "current_a": 1e-06,
-      "measurement_voltage_v": null
+      "current_a": 0.000001,
+      "measurement_voltage_v": null,
+      "status": "superseded_by_direct_power_value"
     }
   },
-  "notes": [
-    "Power-first characterization requested for all devices. Canonical power values use watts; editors display microwatts.",
-    "The earlier 1000 nA retained-RAM sleep observation cannot establish a power value without its measurement voltage. Await a direct sleep-power value.",
-    "This is an incomplete intake record, not a runnable part or verified datasheet specification."
+  "limitations": [
+    "User-provided baseline, not manufacturer-verified electrical data. Silicon revision, package, measurement rail and temperature are unspecified.",
+    "Logical power input only; no physical pin names/numbers are inferred.",
+    "Whole-device radio states include a sleeping CPU. Do not add CPU or sleep baseline power to them.",
+    "CPU run powers use 22 µW/MHz with no added fixed baseline; this remains a model assumption.",
+    "Power is held constant within the stated range; voltage-dependent curves and the 3 V upper limit are not enforced by the current engine.",
+    "Transition durations require explicit timeline events; they are not automatically inserted by the engine.",
+    "BLE 2M/coded operation and TX powers other than 0 dBm remain uncharacterized.",
+    "Harvesting, storage, cold start, output rails and brownout/restart behavior remain outside this baseline."
   ]
 }
