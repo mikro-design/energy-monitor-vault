@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Energy Monitor EINK preset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "revision",
+    "license",
+    "specification_status",
+    "description",
+    "scope",
+    "source_url",
+    "source_note",
+    "operation",
+    "energy_note",
+    "idle_state",
+    "idle_power_w",
+    "idle_note",
+    "input_voltage_v",
+    "power_port_name"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "specification_status": {
+      "enum": ["typical", "tentative"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_url": {
+      "type": "string",
+      "pattern": "^https://[^ /]+/"
+    },
+    "source_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["energy_j", "duration_s"],
+      "properties": {
+        "energy_j": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "duration_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "energy_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idle_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idle_power_w": {
+      "type": ["number", "null"],
+      "minimum": 0
+    },
+    "idle_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_voltage_v": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "typical", "max"],
+      "properties": {
+        "min": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "typical": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "power_port_name": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

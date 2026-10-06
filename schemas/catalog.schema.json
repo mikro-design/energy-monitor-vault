@@ -43,7 +43,8 @@
         "charger",
         "harvester_pmic",
         "solar_cell",
-        "pmic"
+        "pmic",
+        "epaper_display"
       ]
     },
     "aliases": {

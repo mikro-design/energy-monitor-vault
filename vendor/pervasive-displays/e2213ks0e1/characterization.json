@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
   "part_id": "pervasive-displays/e2213ks0e1",
-  "status": "datasheet_research_only",
+  "status": "configurable_preset",
   "name": "E2213KS0E1",
   "description": "2.13-inch monochrome wide-temperature panel, 212 × 104; tentative 2023 electrical characterization.",
   "reviewed_on": "2026-10-06",
@@ -180,6 +180,6 @@
     "Standby/deep-sleep power and fast-refresh energy remain unknown.",
     "21 mA is a typical peak, not a maximum; average energy alone cannot size the supply/storage path.",
     "Derived energy assumes the typical power/current applies over the stated refresh interval. Actual energy needs a complete operation trace.",
-    "No executable part is published by this research record; unknown values remain null."
+    "Full-refresh preset is available in preset.json. Unknown modes remain null; Pervasive requires explicit idle power."
   ]
 }

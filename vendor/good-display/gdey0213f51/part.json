@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.2",
+  "id": "good-display/gdey0213f51",
+  "name": "Good Display GDEY0213F51",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "ports": [
+    {
+      "id": "power",
+      "name": "VDD + VDDIO (tied)",
+      "type": "power_in",
+      "package_pins": []
+    }
+  ],
+  "model": {
+    "kind": "load",
+    "state_unit": "W",
+    "states": {
+      "deep_sleep": 3e-06
+    },
+    "operations": {
+      "full_refresh": {
+        "energy_j": 0.2475,
+        "duration_s": 25
+      }
+    },
+    "default_state": "deep_sleep",
+    "min_voltage_v": 2.3
+  },
+  "provenance": {
+    "state_unit": {
+      "class": "derived",
+      "note": "Constant input power approximation at the cited test conditions. Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf"
+    },
+    "default_state": {
+      "class": "estimated",
+      "note": "Assumes the display enters deep_sleep between full refreshes; controller commands are not simulated."
+    },
+    "min_voltage_v": {
+      "class": "datasheet_typical",
+      "note": "Cited operating supply range 2.3–3.6 V; upper limit is metadata only. Both supply pins share the logical rail. Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf"
+    },
+    "states.deep_sleep": {
+      "class": "datasheet_typical",
+      "note": "Directly listed deep-sleep power at 3.3 V. Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf"
+    },
+    "operations.full_refresh.energy_j": {
+      "class": "derived",
+      "note": "9.9 mW × 25 s at 3.3 V/25 °C; not a directly measured energy specification. Do not substitute GDEY0213F52 timing. Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf Panel/reference circuit only; excludes host, radio and upstream losses."
+    },
+    "operations.full_refresh.duration_s": {
+      "class": "datasheet_typical",
+      "note": "Typical full refresh at 3.3 V, 25 °C. Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf"
+    }
+  }
+}

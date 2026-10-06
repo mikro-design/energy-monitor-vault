@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
   "part_id": "good-display/gdey0213b74",
-  "status": "datasheet_research_only",
+  "status": "runnable_full_refresh_approximation",
   "name": "GDEY0213B74",
   "description": "2.13-inch monochrome panel, 250 × 122, SSD1680 family; raw panel with integrated driver.",
   "reviewed_on": "2026-10-06",
@@ -84,8 +84,8 @@
   "states": [
     {
       "id": "deep_sleep",
-      "power_w": 0.000003,
-      "current_a": 0.000001,
+      "power_w": 3e-06,
+      "current_a": 1e-06,
       "voltage_v": 3,
       "classification": "typical",
       "source_pages": [
@@ -95,8 +95,8 @@
     },
     {
       "id": "sleep_ram_retained",
-      "power_w": 0.00006,
-      "current_a": 0.00002,
+      "power_w": 6e-05,
+      "current_a": 2e-05,
       "voltage_v": 3,
       "classification": "derived_from_typical_current",
       "source_pages": [
@@ -200,6 +200,6 @@
     "No independently characterized fast/partial refresh energy or peak current was imported.",
     "The current product-page partial time differs from the reviewed PDF; this is not a claim that the PDF is the latest revision.",
     "Derived energy assumes the typical power/current applies over the stated refresh interval. Actual energy needs a complete operation trace.",
-    "No executable part is published by this research record; unknown values remain null."
+    "part.json models full refresh and deep sleep only. Uncharacterized modes remain null in this record."
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "id": "good-display/gdey0213b74",
+  "name": "Good Display GDEY0213B74",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "specification_status": "typical",
+  "description": "2.13-inch monochrome panel, 250 × 122, SSD1680 family; raw panel with integrated driver.",
+  "scope": "Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+  "source_url": "https://files.seeedstudio.com/wiki/Other_Display/213-epaper/GDEY0213B74.pdf",
+  "source_note": "Dalian Good Display Co., Ltd., 1.0, 2021-03-17; PDF pages 2, 8, 9, 10. https://files.seeedstudio.com/wiki/Other_Display/213-epaper/GDEY0213B74.pdf",
+  "operation": {
+    "energy_j": 0.0315,
+    "duration_s": 3
+  },
+  "energy_note": "Ptyp × full-update time at 3.0 V and 25 °C; not a directly measured energy specification.",
+  "idle_state": "deep_sleep",
+  "idle_power_w": 3e-06,
+  "idle_note": "RAM not retained; maximum listed current 5 µA.",
+  "input_voltage_v": {
+    "min": 2.2,
+    "typical": 3,
+    "max": 3.7
+  },
+  "power_port_name": "VCI + VDDIO (tied)"
+}

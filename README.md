@@ -6,7 +6,7 @@ The environmental-sensor and dual-output-sensor designs are illustrative. Every 
 
 ## Manufacturer starter set
 
-20 product records are organized under the singular `vendor/` directory:
+23 product records are organized under the singular `vendor/` directory:
 
 | Manufacturer                                        | Products                                       |
 | --------------------------------------------------- | ---------------------------------------------- |
@@ -16,8 +16,10 @@ The environmental-sensor and dual-output-sensor designs are illustrative. Every 
 | [Texas Instruments](vendor/texas-instruments)       | TPS62740, TPS62840, TPS63900, BQ25570, CC2652R |
 | [Analog Devices](vendor/analog-devices)             | ADP5300, ADP5091, LTC3108, LTC3331             |
 | [Microchip](vendor/microchip)                       | MCP1700, MCP1640, MCP73831, PIC16LF18313       |
+| [Good Display](vendor/good-display) | GDEY0213B74, GDEY0213F51 |
+| [Pervasive Displays](vendor/pervasive-displays) | E2213KS0E1 (configurable preset; idle power required) |
 
-**Five runnable approximations:** ONiO.zero (user-provided power characterization), nRF52840, TPS62740, ADP5300 and PIC16LF18313. The other 15 records are catalog-only, with missing characterization or engine capabilities stated explicitly. No product is presented as a complete manufacturer-validated simulation. See [catalog scope and evidence](docs/CATALOG.md).
+**Seven runnable approximations:** ONiO.zero (user-provided power characterization), nRF52840, TPS62740, ADP5300, PIC16LF18313, GDEY0213B74 and GDEY0213F51. The other 16 records are catalog-only, with missing characterization or engine capabilities stated explicitly. No product is presented as a complete manufacturer-validated simulation. See [catalog scope and evidence](docs/CATALOG.md).
 
 Open [the nRF52840 radio-state profile](profiles/nrf52840-radio-states.json) in the app to exercise explicit BLE/802.15.4 states. Packet timing is illustrative; [automatic radio traffic generation is a proposed extension](https://github.com/mikro-design/energy-monitor/blob/main/docs/RADIO.md).
 
@@ -25,11 +27,12 @@ The [ONiO radio-state profile](profiles/onio-radio-states.json) includes user-pr
 
 ## Layout
 
-Four [EINK datasheet research records](docs/EINK-DATASHEETS.md) now sit under `vendor/good-display/`, `vendor/pervasive-displays/` and `vendor/waveshare/`. They retain derived mJ/refresh, timing, conditions, revision-specific pins and unknown values. They are separate from the 20 catalog products and have not been promoted to executable parts.
+Four [EINK datasheet research records](docs/EINK-DATASHEETS.md) now sit under `vendor/good-display/`, `vendor/pervasive-displays/` and `vendor/waveshare/`. They retain derived mJ/refresh, timing, conditions, revision-specific pins and unknown values. Three selected displays have `preset.json` records: B74 (31.5 mJ / 3 s), F51 (247.5 mJ / 25 s), and tentative Pervasive E2213KS0E1 (16.56 mJ / 2.4 s). The two Good Display models are runnable; Pervasive requires explicit idle power before a runnable instance can be created. Waveshare remains research-only. Display operations require engine 0.2.3 or later.
 
 - `vendor/<vendor>/vendor.json`: manufacturer identity, aliases and official source domains.
 - `vendor/<vendor>/<part>/catalog.json`: sourced product metadata, reviewed pin subsets, radio capabilities and modeling status.
 - `vendor/<vendor>/<part>/part.json`: reusable electrical models, logical power port names/directions and reviewed package mappings where applicable, and field-level provenance.
+- `vendor/<vendor>/<part>/preset.json`: configurable EINK full-refresh energy/duration, idle power (nullable), source conditions and logical supply names. Validation checks against characterization and any published part.
 - `profiles/*.json`: project instances, wiring, activity, embedded model snapshots, and their content locks.
 - `settings/*.json`: device workspace display preferences. Storage is ready; automatic application of these preferences in the web app is planned.
 - `schemas/`: JSON Schema 2020-12 documents. Part/project/activity schemas are generated from the application's Rust types.
@@ -70,3 +73,5 @@ See the application's [port contract and migration instructions](https://github.
 ## Power values
 
 The application edits and displays device power in µW. New load models specify `state_unit: "W"` and store state values in watts (10 µW = 0.000010 W). Omitted `state_unit`, or `"A"`, preserves constant-current models and their source data. Current-based models display derived power at the connected nominal input voltage. Selecting fixed-power behavior deliberately converts at that voltage; these two behaviors differ when voltage changes. See [the power contract](https://github.com/mikro-design/energy-monitor/blob/main/docs/POWER.md).
+
+Energy-defined loads add `operations[name] = { energy_j, duration_s }` alongside steady `states`. Events select the operation by name; average power is energy divided by the scheduled duration. Operations replace idle consumption while active. The UI supports nJ/µJ/mJ for energy and µW for idle power. See [display presets and their limits](docs/EINK-DATASHEETS.md).

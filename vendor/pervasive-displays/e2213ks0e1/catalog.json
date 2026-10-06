@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "id": "pervasive-displays/e2213ks0e1",
+  "vendor": "pervasive-displays",
+  "name": "Pervasive E2213KS0E1",
+  "category": "epaper_display",
+  "aliases": [
+    "E2213KS0E1"
+  ],
+  "description": "2.13-inch monochrome wide-temperature panel, 212 × 104; tentative 2023 electrical characterization.",
+  "sources": [
+    {
+      "id": "manufacturer-reference",
+      "title": "E2213KS0E1 manufacturer reference",
+      "url": "https://www.pervasivedisplays.com/products/2-13-e-ink-displays/",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-06",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Exact physical pin metadata and reviewed distributor-hosted manufacturer PDF are in characterization.json. The simulation uses one logical tied supply rail; separate rail power and booster pins are not simulated."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "catalog_only",
+    "model_file": null,
+    "scope": "Configurable full-refresh energy preset in preset.json. Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+    "blockers": [
+      "Idle power must be explicitly supplied before creating a runnable model. Refresh specification is tentative."
+    ]
+  }
+}

@@ -169,6 +169,48 @@
       "model": null
     },
     {
+      "id": "good-display/gdey0213b74",
+      "vendor": "good-display",
+      "name": "Good Display GDEY0213B74",
+      "category": "epaper_display",
+      "aliases": [
+        "GDEY0213B74"
+      ],
+      "protocols": [],
+      "status": "runnable_approximation",
+      "path": "vendor/good-display/gdey0213b74/catalog.json",
+      "model": {
+        "id": "good-display/gdey0213b74",
+        "name": "Good Display GDEY0213B74",
+        "kind": "load",
+        "revision": "0.1.0",
+        "sha256": "bdcaf79027d779922af93230ecca64481e33d9e81569c8ab248bebf596aa6484",
+        "path": "vendor/good-display/gdey0213b74/part.json"
+      },
+      "preset": "vendor/good-display/gdey0213b74/preset.json"
+    },
+    {
+      "id": "good-display/gdey0213f51",
+      "vendor": "good-display",
+      "name": "Good Display GDEY0213F51",
+      "category": "epaper_display",
+      "aliases": [
+        "GDEY0213F51"
+      ],
+      "protocols": [],
+      "status": "runnable_approximation",
+      "path": "vendor/good-display/gdey0213f51/catalog.json",
+      "model": {
+        "id": "good-display/gdey0213f51",
+        "name": "Good Display GDEY0213F51",
+        "kind": "load",
+        "revision": "0.1.0",
+        "sha256": "f897cca6193b612ef53bf49752a5a3dd2230e8a44eb7fad9d2d2589bbef5d640",
+        "path": "vendor/good-display/gdey0213f51/part.json"
+      },
+      "preset": "vendor/good-display/gdey0213f51/preset.json"
+    },
+    {
       "id": "microchip/mcp1640",
       "vendor": "microchip",
       "name": "MCP1640",
@@ -314,6 +356,20 @@
         "sha256": "8835f2439b0c6e0f309a148b8e67cccc795ed3c8610f4a45ca92b7dd7b2cd4a2",
         "path": "vendor/onio/onio-zero/part.json"
       }
+    },
+    {
+      "id": "pervasive-displays/e2213ks0e1",
+      "vendor": "pervasive-displays",
+      "name": "Pervasive E2213KS0E1",
+      "category": "epaper_display",
+      "aliases": [
+        "E2213KS0E1"
+      ],
+      "protocols": [],
+      "status": "catalog_only",
+      "path": "vendor/pervasive-displays/e2213ks0e1/catalog.json",
+      "model": null,
+      "preset": "vendor/pervasive-displays/e2213ks0e1/preset.json"
     },
     {
       "id": "texas-instruments/bq25570",

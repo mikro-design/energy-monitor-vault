@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "id": "good-display/gdey0213f51",
+  "name": "Good Display GDEY0213F51",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "specification_status": "typical",
+  "description": "2.13-inch four-colour black/white/red/yellow panel, 250 × 122; model-specific 2023 baseline.",
+  "scope": "Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+  "source_url": "https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf",
+  "source_note": "Dalian Good Display Co., Ltd., 1.0, 2023-03-21; PDF pages 2, 7, 9. https://files.seeedstudio.com/wiki/Other_Display/213-quadruple/GDEY0213F51.pdf",
+  "operation": {
+    "energy_j": 0.2475,
+    "duration_s": 25
+  },
+  "energy_note": "9.9 mW × 25 s at 3.3 V/25 °C; not a directly measured energy specification. Do not substitute GDEY0213F52 timing.",
+  "idle_state": "deep_sleep",
+  "idle_power_w": 3e-06,
+  "idle_note": "Directly listed deep-sleep power at 3.3 V.",
+  "input_voltage_v": {
+    "min": 2.3,
+    "typical": 3.3,
+    "max": 3.6
+  },
+  "power_port_name": "VDD + VDDIO (tied)"
+}

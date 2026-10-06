@@ -28,7 +28,8 @@ const validatePartShape = schema("part"),
   validateProjectShape = schema("project"),
   validateSettingsShape = schema("settings"),
   validateVendorShape = schema("vendor"),
-  validateCatalogShape = schema("catalog");
+  validateCatalogShape = schema("catalog"),
+  validatePresetShape = schema("eink-preset");
 const classes = new Set([
   "estimated",
   "derived",
@@ -118,6 +119,21 @@ export function validatePart(part) {
     (!Object.keys(m.states).length || !Object.hasOwn(m.states, m.default_state))
   )
     errors.push("Load default state must exist");
+  if (m.kind === "load") {
+    const operations = Object.entries(m.operations ?? {});
+    if (Object.keys(m.states).length > 100 || operations.length > 100)
+      errors.push("Too many load states or operations");
+    if (operations.length && m.state_unit !== "W")
+      errors.push("Energy operations require W states");
+    for (const [name, op] of operations) {
+      if (!name.trim() || Object.hasOwn(m.states, name))
+        errors.push(
+          "Operation names must be nonempty and distinct from states",
+        );
+      if (!(op.energy_j > 0 && op.duration_s > 0))
+        errors.push("Operation energy and duration must be positive");
+    }
+  }
   return errors;
 }
 export function validateProfile(profile) {
@@ -316,6 +332,56 @@ export function validateCatalog(catalog, vendor, part = null) {
     errors.push("Catalog-only entry cannot publish a runnable model");
   return errors;
 }
+export function validatePreset(preset, characterization, part = null) {
+  if (!validatePresetShape(preset))
+    return validatePresetShape.errors.map(
+      (e) => `${e.instancePath} ${e.message}`,
+    );
+  const errors = [];
+  const c = characterization;
+  const operation = c?.operations?.find((o) => o.id === "full_refresh");
+  const idle = c?.states?.find((s) => s.id === preset.idle_state);
+  if (!c || c.part_id !== preset.id || !operation || !idle)
+    return ["Preset requires matching characterization"];
+  if (
+    preset.operation.energy_j !== operation.energy_j ||
+    preset.operation.duration_s !== operation.duration_s ||
+    preset.idle_power_w !== idle.power_w
+  )
+    errors.push(
+      "Preset energy, duration and idle power must match characterization",
+    );
+  if (
+    Math.abs(operation.power_w * operation.duration_s - operation.energy_j) >
+    1e-12
+  )
+    errors.push("Derived refresh energy must equal power times duration");
+  if (canonical(preset.input_voltage_v) !== canonical(c.input_voltage_v))
+    errors.push("Preset voltage must match characterization");
+  const v = preset.input_voltage_v;
+  if (!(v.min <= v.typical && v.typical <= v.max))
+    errors.push("Invalid preset voltage range");
+  if (
+    preset.source_url !== c.sources[0].url ||
+    !preset.source_note.includes(c.sources[0].date)
+  )
+    errors.push("Preset must preserve the reviewed source and date");
+  if (
+    preset.specification_status !==
+    (operation.classification.includes("tentative") ? "tentative" : "typical")
+  )
+    errors.push("Preset must preserve tentative status");
+  if (preset.idle_power_w === null) {
+    if (part) errors.push("Unknown idle power cannot publish a runnable part");
+  } else if (
+    !part ||
+    part.model.states?.[preset.idle_state] !== preset.idle_power_w ||
+    canonical(part.model.operations?.full_refresh) !==
+      canonical(preset.operation)
+  )
+    errors.push("Runnable display model must match the preset");
+  return errors;
+}
 function files(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
     e.isDirectory() ? files(resolve(dir, e.name)) : [resolve(dir, e.name)],
@@ -416,7 +482,28 @@ export function validateVault(vaultRoot = root) {
         status: entry.simulation.status,
         path: relative(root, path),
         model: index.find((p) => p.id === entry.id) ?? null,
+        ...(existsSync(resolve(root, `vendor/${entry.id}/preset.json`))
+          ? { preset: `vendor/${entry.id}/preset.json` }
+          : {}),
       });
+  }
+  for (const path of paths.filter((p) => p.endsWith("/preset.json"))) {
+    const preset = read(path);
+    if (!preset) continue;
+    const characterization = read(resolve(path, "../characterization.json"));
+    const problems = validatePreset(
+      preset,
+      characterization,
+      partMap.get(preset.id),
+    );
+    if (
+      relative(root, path).replaceAll("\\", "/") !==
+      `vendor/${preset.id}/preset.json`
+    )
+      problems.push("Path must match preset ID");
+    if (!catalogIds.has(preset.id))
+      problems.push("Preset requires a catalog entry");
+    errors.push(...problems.map((e) => `${relative(root, path)}: ${e}`));
   }
   for (const id of partMap.keys())
     if (!id.startsWith("example/") && !catalogIds.has(id))

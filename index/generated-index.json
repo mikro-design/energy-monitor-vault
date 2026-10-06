@@ -58,6 +58,22 @@
       "path": "vendor/example/temperature-sensor/part.json"
     },
     {
+      "id": "good-display/gdey0213b74",
+      "name": "Good Display GDEY0213B74",
+      "kind": "load",
+      "revision": "0.1.0",
+      "sha256": "bdcaf79027d779922af93230ecca64481e33d9e81569c8ab248bebf596aa6484",
+      "path": "vendor/good-display/gdey0213b74/part.json"
+    },
+    {
+      "id": "good-display/gdey0213f51",
+      "name": "Good Display GDEY0213F51",
+      "kind": "load",
+      "revision": "0.1.0",
+      "sha256": "f897cca6193b612ef53bf49752a5a3dd2230e8a44eb7fad9d2d2589bbef5d640",
+      "path": "vendor/good-display/gdey0213f51/part.json"
+    },
+    {
       "id": "microchip/pic16lf18313",
       "name": "PIC16LF18313 · 3 V states",
       "kind": "load",

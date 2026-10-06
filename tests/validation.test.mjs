@@ -160,11 +160,11 @@ test("vault discovers catalogs, checks paths, and reports malformed records", ()
       });
     const initial = validateVault(dir);
     assert.deepEqual(initial.errors, []);
-    assert.equal(initial.catalog.length, 20);
+    assert.equal(initial.catalog.length, 23);
     assert.equal(
       initial.catalog.filter((c) => c.status === "runnable_approximation")
         .length,
-      5,
+      7,
     );
     const nordic = join(dir, "vendor/nordic-semiconductor");
     renameSync(join(nordic, "nrf52840"), join(nordic, "wrong-path"));

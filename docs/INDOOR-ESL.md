@@ -8,17 +8,17 @@ The discussion suggests approximately 20–30 µW/cm² at 500 lux, approximately
 
 The discussion references 2–4 display updates per day. This is a comparison range, not a fixed traffic schedule or a measured energy-neutral result. BLE PAwR is a requested scenario; support and qualification statements in the correspondence are historical, not current certification evidence. Explicit ONiO TX/RX states do not implement PAwR packet scheduling or predict network capacity.
 
-[Display intake](../vendor/example/eink-display/characterization.json) retains missing values as null until the user supplies them. It is not a runnable part or a manufacturer catalog record.
+[Custom display intake](../vendor/example/eink-display/characterization.json) retains unknown values as null. It is a template rather than a runnable part.
 
-[Initial datasheet research](EINK-DATASHEETS.md) provides model-specific full-refresh energy estimates and records missing mode data. Select the vendor, exact panel/module, revision and refresh mode before choosing an energy value. No display has been selected for the actual ONiO design yet.
+The user selected all three [researched display presets](EINK-DATASHEETS.md): Good Display GDEY0213B74 and GDEY0213F51, plus tentative Pervasive E2213KS0E1. Keep exact model/revision and conditions attached to each alternative.
 
 ## Display accounting
 
-Add a separate display load beside the ONiO load. Enter full-refresh average input power including the display controller/driver, refresh duration and whole-module standby power. Keep display power in µW in the editor and W in JSON. The app's **Add component → EINK display** flow asks for these values one at a time and creates a full-refresh event. No display manufacturer or electrical values have yet been supplied for this project.
+Add a separate display load beside the ONiO load. Choose one of the three vendor presets or enter custom full-refresh energy, duration and standby power one at a time. Use nJ/µJ/mJ for energy, seconds for duration and µW for idle power; JSON retains J, s and W. The app creates a full-refresh event. Pervasive requires an explicit idle-power value; zero is never silently assumed.
 
-For one refresh, energy is average refresh power × duration. Across a horizon T with N non-overlapping refreshes of duration t, display energy is `N × P_refresh × t + P_standby × (T − N × t)`. Refresh power already includes standby consumption during the refresh. Partial refresh needs its own characterized power and duration; do not scale full-refresh energy by pixel fraction without evidence.
+For one refresh, average power is energy / scheduled duration. Across a horizon T with N complete, non-overlapping refreshes of duration t, display energy is `N × E_refresh + P_idle × (T − N × t)`. Refresh energy already includes baseline consumption during the refresh. Partial refresh needs its own characterized energy and duration; do not scale full-refresh energy by pixel fraction without evidence.
 
-ONiO image preparation and SPI transfer use explicit CPU events. Display refresh can overlap ONiO sleep or radio events because it is a separate load. CPU/radio combined states on ONiO still need characterization. Power-off leakage, cold start, temperature, waveform/color dependence and supply limits need separate data. Logical display input names are placeholders until a selected module provides exact vendor pin names/numbers; SPI/control wiring is not yet supported by the power engine.
+ONiO image preparation and SPI transfer use explicit CPU events. Display refresh can overlap ONiO sleep or radio events because it is a separate load. CPU/radio combined states on ONiO still need characterization. Power-off leakage, cold start, temperature, waveform/color dependence and supply limits need separate data. The selected presets expose a logical tied supply input with vendor supply names; exact FPC mapping stays in characterization. SPI/control wiring is not yet supported by the power engine.
 
 ## Remaining system model
 

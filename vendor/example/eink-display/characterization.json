@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
   "part_id": "example/eink-display",
-  "status": "awaiting_model_selection",
+  "status": "custom_template",
   "source": "User requested model-specific EINK refresh energy and datasheet research, 2026-10-06.",
   "manufacturer": null,
   "model": null,
@@ -22,7 +22,7 @@
   "notes": [
     "Select vendor, exact display model/module, revision and refresh mode before choosing an energy value.",
     "Use energy per refresh with duration; average power is derived as E/t. Keep idle and sleep power separate.",
-    "See docs/EINK-DATASHEETS.md for four source-linked research records; no display is selected for the ONiO system yet.",
+    "Three selected vendor presets are available: Good Display GDEY0213B74, GDEY0213F51 and tentative Pervasive E2213KS0E1. This record remains an uncharacterized custom template.",
     "Unknown energy or standby power must remain null; do not substitute zero.",
     "Match physical power and SPI/control pins to the selected module and revision."
   ],

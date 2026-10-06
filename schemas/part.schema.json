@@ -89,6 +89,24 @@
         "note"
       ]
     },
+    "LoadOperation": {
+      "type": "object",
+      "properties": {
+        "duration_s": {
+          "type": "number",
+          "format": "double"
+        },
+        "energy_j": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "energy_j",
+        "duration_s"
+      ]
+    },
     "LoadStateUnit": {
       "type": "string",
       "enum": [
@@ -225,6 +243,13 @@
             "min_voltage_v": {
               "type": "number",
               "format": "double"
+            },
+            "operations": {
+              "description": "Energy per scheduled operation, spread over the event's duration.",
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/LoadOperation"
+              }
             },
             "state_unit": {
               "description": "New models use W. Omission preserves legacy constant-current states and hashes.",

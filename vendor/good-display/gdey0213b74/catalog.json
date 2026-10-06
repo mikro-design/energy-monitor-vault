@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "id": "good-display/gdey0213b74",
+  "vendor": "good-display",
+  "name": "Good Display GDEY0213B74",
+  "category": "epaper_display",
+  "aliases": [
+    "GDEY0213B74"
+  ],
+  "description": "2.13-inch monochrome panel, 250 × 122, SSD1680 family; raw panel with integrated driver.",
+  "sources": [
+    {
+      "id": "manufacturer-reference",
+      "title": "GDEY0213B74 manufacturer reference",
+      "url": "https://www.good-display.com/companyfile/635.html",
+      "kind": "product_page",
+      "reviewed_on": "2026-10-06",
+      "access": "reviewed"
+    }
+  ],
+  "pins": {
+    "status": "not_characterized",
+    "package": null,
+    "entries": [],
+    "notes": "Exact physical pin metadata and reviewed distributor-hosted manufacturer PDF are in characterization.json. The simulation uses one logical tied supply rail; separate rail power and booster pins are not simulated."
+  },
+  "radio": null,
+  "simulation": {
+    "status": "runnable_approximation",
+    "model_file": "part.json",
+    "scope": "Configurable full-refresh energy preset in preset.json. Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+    "blockers": []
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "id": "pervasive-displays/e2213ks0e1",
+  "name": "Pervasive E2213KS0E1",
+  "revision": "0.1.0",
+  "license": "CC0-1.0",
+  "specification_status": "tentative",
+  "description": "2.13-inch monochrome wide-temperature panel, 212 × 104; tentative 2023 electrical characterization.",
+  "scope": "Panel and its display driver/reference circuit under cited test conditions; host MCU, radio, upstream converter, optional adapter board, touch and frontlight consumption are not included.",
+  "source_url": "https://static.chipdip.ru/lib/642/DOC050642272.pdf",
+  "source_note": "Pervasive Displays Incorporated, Tentative, 2023-04-17; PDF pages 1, 13, 14, 17, 18, 20. https://static.chipdip.ru/lib/642/DOC050642272.pdf",
+  "operation": {
+    "energy_j": 0.01656,
+    "duration_s": 2.4
+  },
+  "energy_note": "3 V × 2.3 mA × 2.4 s. Current trace on page 14 supports mean-current interpretation. Vendor test jig and price-label pattern, 25 ± 2 °C.",
+  "idle_state": "idle",
+  "idle_power_w": null,
+  "idle_note": "Image retention without power does not establish standby current of the powered controller or attached board.",
+  "input_voltage_v": {
+    "min": 2.3,
+    "typical": 3,
+    "max": 3.6
+  },
+  "power_port_name": "VDD + VDDIO (tied)"
+}
